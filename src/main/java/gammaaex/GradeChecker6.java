@@ -7,7 +7,16 @@ import gammaaex.Analyzer.ArgumentAnalyzer;
 
 import java.util.TreeMap;
 
+/**
+ * ステップ6に相当するクラス
+ */
 public class GradeChecker6 {
+
+    /**
+     * 問題を解くメソッド
+     *
+     * @param args 実行時引数
+     */
     public void run(String[] args) {
         ArgumentAnalyzer argumentAnalyzer = new ArgumentAnalyzer(args[0], args[1], args[2]);
         ExamAnalyzer examAnalyzer = new ExamAnalyzer();
@@ -16,4 +25,5 @@ public class GradeChecker6 {
         Printer printer = new Printer();
         printer.printExam(examTreeMap);
     }
+
 }

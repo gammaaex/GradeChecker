@@ -1,5 +1,8 @@
 package gammaaex.Entity;
 
+/**
+ * 成績を表現するイミュータブルなクラス
+ */
 public class Exam {
 
     /**

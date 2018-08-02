@@ -1,9 +1,23 @@
 package gammaaex.Calculator;
 
+/**
+ * 成績を計算するクラス
+ */
 public class GradeCalculator {
+
+    /**
+     * コンストラクタ
+     */
     public GradeCalculator() {
+
     }
 
+    /**
+     * 成績をGradeに変換する
+     *
+     * @param point 成績
+     * @return Grade
+     */
     public Grade convertPointToGrade(Double point){
         Grade grade = Grade.K;
 

@@ -5,11 +5,23 @@ import gammaaex.Calculator.GradeCalculator;
 
 import java.util.TreeMap;
 
+/**
+ * 標準出力を司るクラス
+ */
 public class Printer {
 
+    /**R
+     * コンストラクタ
+     */
     public Printer() {
+
     }
 
+    /**
+     * exam用の出力を行う
+     *
+     * @param filledExamTreeMap 番号飛びがないTreeMap
+     */
     public void printExam(TreeMap<Integer, Exam> filledExamTreeMap) {
         GradeCalculator gradeCalculator = new GradeCalculator();
 
@@ -22,6 +34,11 @@ public class Printer {
         });
     }
 
+    /**
+     * CSV形式でPrintする
+     *
+     * @param arguments 文字列の可変長引数
+     */
     public void printCSVLine(String... arguments) {
         StringBuilder stringBuilder = new StringBuilder();
 
