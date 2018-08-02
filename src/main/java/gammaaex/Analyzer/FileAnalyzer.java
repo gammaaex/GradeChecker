@@ -10,8 +10,7 @@ import java.util.stream.Collectors;
 
 /**
  * ファイル解析の基底クラス
- * 個別のファイル解析クラスを実装する場合、
- * このクラスを継承することを推奨する
+ * 個別のファイル解析クラスを実装する場合はこのクラスを継承すること
  */
 public class FileAnalyzer {
 

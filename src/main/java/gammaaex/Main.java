@@ -1,5 +1,7 @@
 package gammaaex;
 
+import gammaaex.GradeChecker.GradeChecker1;
+
 /**
  * メインクラス
  */
@@ -11,8 +13,8 @@ public class Main {
      * @param args 実行時引数
      */
     public static void main(String[] args) {
-        GradeChecker6 gradeChecker6 = new GradeChecker6();
-        gradeChecker6.run(args);
+        GradeChecker1 gradeChecker1 = new GradeChecker1();
+        gradeChecker1.run(args);
     }
 
 }
