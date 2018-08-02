@@ -1,4 +1,4 @@
-package gammaaex.Entity;
+package gammaaex.entity;
 
 /**
  * 成績を表現するイミュータブルなクラス

@@ -1,7 +1,7 @@
-package gammaaex.Printer;
+package gammaaex.printer;
 
-import gammaaex.Calculator.GradeCalculator;
-import gammaaex.Entity.Exam;
+import gammaaex.calculator.GradeCalculator;
+import gammaaex.entity.Exam;
 
 import java.util.TreeMap;
 

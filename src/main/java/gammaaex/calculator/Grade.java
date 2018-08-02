@@ -1,4 +1,4 @@
-package gammaaex.Calculator;
+package gammaaex.calculator;
 
 /**
  * 成績を表現するEnum

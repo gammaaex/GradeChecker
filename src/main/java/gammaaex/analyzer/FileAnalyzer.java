@@ -1,4 +1,4 @@
-package gammaaex.Analyzer;
+package gammaaex.analyzer;
 
 
 import java.io.IOException;

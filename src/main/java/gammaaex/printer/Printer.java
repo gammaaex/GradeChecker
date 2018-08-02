@@ -1,4 +1,4 @@
-package gammaaex.Printer;
+package gammaaex.printer;
 
 /**
  * 標準出力を司るクラス

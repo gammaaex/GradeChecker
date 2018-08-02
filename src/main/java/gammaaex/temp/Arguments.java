@@ -1,4 +1,4 @@
-package gammaaex.Other;
+package gammaaex.temp;
 
 import java.io.PrintWriter;
 

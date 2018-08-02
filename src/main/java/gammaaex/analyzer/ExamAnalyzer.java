@@ -1,6 +1,6 @@
-package gammaaex.Analyzer;
+package gammaaex.analyzer;
 
-import gammaaex.Entity.Exam;
+import gammaaex.entity.Exam;
 
 import java.nio.file.Path;
 import java.util.List;

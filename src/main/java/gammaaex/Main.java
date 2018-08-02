@@ -1,6 +1,6 @@
 package gammaaex;
 
-import gammaaex.GradeChecker.GradeChecker1;
+import gammaaex.grade_checker.GradeChecker1;
 
 /**
  * メインクラス

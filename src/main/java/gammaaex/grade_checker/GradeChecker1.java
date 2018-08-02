@@ -1,9 +1,9 @@
-package gammaaex.GradeChecker;
+package gammaaex.grade_checker;
 
-import gammaaex.Analyzer.ExamAnalyzer;
-import gammaaex.Entity.Exam;
-import gammaaex.Printer.ExamPrinter;
-import gammaaex.Analyzer.ArgumentAnalyzer;
+import gammaaex.analyzer.ExamAnalyzer;
+import gammaaex.entity.Exam;
+import gammaaex.printer.ExamPrinter;
+import gammaaex.analyzer.ArgumentAnalyzer;
 
 import java.util.TreeMap;
 
