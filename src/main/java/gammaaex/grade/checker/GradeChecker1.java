@@ -1,4 +1,4 @@
-package gammaaex.grade_checker;
+package gammaaex.grade.checker;
 
 import gammaaex.analyzer.ExamAnalyzer;
 import gammaaex.entity.Exam;
