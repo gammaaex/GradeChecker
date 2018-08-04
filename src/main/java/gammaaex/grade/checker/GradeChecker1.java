@@ -1,11 +1,9 @@
 package gammaaex.grade.checker;
 
-import gammaaex.analyzer.ExamAnalyzer;
-import gammaaex.entity.Exam;
-import gammaaex.printer.ExamPrinter;
 import gammaaex.analyzer.ArgumentAnalyzer;
-
-import java.util.TreeMap;
+import gammaaex.analyzer.ExamAnalyzer;
+import gammaaex.analyzer.FileAnalyzer;
+import gammaaex.printer.ExamPrinter;
 
 /**
  * ステップ1に相当するクラス
@@ -17,15 +15,15 @@ public class GradeChecker1 {
     /**
      * 問題を解くメソッド
      *
-     * @param args 実行時引数
+     * @param arguments 実行時引数
      */
-    public void run(String[] args) {
-        ArgumentAnalyzer argumentAnalyzer = new ArgumentAnalyzer(args[0], args[1], args[2]);
-        ExamAnalyzer examAnalyzer = new ExamAnalyzer();
-        TreeMap<Integer, Exam> examTreeMap = examAnalyzer.getExamMapFillId(argumentAnalyzer.getExam());
+    public void run(String[] arguments) {
+        new ArgumentAnalyzer().validateForOne(arguments);
 
-        ExamPrinter examPrinter = new ExamPrinter();
-        examPrinter.print(examTreeMap);
+        new ExamPrinter().print(
+                new ExamAnalyzer().getExamMapFillId(
+                        new FileAnalyzer().getResource(arguments[0])
+                )
+        );
     }
-
 }

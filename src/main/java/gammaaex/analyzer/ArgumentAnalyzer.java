@@ -1,10 +1,9 @@
 package gammaaex.analyzer;
 
 
-import gammaaex.Main;
+import gammaaex.printer.Printer;
 
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 /**
  * 引数を解析するクラス
@@ -26,17 +25,26 @@ public class ArgumentAnalyzer {
      */
     private Path miniExam;
 
+//    /**
+//     * コンストラクタ
+//     *
+//     * @param examFileName exam.csvに相当するファイルのファイル名
+//     * @param assignmentsFileName assignments.csvに相当するファイルのファイル名
+//     * @param miniExamFileName miniExam.csvに相当するファイルのファイル名
+//     */
+//    public ArgumentAnalyzer(String examFileName, String assignmentsFileName, String miniExamFileName) {
+//        FileAnalyzer fileAnalyzer = new FileAnalyzer();
+//
+//        this.setExam(fileAnalyzer.getResource(examFileName));
+//        this.setAssignments(fileAnalyzer.getResource(assignmentsFileName));
+//        this.setMiniExam(fileAnalyzer.getResource(miniExamFileName));
+//    }
+
     /**
      * コンストラクタ
-     *
-     * @param examFileName exam.csvに相当するファイルのファイル名
-     * @param assignmentsFileName assignments.csvに相当するファイルのファイル名
-     * @param miniExamFileName miniExam.csvに相当するファイルのファイル名
      */
-    public ArgumentAnalyzer(String examFileName, String assignmentsFileName, String miniExamFileName) {
-        this.setExam(this.getResource(examFileName));
-        this.setAssignments(this.getResource(assignmentsFileName));
-        this.setMiniExam(this.getResource(miniExamFileName));
+    public ArgumentAnalyzer() {
+
     }
 
     /**
@@ -82,10 +90,42 @@ public class ArgumentAnalyzer {
     }
 
     /**
-     * @param fileName resource file name.
-     * @return get resource path.
+     * コマンドライン引数が1つのアプリケーションのための検証メソッド
+     * 引数が2つ以上あった場合にエラー終了する
+     *
+     * @param arguments コマンドライン引数
      */
-    public Path getResource(String fileName) {
-        return Paths.get(Main.class.getResource(fileName).getPath());
+    public void validateForOne(String[] arguments) {
+        if (arguments.length >= 2) {
+            new Printer().printError();
+            System.exit(-1);
+        }
+    }
+
+    /**
+     * コマンドライン引数が複数のアプリケーションのための検証メソッド
+     * 引数がなかった場合にエラー終了する
+     *
+     * @param arguments コマンドライン引数
+     */
+    public void validateForMany(String[] arguments) {
+        if (arguments.length == 0) {
+            new Printer().printError();
+            System.exit(-1);
+        }
+    }
+
+    /**
+     * コマンドライン引数が複数のアプリケーションのための検証メソッド
+     * 引数が指定された数と一致しなかった場合にエラー終了する
+     *
+     * @param arguments コマンドライン引数
+     * @param length    検証したい引数の数
+     */
+    public void validateForMany(String[] arguments, Integer length) {
+        if (arguments.length == length) {
+            new Printer().printError();
+            System.exit(-1);
+        }
     }
 }

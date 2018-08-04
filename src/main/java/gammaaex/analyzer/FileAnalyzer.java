@@ -1,10 +1,13 @@
 package gammaaex.analyzer;
 
 
+import gammaaex.Main;
+
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -49,5 +52,23 @@ public class FileAnalyzer {
         if (list == null) throw new NullPointerException();
 
         return list;
+    }
+
+    /**
+     * リソースとなるファイルを取得する
+     *
+     * @param fileName resource file name.
+     * @return get resource path.
+     */
+    public Path getResource(String fileName) {
+        Path resource = null;
+
+        try {
+            resource = Paths.get(Main.class.getResource(fileName).getPath());
+        } catch (NullPointerException nullPointerException) {
+            System.err.println("File Not Found");
+        }
+
+        return resource;
     }
 }

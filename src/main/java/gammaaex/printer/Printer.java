@@ -6,6 +6,8 @@ package gammaaex.printer;
  */
 public class Printer {
 
+    public static final String ARGUMENT_NOT_FOUND = "ERROR: 試験の成績ファイルが指定されていません．";
+
     /**
      * コンストラクタ
      */
@@ -27,5 +29,12 @@ public class Printer {
         stringBuilder.deleteCharAt(stringBuilder.length() - 1);
 
         System.out.println(stringBuilder);
+    }
+
+    /**
+     * Error文を出力する
+     */
+    public void printError() {
+        System.err.println(ARGUMENT_NOT_FOUND);
     }
 }
