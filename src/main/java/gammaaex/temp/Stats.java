@@ -1,4 +1,4 @@
-package gammaaex.Other;
+package gammaaex.temp;
 
 public class Stats {
 //    public Integer average() {

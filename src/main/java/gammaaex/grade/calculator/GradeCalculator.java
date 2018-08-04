@@ -1,4 +1,6 @@
-package gammaaex.Calculator;
+package gammaaex.grade.calculator;
+
+import gammaaex.grade.Grade;
 
 /**
  * 成績を計算するクラス

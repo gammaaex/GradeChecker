@@ -1,4 +1,4 @@
-package gammaaex.Other;
+package gammaaex.temp;
 
 public class Student {
     Integer id;
