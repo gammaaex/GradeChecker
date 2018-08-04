@@ -97,8 +97,7 @@ public class ArgumentAnalyzer {
      */
     public void validateForOne(String[] arguments) {
         if (arguments.length >= 2) {
-            new Printer().printError();
-            System.exit(-1);
+            printErrorAndExit();
         }
     }
 
@@ -110,8 +109,7 @@ public class ArgumentAnalyzer {
      */
     public void validateForMany(String[] arguments) {
         if (arguments.length == 0) {
-            new Printer().printError();
-            System.exit(-1);
+            printErrorAndExit();
         }
     }
 
@@ -124,8 +122,16 @@ public class ArgumentAnalyzer {
      */
     public void validateForMany(String[] arguments, Integer length) {
         if (arguments.length == length) {
-            new Printer().printError();
-            System.exit(-1);
+            printErrorAndExit();
         }
     }
+
+    /**
+     * エラーメッセージを出力し、システムをポジティブ終了する
+     */
+    private void printErrorAndExit() {
+        new Printer().printError();
+        System.exit(1);
+    }
+
 }
