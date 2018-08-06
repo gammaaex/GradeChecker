@@ -1,7 +1,7 @@
 package gammaaex.printer;
 
 import gammaaex.grade.calculator.GradeCalculator;
-import gammaaex.entity.Exam;
+import gammaaex.value_object.Exam;
 
 import java.util.TreeMap;
 
