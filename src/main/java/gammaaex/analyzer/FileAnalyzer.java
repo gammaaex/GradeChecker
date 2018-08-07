@@ -3,11 +3,13 @@ package gammaaex.analyzer;
 
 import gammaaex.Main;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,17 +43,12 @@ public class FileAnalyzer {
      * @return List
      */
     public List<String> fileToList(Path path) {
-        List<String> list = null;
-
         try {
-            list = Files.lines(path, StandardCharsets.UTF_8).collect(Collectors.toList());
-        } catch (IOException e) {
-            e.printStackTrace();
+            return Files.lines(path, StandardCharsets.UTF_8).collect(Collectors.toList());
+        } catch (IOException exception) {
+            exception.printStackTrace();
+            throw new RuntimeException(exception);
         }
-
-        if (list == null) throw new NullPointerException();
-
-        return list;
     }
 
     /**
@@ -66,7 +63,11 @@ public class FileAnalyzer {
         try {
             resource = Paths.get(Main.class.getResource(fileName).getPath());
         } catch (NullPointerException nullPointerException) {
-            System.err.println("File Not Found");
+            try {
+                throw new FileNotFoundException("課題データファイルが見つかりません。");
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
         }
 
         return resource;

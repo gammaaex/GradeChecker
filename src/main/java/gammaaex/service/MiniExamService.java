@@ -23,8 +23,11 @@ public class MiniExamService {
     public Double calculateAdmissionRate(MiniExam miniExam) {
         Integer totalScore = this.calculateNumberOfAdmission(miniExam);
         Integer numberOfMaxMiniExam = 14;
+        Double rate = totalScore.doubleValue() / numberOfMaxMiniExam.doubleValue();
 
-        return totalScore.doubleValue() / numberOfMaxMiniExam.doubleValue();
+        if (rate < 0.0 && rate > 1.0) throw new RuntimeException("受験率の値が不正です。");
+
+        return rate;
     }
 
     /**
