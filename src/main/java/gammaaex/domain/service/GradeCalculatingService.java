@@ -1,21 +1,19 @@
-package gammaaex.grade.calculator;
+package gammaaex.domain.service;
 
-import gammaaex.grade.Grade;
-import gammaaex.service.AssignmentsService;
-import gammaaex.service.MiniExamService;
-import gammaaex.value_object.Assignments;
-import gammaaex.value_object.Exam;
-import gammaaex.value_object.MiniExam;
+import gammaaex.domain.model.type.Grade;
+import gammaaex.domain.model.value_object.Assignments;
+import gammaaex.domain.model.value_object.Exam;
+import gammaaex.domain.model.value_object.MiniExam;
 
 /**
  * 成績を計算するクラス
  */
-public class GradeCalculator {
+public class GradeCalculatingService {
 
     /**
      * コンストラクタ
      */
-    public GradeCalculator() {
+    public GradeCalculatingService() {
 
     }
 

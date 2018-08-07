@@ -1,7 +1,7 @@
-package gammaaex.analyzer;
+package gammaaex.infrastructure.input;
 
 
-import gammaaex.printer.Printer;
+import gammaaex.presentation.print.Printer;
 
 import java.nio.file.Path;
 

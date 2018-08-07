@@ -1,6 +1,6 @@
-package gammaaex.service;
+package gammaaex.domain.service;
 
-import gammaaex.value_object.MiniExam;
+import gammaaex.domain.model.value_object.MiniExam;
 
 /**
  * MiniExamのビジネスロジックを司るクラス

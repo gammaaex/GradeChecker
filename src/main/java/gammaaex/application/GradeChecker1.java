@@ -1,9 +1,9 @@
-package gammaaex.grade.checker;
+package gammaaex.application;
 
-import gammaaex.analyzer.ArgumentAnalyzer;
-import gammaaex.analyzer.ExamAnalyzer;
-import gammaaex.analyzer.FileAnalyzer;
-import gammaaex.printer.ExamPrinter;
+import gammaaex.infrastructure.input.ArgumentAnalyzer;
+import gammaaex.infrastructure.input.ExamAnalyzer;
+import gammaaex.infrastructure.input.FileAnalyzer;
+import gammaaex.presentation.print.ExamPrinter;
 
 /**
  * ステップ1に相当するクラス

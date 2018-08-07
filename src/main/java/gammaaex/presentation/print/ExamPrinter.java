@@ -1,7 +1,7 @@
-package gammaaex.printer;
+package gammaaex.presentation.print;
 
-import gammaaex.grade.calculator.GradeCalculator;
-import gammaaex.value_object.Exam;
+import gammaaex.domain.service.GradeCalculatingService;
+import gammaaex.domain.model.value_object.Exam;
 
 import java.util.TreeMap;
 
@@ -23,7 +23,7 @@ public class ExamPrinter extends Printer {
      * @param filledExamTreeMap 番号飛びがないTreeMap
      */
     public void print(TreeMap<Integer, Exam> filledExamTreeMap) {
-        GradeCalculator gradeCalculator = new GradeCalculator();
+        GradeCalculatingService gradeCalculator = new GradeCalculatingService();
 
         filledExamTreeMap.forEach((key, exam) -> {
             this.printCSVLine(

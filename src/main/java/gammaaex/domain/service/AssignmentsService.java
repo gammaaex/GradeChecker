@@ -1,6 +1,6 @@
-package gammaaex.service;
+package gammaaex.domain.service;
 
-import gammaaex.value_object.Assignments;
+import gammaaex.domain.model.value_object.Assignments;
 
 /**
  * Assignmentsのビジネスロジックを司るクラス

@@ -1,4 +1,4 @@
-package gammaaex.service;
+package gammaaex.domain.service;
 
 /**
  * Examのビジネスロジックを司るクラス

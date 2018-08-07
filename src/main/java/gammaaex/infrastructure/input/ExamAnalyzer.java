@@ -1,6 +1,6 @@
-package gammaaex.analyzer;
+package gammaaex.infrastructure.input;
 
-import gammaaex.value_object.Exam;
+import gammaaex.domain.model.value_object.Exam;
 
 import java.nio.file.Path;
 import java.util.List;

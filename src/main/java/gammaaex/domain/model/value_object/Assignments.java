@@ -1,4 +1,4 @@
-package gammaaex.value_object;
+package gammaaex.domain.model.value_object;
 
 /**
  * 課題を表現するイミュータブルなクラス
