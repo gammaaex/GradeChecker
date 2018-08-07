@@ -8,10 +8,15 @@ import gammaaex.domain.model.value_object.Assignments;
 public class AssignmentsService {
 
     /**
+     * Service変数
+     */
+    private final ConvertingService convertingService;
+
+    /**
      * コンストラクタ
      */
     public AssignmentsService() {
-
+        this.convertingService = new ConvertingService();
     }
 
     /**
@@ -23,12 +28,12 @@ public class AssignmentsService {
     public Integer calculateTotalScore(Assignments assignments) {
         Integer totalScore = 0;
 
-        totalScore += assignments.score1;
-        totalScore += assignments.score2;
-        totalScore += assignments.score3;
-        totalScore += assignments.score4;
-        totalScore += assignments.score5;
-        totalScore += assignments.score6;
+        totalScore += this.convertingService.convertNullToInteger(assignments.score1);
+        totalScore += this.convertingService.convertNullToInteger(assignments.score2);
+        totalScore += this.convertingService.convertNullToInteger(assignments.score3);
+        totalScore += this.convertingService.convertNullToInteger(assignments.score4);
+        totalScore += this.convertingService.convertNullToInteger(assignments.score5);
+        totalScore += this.convertingService.convertNullToInteger(assignments.score6);
 
         return totalScore;
     }

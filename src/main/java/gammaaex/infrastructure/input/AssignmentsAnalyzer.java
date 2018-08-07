@@ -1,6 +1,7 @@
 package gammaaex.infrastructure.input;
 
 import gammaaex.domain.model.value_object.Assignments;
+import gammaaex.domain.service.ConvertingService;
 
 import java.nio.file.Path;
 import java.util.List;
@@ -12,10 +13,15 @@ import java.util.TreeMap;
 public class AssignmentsAnalyzer extends FileAnalyzer {
 
     /**
+     * Service変数
+     */
+    private final ConvertingService convertingService;
+
+    /**
      * コンストラクタ
      */
     public AssignmentsAnalyzer() {
-
+        this.convertingService = new ConvertingService();
     }
 
     /**
@@ -29,7 +35,7 @@ public class AssignmentsAnalyzer extends FileAnalyzer {
         List<String> lines = this.fileToList(resource);
 
         for (String line : lines) {
-            Integer[] assignmentsArray = this.convertArrayToArray(parseCSVLine(line));
+            Integer[] assignmentsArray = this.convertingService.convertArrayToArray(parseCSVLine(line));
             Assignments assignments = new Assignments(
                     assignmentsArray[0],
                     assignmentsArray[1],
@@ -44,25 +50,5 @@ public class AssignmentsAnalyzer extends FileAnalyzer {
         }
 
         return treeMap;
-    }
-
-    /**
-     * Stringの配列をIntegerの配列に変換する。
-     *
-     * @param stringArray 変換元のString配列
-     * @return 変換後のInteger配列
-     */
-    private Integer[] convertArrayToArray(String[] stringArray) {
-        Integer[] integerArray = null;
-
-        for (Integer index = 0; index < stringArray.length; index++) {
-            try {
-                integerArray[index] = Integer.parseInt(stringArray[index]);
-            } catch (NumberFormatException numberFormatException) {
-                integerArray[index] = null;
-            }
-        }
-
-        return integerArray;
     }
 }
