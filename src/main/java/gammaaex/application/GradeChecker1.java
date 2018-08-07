@@ -8,7 +8,7 @@ import gammaaex.presentation.print.ExamPrinter;
 /**
  * ステップ1に相当するクラス
  *
- * @see <a href="https://ksuap.github.io/2018spring/lesson14/assignments/#%E3%82%B9%E3%83%86%E3%83%83%E3%83%971">課題ページを参照</a>
+ * @see <a href="https://ksuap.github.io/2018spring/lesson14/assignments/#ステップ1">課題ページを参照</a>
  */
 public class GradeChecker1 {
 

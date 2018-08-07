@@ -50,6 +50,8 @@ public class GradeCalculatingService {
      * @param assignments 課題
      * @param miniExam    小テスト
      * @return 最終成績
+     *
+     * @see <a href="https://ksuap.github.io/2018spring/lesson14/assignments/#2-a-4-成績の算出">仕様</a>
      */
     public Integer calculateFinalScore(Exam exam, Assignments assignments, MiniExam miniExam) {
         Double finalScore = 70 * exam.point / 100
