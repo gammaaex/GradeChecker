@@ -24,8 +24,8 @@ public class ExamAnalyzer extends FileAnalyzer {
      * @param path 対象ファイルへのパス
      * @return TreeMap
      */
-    public TreeMap<Integer, Exam> getExamMapFillId(Path path) {
-        TreeMap<Integer, Exam> treeMap = this.getExamMap(path);
+    public TreeMap<Integer, Exam> createExamMapFillId(Path path) {
+        TreeMap<Integer, Exam> treeMap = this.createExamMap(path);
 
         for (Integer index = treeMap.firstKey(); index <= treeMap.size(); index++) {
             if (treeMap.containsKey(index)) continue;
@@ -42,7 +42,7 @@ public class ExamAnalyzer extends FileAnalyzer {
      * @param path 対象ファイルへのpath
      * @return TreeMap
      */
-    public TreeMap<Integer, Exam> getExamMap(Path path) {
+    public TreeMap<Integer, Exam> createExamMap(Path path) {
         TreeMap<Integer, Exam> treeMap = new TreeMap<>();
 
         List<String> lines = this.fileToList(path);

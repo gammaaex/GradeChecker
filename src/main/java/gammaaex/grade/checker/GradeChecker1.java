@@ -21,7 +21,7 @@ public class GradeChecker1 {
         new ArgumentAnalyzer().validateForOne(arguments);
 
         new ExamPrinter().print(
-                new ExamAnalyzer().getExamMapFillId(
+                new ExamAnalyzer().createExamMapFillId(
                         new FileAnalyzer().getResource(arguments[0])
                 )
         );
