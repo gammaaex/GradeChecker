@@ -15,7 +15,7 @@ public class AssignmentsService {
     }
 
     /**
-     * 課題の合計点を計算する
+     * 課題の合計点を計算する。
      *
      * @param assignments 課題
      * @return 合計点

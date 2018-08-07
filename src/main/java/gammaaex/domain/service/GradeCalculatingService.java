@@ -18,7 +18,7 @@ public class GradeCalculatingService {
     }
 
     /**
-     * 成績をGradeに変換する
+     * 成績をGradeに変換する。
      *
      * @param point 成績
      * @return Grade
@@ -44,7 +44,7 @@ public class GradeCalculatingService {
     }
 
     /**
-     * 最終成績を計算する
+     * 最終成績を計算する。
      *
      * @param exam        テスト
      * @param assignments 課題

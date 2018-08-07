@@ -15,7 +15,7 @@ public class MiniExamService {
     }
 
     /**
-     * 小テストの受験率を計算する
+     * 小テストの受験率を計算する。
      *
      * @param miniExam 小テスト
      * @return 受験率
@@ -31,7 +31,7 @@ public class MiniExamService {
     }
 
     /**
-     * 小テストの回数を計算する
+     * 小テストの回数を計算する。
      *
      * @param miniExam 小テスト
      * @return 受験

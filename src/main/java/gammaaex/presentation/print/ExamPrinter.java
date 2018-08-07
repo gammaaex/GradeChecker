@@ -18,7 +18,7 @@ public class ExamPrinter extends Printer {
     }
 
     /**
-     * exam用の出力を行う
+     * exam用の出力を行う。
      *
      * @param filledExamTreeMap 番号飛びがないTreeMap
      */

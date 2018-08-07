@@ -19,13 +19,13 @@ public class ExamAnalyzer extends FileAnalyzer {
     }
 
     /**
-     * exam用のTreeMapを連番（番号飛びなし）で生成する
+     * exam用のTreeMapを連番（番号飛びなし）で生成する。
      *
-     * @param path 対象ファイルへのパス
+     * @param resource 対象ファイルへのパス
      * @return TreeMap
      */
-    public TreeMap<Integer, Exam> createExamMapFillId(Path path) {
-        TreeMap<Integer, Exam> treeMap = this.createExamMap(path);
+    public TreeMap<Integer, Exam> createExamMapFillId(Path resource) {
+        TreeMap<Integer, Exam> treeMap = this.createExamMap(resource);
 
         for (Integer index = treeMap.firstKey(); index <= treeMap.size(); index++) {
             if (treeMap.containsKey(index)) continue;
@@ -37,15 +37,14 @@ public class ExamAnalyzer extends FileAnalyzer {
     }
 
     /**
-     * exam用のTreeMapを生成する
+     * exam用のTreeMapを生成する。
      *
-     * @param path 対象ファイルへのpath
+     * @param resource 対象ファイルへのpath
      * @return TreeMap
      */
-    public TreeMap<Integer, Exam> createExamMap(Path path) {
+    public TreeMap<Integer, Exam> createExamMap(Path resource) {
         TreeMap<Integer, Exam> treeMap = new TreeMap<>();
-
-        List<String> lines = this.fileToList(path);
+        List<String> lines = this.fileToList(resource);
 
         for (String line : lines) {
             String[] examArray = parseCSVLine(line);

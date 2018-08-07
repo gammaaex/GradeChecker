@@ -16,7 +16,7 @@ public class Printer {
     }
 
     /**
-     * CSV形式でPrintする
+     * CSV形式でPrintする。
      *
      * @param arguments 文字列の可変長引数
      */
@@ -32,7 +32,7 @@ public class Printer {
     }
 
     /**
-     * Error文を出力する
+     * Error文を出力する。
      */
     public void printError() {
         System.err.println(ARGUMENT_NOT_FOUND);

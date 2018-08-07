@@ -26,17 +26,17 @@ public class FileAnalyzer {
     }
 
     /**
-     * CSV形式の行を文字列型配列に変換する
+     * CSV形式の行を文字列型配列に変換する。
      *
      * @param line 対象の行
      * @return 文字列配列
      */
     public String[] parseCSVLine(String line) {
-        return line.split(",");
+        return line.split(",", -1);
     }
 
     /**
-     * ファイルを行ごとのListに変換する
+     * ファイルを行ごとのListに変換する。
      *
      * @param path 対象ファイルへのpath
      * @return List
@@ -51,7 +51,7 @@ public class FileAnalyzer {
     }
 
     /**
-     * リソースとなるファイルを取得する
+     * リソースとなるファイルを取得する。
      *
      * @param fileName resource file name.
      * @return get resource path.
