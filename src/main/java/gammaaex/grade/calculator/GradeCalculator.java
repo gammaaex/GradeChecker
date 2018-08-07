@@ -1,6 +1,8 @@
 package gammaaex.grade.calculator;
 
 import gammaaex.grade.Grade;
+import gammaaex.service.AssignmentsService;
+import gammaaex.service.MiniExamService;
 import gammaaex.value_object.Assignments;
 import gammaaex.value_object.Exam;
 import gammaaex.value_object.MiniExam;
@@ -43,9 +45,19 @@ public class GradeCalculator {
         return grade;
     }
 
-    public Integer calculateFinalGrade(Exam exam, Assignments assignments, MiniExam miniExam) {
-        Double score = null;
+    /**
+     * 最終成績を計算する
+     *
+     * @param exam        テスト
+     * @param assignments 課題
+     * @param miniExam    小テスト
+     * @return 最終成績
+     */
+    public Integer calculateFinalScore(Exam exam, Assignments assignments, MiniExam miniExam) {
+        Double finalScore = 70 * exam.point / 100
+                + 25 * new AssignmentsService().calculateTotalScore(assignments) / 60
+                + 5 * new MiniExamService().calculateAdmissionRate(miniExam);
 
-        return 0;
+        return ((Double) Math.ceil(finalScore)).intValue();
     }
 }

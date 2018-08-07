@@ -5,16 +5,22 @@ import gammaaex.value_object.Assignments;
 /**
  * Assignmentsのビジネスロジックを司るクラス
  */
-public class AssigmentsService {
+public class AssignmentsService {
 
     /**
      * コンストラクタ
      */
-    public AssigmentsService() {
+    public AssignmentsService() {
 
     }
 
-    public Integer calcrateTotalScore(Assignments assignments) {
+    /**
+     * 課題の合計点を計算する
+     *
+     * @param assignments 課題
+     * @return 合計点
+     */
+    public Integer calculateTotalScore(Assignments assignments) {
         Integer totalScore = 0;
 
         totalScore += assignments.score1;
