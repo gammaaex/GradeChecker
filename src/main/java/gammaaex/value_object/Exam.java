@@ -3,7 +3,7 @@ package gammaaex.value_object;
 /**
  * 成績を表現するイミュータブルなクラス
  */
-public class Exam {
+public final class Exam {
 
     /**
      * 識別子

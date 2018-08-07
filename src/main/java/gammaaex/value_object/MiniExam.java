@@ -3,7 +3,7 @@ package gammaaex.value_object;
 /**
  * 小テストを表現するイミュータブルなクラス
  */
-public class MiniExam {
+public final class MiniExam {
 
     /**
      * 識別子
@@ -13,104 +13,104 @@ public class MiniExam {
     /**
      * 第1回小テストの点数
      */
-    public final Integer point1;
+    public final Integer score1;
 
     /**
      * 第2回小テストの点数
      */
-    public final Integer point2;
+    public final Integer score2;
 
     /**
      * 第3回小テストの点数
      */
-    public final Integer point3;
+    public final Integer score3;
 
     /**
      * 第4回小テストの点数
      */
-    public final Integer point4;
+    public final Integer score4;
 
     /**
      * 第5回小テストの点数
      */
-    public final Integer point5;
+    public final Integer score5;
 
     /**
      * 第6回小テストの点数
      */
-    public final Integer point6;
+    public final Integer score6;
 
     /**
      * 第7回小テストの点数
      */
-    public final Integer point7;
+    public final Integer score7;
 
     /**
      * 第8回小テストの点数
      */
-    public final Integer point8;
+    public final Integer score8;
 
     /**
      * 第9回小テストの点数
      */
-    public final Integer point9;
+    public final Integer score9;
 
     /**
      * 第10回小テストの点数
      */
-    public final Integer point10;
+    public final Integer score10;
 
     /**
      * 第11回小テストの点数
      */
-    public final Integer point11;
+    public final Integer score11;
 
     /**
      * 第12回小テストの点数
      */
-    public final Integer point12;
+    public final Integer score12;
 
     /**
      * 第13回小テストの点数
      */
-    public final Integer point13;
+    public final Integer score13;
 
     /**
      * 第14回小テストの点数
      */
-    public final Integer point14;
+    public final Integer score14;
 
     public MiniExam(
             Integer id,
-            Integer point1,
-            Integer point2,
-            Integer point3,
-            Integer point4,
-            Integer point5,
-            Integer point6,
-            Integer point7,
-            Integer point8,
-            Integer point9,
-            Integer point10,
-            Integer point11,
-            Integer point12,
-            Integer point13,
-            Integer point14
+            Integer score1,
+            Integer score2,
+            Integer score3,
+            Integer score4,
+            Integer score5,
+            Integer score6,
+            Integer score7,
+            Integer score8,
+            Integer score9,
+            Integer score10,
+            Integer score11,
+            Integer score12,
+            Integer score13,
+            Integer score14
     ) {
         this.id = id;
-        this.point1 = point1;
-        this.point2 = point2;
-        this.point3 = point3;
-        this.point4 = point4;
-        this.point5 = point5;
-        this.point6 = point6;
-        this.point7 = point7;
-        this.point8 = point8;
-        this.point9 = point9;
-        this.point10 = point10;
-        this.point11 = point11;
-        this.point12 = point12;
-        this.point13 = point13;
-        this.point14 = point14;
+        this.score1 = score1;
+        this.score2 = score2;
+        this.score3 = score3;
+        this.score4 = score4;
+        this.score5 = score5;
+        this.score6 = score6;
+        this.score7 = score7;
+        this.score8 = score8;
+        this.score9 = score9;
+        this.score10 = score10;
+        this.score11 = score11;
+        this.score12 = score12;
+        this.score13 = score13;
+        this.score14 = score14;
     }
 }

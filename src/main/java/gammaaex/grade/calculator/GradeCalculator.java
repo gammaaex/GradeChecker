@@ -1,6 +1,9 @@
 package gammaaex.grade.calculator;
 
 import gammaaex.grade.Grade;
+import gammaaex.value_object.Assignments;
+import gammaaex.value_object.Exam;
+import gammaaex.value_object.MiniExam;
 
 /**
  * 成績を計算するクラス
@@ -20,14 +23,14 @@ public class GradeCalculator {
      * @param point 成績
      * @return Grade
      */
-    public Grade convertPointToGrade(Double point){
+    public Grade convertPointToGrade(Double point) {
         Grade grade = Grade.K;
 
         if (point == null) return grade;
 
         if (point >= 90) {
             grade = Grade.A;
-        } else if(point >= 80){
+        } else if (point >= 80) {
             grade = Grade.B;
         } else if (point >= 70) {
             grade = Grade.C;
@@ -38,5 +41,11 @@ public class GradeCalculator {
         }
 
         return grade;
+    }
+
+    public Integer calculateFinalGrade(Exam exam, Assignments assignments, MiniExam miniExam) {
+        Double score = null;
+
+        return 0;
     }
 }
