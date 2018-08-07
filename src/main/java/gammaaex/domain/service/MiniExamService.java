@@ -39,21 +39,31 @@ public class MiniExamService {
     public Integer calculateNumberOfAdmission(MiniExam miniExam) {
         Integer count = 0;
 
-        count += miniExam.score1 == null ? 1 : 0;
-        count += miniExam.score2 == null ? 1 : 0;
-        count += miniExam.score3 == null ? 1 : 0;
-        count += miniExam.score4 == null ? 1 : 0;
-        count += miniExam.score5 == null ? 1 : 0;
-        count += miniExam.score6 == null ? 1 : 0;
-        count += miniExam.score7 == null ? 1 : 0;
-        count += miniExam.score8 == null ? 1 : 0;
-        count += miniExam.score9 == null ? 1 : 0;
-        count += miniExam.score10 == null ? 1 : 0;
-        count += miniExam.score11 == null ? 1 : 0;
-        count += miniExam.score12 == null ? 1 : 0;
-        count += miniExam.score13 == null ? 1 : 0;
-        count += miniExam.score14 == null ? 1 : 0;
+        count += getCount(miniExam.score1);
+        count += getCount(miniExam.score2);
+        count += getCount(miniExam.score3);
+        count += getCount(miniExam.score4);
+        count += getCount(miniExam.score5);
+        count += getCount(miniExam.score6);
+        count += getCount(miniExam.score7);
+        count += getCount(miniExam.score8);
+        count += getCount(miniExam.score9);
+        count += getCount(miniExam.score10);
+        count += getCount(miniExam.score11);
+        count += getCount(miniExam.score12);
+        count += getCount(miniExam.score13);
+        count += getCount(miniExam.score14);
 
         return count;
+    }
+
+    /**
+     * Integerオブジェクトがnullかどうか判断し、結果によって0か1を返す。
+     *
+     * @param number 対象のIntegerオブジェクト
+     * @return Integer 0か1
+     */
+    private Integer getCount(Integer number) {
+        return number == null ? 1 : 0;
     }
 }
