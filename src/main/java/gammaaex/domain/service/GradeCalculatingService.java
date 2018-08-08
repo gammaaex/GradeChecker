@@ -11,10 +11,15 @@ import gammaaex.domain.model.value_object.MiniExam;
 public class GradeCalculatingService {
 
     /**
+     * Service変数
+     */
+    private final ConvertingService convertingService;
+
+    /**
      * コンストラクタ
      */
     public GradeCalculatingService() {
-
+        this.convertingService = new ConvertingService();
     }
 
     /**
@@ -50,14 +55,15 @@ public class GradeCalculatingService {
      * @param assignments 課題
      * @param miniExam    小テスト
      * @return 最終成績
-     *
      * @see <a href="https://ksuap.github.io/2018spring/lesson14/assignments/#2-a-4-成績の算出">仕様</a>
      */
-    public Integer calculateFinalScore(Exam exam, Assignments assignments, MiniExam miniExam) {
-        Double finalScore = 70 * exam.point / 100
+    public Double calculateFinalScore(Exam exam, Assignments assignments, MiniExam miniExam) {
+        if (exam.point == null) return null;
+
+        Double finalScore = 70 * this.convertingService.convertNullToDouble(exam.point) / 100
                 + 25 * new AssignmentsService().calculateTotalScore(assignments) / 60
                 + 5 * new MiniExamService().calculateAdmissionRate(miniExam);
 
-        return ((Double) Math.ceil(finalScore)).intValue();
+        return (Double) Math.ceil(finalScore);
     }
 }

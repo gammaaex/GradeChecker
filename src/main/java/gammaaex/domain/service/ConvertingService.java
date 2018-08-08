@@ -23,6 +23,16 @@ public class ConvertingService {
     }
 
     /**
+     * nullを整数値に変換する
+     *
+     * @param number Doubleオブジェクト
+     * @return nullでないDoubleオブジェクト
+     */
+    public Double convertNullToDouble(Double number) {
+        return number == null ? 0.0 : number;
+    }
+
+    /**
      * Stringの配列をIntegerの配列に変換する。
      *
      * @param stringArray 変換元のString配列

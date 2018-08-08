@@ -64,6 +64,6 @@ public class MiniExamService {
      * @return Integer 0か1
      */
     private Integer getCount(Integer number) {
-        return number == null ? 1 : 0;
+        return number != null ? 1 : 0;
     }
 }
