@@ -31,7 +31,7 @@ public abstract class AbstractEntity<Type extends AbstractEntity<Type>> implemen
     }
 
     public int hashCode() {
-        return Objects.hashCode(this.getIdentifier());
+        return Objects.hash(this.getIdentifier());
     }
 
     public Type clone() {

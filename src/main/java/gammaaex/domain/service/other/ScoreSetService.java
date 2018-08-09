@@ -34,9 +34,9 @@ public class ScoreSetService {
     /**
      * サイズによるバリデーションを行う。
      *
-     * @param examMap テスト結果のMap
+     * @param examMap        テスト結果のMap
      * @param assignmentsMap 課題のMap
-     * @param miniExamMap 小テストのMap
+     * @param miniExamMap    小テストのMap
      */
     public void validateMapBySize(TreeMap<Integer, Exam> examMap, TreeMap<Integer, Assignments> assignmentsMap, TreeMap<Integer, MiniExam> miniExamMap) {
         if (examMap.size() != assignmentsMap.size() || examMap.size() != miniExamMap.size())
