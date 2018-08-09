@@ -1,8 +1,8 @@
 package gammaaex.presentation.print;
 
-import gammaaex.domain.model.value_object.Assignments;
-import gammaaex.domain.model.value_object.Exam;
-import gammaaex.domain.model.value_object.MiniExam;
+import gammaaex.domain.model.entity.Assignments;
+import gammaaex.domain.model.entity.Exam;
+import gammaaex.domain.model.entity.MiniExam;
 import gammaaex.domain.model.value_object.ScoreSet;
 import gammaaex.domain.service.AssignmentsService;
 import gammaaex.domain.service.MiniExamService;
@@ -66,9 +66,9 @@ public class Printer {
         Double finalScore = gradeCalculatingService.calculateFinalScore(exam, assignments, miniExam);
 
         System.out.printf("%d, %f, %f, %d, %f, %s\n",
-                exam.id,
+                exam.getId(),
                 finalScore != null ? finalScore : 0.0,
-                exam.point != null ? exam.point : 0,
+                exam.getPoint() != null ? exam.getPoint() : 0,
                 new AssignmentsService(new AssignmentsRepository()).calculateTotalScore(assignments),
                 new MiniExamService(new MiniExamRepository()).calculateAdmissionRate(miniExam),
                 gradeCalculatingService.convertPointToGrade(finalScore).getText()

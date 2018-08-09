@@ -1,6 +1,6 @@
 package gammaaex.domain.service;
 
-import gammaaex.domain.model.value_object.MiniExam;
+import gammaaex.domain.model.entity.MiniExam;
 import gammaaex.domain.repository.AbstractMiniExamRepository;
 import gammaaex.domain.service.other.ConvertingService;
 
@@ -49,20 +49,20 @@ public class MiniExamService {
     public Integer calculateNumberOfAdmission(MiniExam miniExam) {
         Integer count = 0;
 
-        count += getCount(miniExam.score1);
-        count += getCount(miniExam.score2);
-        count += getCount(miniExam.score3);
-        count += getCount(miniExam.score4);
-        count += getCount(miniExam.score5);
-        count += getCount(miniExam.score6);
-        count += getCount(miniExam.score7);
-        count += getCount(miniExam.score8);
-        count += getCount(miniExam.score9);
-        count += getCount(miniExam.score10);
-        count += getCount(miniExam.score11);
-        count += getCount(miniExam.score12);
-        count += getCount(miniExam.score13);
-        count += getCount(miniExam.score14);
+        count += getCount(miniExam.getScore1());
+        count += getCount(miniExam.getScore2());
+        count += getCount(miniExam.getScore3());
+        count += getCount(miniExam.getScore4());
+        count += getCount(miniExam.getScore5());
+        count += getCount(miniExam.getScore6());
+        count += getCount(miniExam.getScore7());
+        count += getCount(miniExam.getScore8());
+        count += getCount(miniExam.getScore9());
+        count += getCount(miniExam.getScore10());
+        count += getCount(miniExam.getScore11());
+        count += getCount(miniExam.getScore12());
+        count += getCount(miniExam.getScore13());
+        count += getCount(miniExam.getScore14());
 
         return count;
     }
@@ -141,7 +141,7 @@ public class MiniExamService {
                     miniExamArray[14]
             );
 
-            treeMap.put(miniExam.id, miniExam);
+            treeMap.put(miniExam.getId(), miniExam);
         }
 
         return treeMap;

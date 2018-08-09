@@ -1,6 +1,6 @@
 package gammaaex.domain.service;
 
-import gammaaex.domain.model.value_object.Exam;
+import gammaaex.domain.model.entity.Exam;
 import gammaaex.domain.repository.AbstractExamRepository;
 
 import java.util.List;
@@ -55,7 +55,7 @@ public class ExamService {
             String[] examArray = this.repository.parseCSVLine(line);
             Exam exam = new Exam(Integer.parseInt(examArray[0]), Double.parseDouble(examArray[1]));
 
-            treeMap.put(exam.id, exam);
+            treeMap.put(exam.getId(), exam);
         }
 
         return treeMap;

@@ -1,6 +1,6 @@
 package gammaaex.presentation.print;
 
-import gammaaex.domain.model.value_object.Exam;
+import gammaaex.domain.model.entity.Exam;
 import gammaaex.domain.service.other.GradeCalculatingService;
 
 import java.util.TreeMap;
@@ -27,9 +27,9 @@ public class ExamPrinter extends Printer {
 
         filledExamTreeMap.forEach((key, exam) -> {
             this.printCSVLine(
-                    exam.id.toString(),
-                    exam.point == null ? Double.toString(0.000) : exam.point.toString(),
-                    " " + gradeCalculator.convertPointToGrade(exam.point).getText()
+                    exam.getId().toString(),
+                    exam.getPoint() == null ? Double.toString(0.000) : exam.getPoint().toString(),
+                    " " + gradeCalculator.convertPointToGrade(exam.getPoint()).getText()
             );
         });
     }

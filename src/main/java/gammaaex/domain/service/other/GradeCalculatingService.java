@@ -1,9 +1,9 @@
 package gammaaex.domain.service.other;
 
 import gammaaex.domain.model.type.Grade;
-import gammaaex.domain.model.value_object.Assignments;
-import gammaaex.domain.model.value_object.Exam;
-import gammaaex.domain.model.value_object.MiniExam;
+import gammaaex.domain.model.entity.Assignments;
+import gammaaex.domain.model.entity.Exam;
+import gammaaex.domain.model.entity.MiniExam;
 import gammaaex.domain.service.AssignmentsService;
 import gammaaex.domain.service.MiniExamService;
 import gammaaex.infrastructure.repository.AssignmentsRepository;
@@ -62,9 +62,9 @@ public class GradeCalculatingService {
      * @see <a href="https://ksuap.github.io/2018spring/lesson14/assignments/#2-a-4-成績の算出">仕様</a>
      */
     public Double calculateFinalScore(Exam exam, Assignments assignments, MiniExam miniExam) {
-        if (exam.point == null) return null;
+        if (exam.getPoint() == null) return null;
 
-        Double finalScore = 70 * this.convertingService.convertNullToDouble(exam.point) / 100
+        Double finalScore = 70 * this.convertingService.convertNullToDouble(exam.getPoint()) / 100
                 + 25 * new AssignmentsService(new AssignmentsRepository()).calculateTotalScore(assignments) / 60
                 + 5 * new MiniExamService(new MiniExamRepository()).calculateAdmissionRate(miniExam);
 

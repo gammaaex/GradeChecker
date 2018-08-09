@@ -1,6 +1,6 @@
 package gammaaex.domain.service;
 
-import gammaaex.domain.model.value_object.Assignments;
+import gammaaex.domain.model.entity.Assignments;
 import gammaaex.domain.repository.AbstractAssignmentsRepository;
 import gammaaex.domain.service.other.ConvertingService;
 
@@ -39,12 +39,12 @@ public class AssignmentsService {
     public Integer calculateTotalScore(Assignments assignments) {
         Integer totalScore = 0;
 
-        totalScore += this.convertingService.convertNullToInteger(assignments.score1);
-        totalScore += this.convertingService.convertNullToInteger(assignments.score2);
-        totalScore += this.convertingService.convertNullToInteger(assignments.score3);
-        totalScore += this.convertingService.convertNullToInteger(assignments.score4);
-        totalScore += this.convertingService.convertNullToInteger(assignments.score5);
-        totalScore += this.convertingService.convertNullToInteger(assignments.score6);
+        totalScore += this.convertingService.convertNullToInteger(assignments.getScore1());
+        totalScore += this.convertingService.convertNullToInteger(assignments.getScore2());
+        totalScore += this.convertingService.convertNullToInteger(assignments.getScore3());
+        totalScore += this.convertingService.convertNullToInteger(assignments.getScore4());
+        totalScore += this.convertingService.convertNullToInteger(assignments.getScore5());
+        totalScore += this.convertingService.convertNullToInteger(assignments.getScore6());
 
         return totalScore;
     }
@@ -71,7 +71,7 @@ public class AssignmentsService {
                     assignmentsArray[6]
             );
 
-            treeMap.put(assignments.id, assignments);
+            treeMap.put(assignments.getId(), assignments);
         }
 
         return treeMap;

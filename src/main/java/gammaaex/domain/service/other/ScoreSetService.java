@@ -1,8 +1,8 @@
 package gammaaex.domain.service.other;
 
-import gammaaex.domain.model.value_object.Assignments;
-import gammaaex.domain.model.value_object.Exam;
-import gammaaex.domain.model.value_object.MiniExam;
+import gammaaex.domain.model.entity.Assignments;
+import gammaaex.domain.model.entity.Exam;
+import gammaaex.domain.model.entity.MiniExam;
 import gammaaex.domain.model.value_object.ScoreSet;
 
 import java.util.TreeMap;
