@@ -141,7 +141,7 @@ public class MiniExamService {
                     miniExamArray[14]
             );
 
-            treeMap.put(miniExam.getId(), miniExam);
+            treeMap.put(miniExam.getIdentifier(), miniExam);
         }
 
         return treeMap;

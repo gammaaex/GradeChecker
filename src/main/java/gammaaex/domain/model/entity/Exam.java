@@ -1,42 +1,32 @@
 package gammaaex.domain.model.entity;
 
+import gammaaex.domain.model.AbstractEntity;
+
 /**
  * 成績を表現するイミュータブルなクラス
  */
-public final class Exam {
-
-    /**
-     * 識別子
-     */
-    private final Integer id;
+public final class Exam extends AbstractEntity {
 
     /**
      * 点数
      */
-    private final Double point;
+    private final Double score;
 
     /**
      * コンストラクタ
      *
      * @param id    識別子
-     * @param point 点数
+     * @param score 点数
      */
-    public Exam(Integer id, Double point) {
-        this.id = id;
-        this.point = point;
+    public Exam(Integer id, Double score) {
+        super(id);
+        this.score = score;
     }
 
     /**
-     * @return get id.
+     * @return get score.
      */
-    public Integer getId() {
-        return id;
-    }
-
-    /**
-     * @return get point.
-     */
-    public Double getPoint() {
-        return point;
+    public Double getScore() {
+        return score;
     }
 }

@@ -71,7 +71,7 @@ public class AssignmentsService {
                     assignmentsArray[6]
             );
 
-            treeMap.put(assignments.getId(), assignments);
+            treeMap.put(assignments.getIdentifier(), assignments);
         }
 
         return treeMap;

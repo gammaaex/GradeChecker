@@ -1,14 +1,11 @@
 package gammaaex.domain.model.entity;
 
+import gammaaex.domain.model.AbstractEntity;
+
 /**
  * 課題を表現するイミュータブルなクラス
  */
-public final class Assignments {
-
-    /**
-     * 識別子
-     */
-    private final Integer id;
+public final class Assignments extends AbstractEntity<Assignments> {
 
     /**
      * 課題1の成績
@@ -49,20 +46,13 @@ public final class Assignments {
             Integer score5,
             Integer score6
     ) {
-        this.id = id;
+        super(id);
         this.score1 = score1;
         this.score2 = score2;
         this.score3 = score3;
         this.score4 = score4;
         this.score5 = score5;
         this.score6 = score6;
-    }
-
-    /**
-     * @return get id.
-     */
-    public Integer getId() {
-        return id;
     }
 
     /**

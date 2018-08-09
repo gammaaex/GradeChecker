@@ -62,9 +62,9 @@ public class GradeCalculatingService {
      * @see <a href="https://ksuap.github.io/2018spring/lesson14/assignments/#2-a-4-成績の算出">仕様</a>
      */
     public Double calculateFinalScore(Exam exam, Assignments assignments, MiniExam miniExam) {
-        if (exam.getPoint() == null) return null;
+        if (exam.getScore() == null) return null;
 
-        Double finalScore = 70 * this.convertingService.convertNullToDouble(exam.getPoint()) / 100
+        Double finalScore = 70 * this.convertingService.convertNullToDouble(exam.getScore()) / 100
                 + 25 * new AssignmentsService(new AssignmentsRepository()).calculateTotalScore(assignments) / 60
                 + 5 * new MiniExamService(new MiniExamRepository()).calculateAdmissionRate(miniExam);
 

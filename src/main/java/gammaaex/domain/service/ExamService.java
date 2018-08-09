@@ -55,7 +55,7 @@ public class ExamService {
             String[] examArray = this.repository.parseCSVLine(line);
             Exam exam = new Exam(Integer.parseInt(examArray[0]), Double.parseDouble(examArray[1]));
 
-            treeMap.put(exam.getId(), exam);
+            treeMap.put(exam.getIdentifier(), exam);
         }
 
         return treeMap;

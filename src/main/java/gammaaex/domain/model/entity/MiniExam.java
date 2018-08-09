@@ -1,14 +1,11 @@
 package gammaaex.domain.model.entity;
 
+import gammaaex.domain.model.AbstractEntity;
+
 /**
  * 小テストを表現するイミュータブルなクラス
  */
-public final class MiniExam {
-
-    /**
-     * 識別子
-     */
-    private final Integer id;
+public final class MiniExam extends AbstractEntity<MiniExam> {
 
     /**
      * 第1回小テストの点数
@@ -97,7 +94,7 @@ public final class MiniExam {
             Integer score13,
             Integer score14
     ) {
-        this.id = id;
+        super(id);
         this.score1 = score1;
         this.score2 = score2;
         this.score3 = score3;
@@ -112,13 +109,6 @@ public final class MiniExam {
         this.score12 = score12;
         this.score13 = score13;
         this.score14 = score14;
-    }
-
-    /**
-     * @return get id.
-     */
-    public Integer getId() {
-        return id;
     }
 
     /**

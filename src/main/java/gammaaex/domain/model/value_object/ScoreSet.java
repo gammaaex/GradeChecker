@@ -1,5 +1,6 @@
 package gammaaex.domain.model.value_object;
 
+import gammaaex.domain.model.AbstractValueObject;
 import gammaaex.domain.model.entity.Assignments;
 import gammaaex.domain.model.entity.Exam;
 import gammaaex.domain.model.entity.MiniExam;
@@ -7,7 +8,7 @@ import gammaaex.domain.model.entity.MiniExam;
 /**
  * 同一idのexam, assigments, miniexamのセット
  */
-public final class ScoreSet {
+public final class ScoreSet extends AbstractValueObject {
 
     /**
      * テスト結果

@@ -66,9 +66,9 @@ public class Printer {
         Double finalScore = gradeCalculatingService.calculateFinalScore(exam, assignments, miniExam);
 
         System.out.printf("%d, %f, %f, %d, %f, %s\n",
-                exam.getId(),
+                exam.getIdentifier(),
                 finalScore != null ? finalScore : 0.0,
-                exam.getPoint() != null ? exam.getPoint() : 0,
+                exam.getScore() != null ? exam.getScore() : 0,
                 new AssignmentsService(new AssignmentsRepository()).calculateTotalScore(assignments),
                 new MiniExamService(new MiniExamRepository()).calculateAdmissionRate(miniExam),
                 gradeCalculatingService.convertPointToGrade(finalScore).getText()

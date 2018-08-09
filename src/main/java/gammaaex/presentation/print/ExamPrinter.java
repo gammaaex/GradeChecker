@@ -27,9 +27,9 @@ public class ExamPrinter extends Printer {
 
         filledExamTreeMap.forEach((key, exam) -> {
             this.printCSVLine(
-                    exam.getId().toString(),
-                    exam.getPoint() == null ? Double.toString(0.000) : exam.getPoint().toString(),
-                    " " + gradeCalculator.convertPointToGrade(exam.getPoint()).getText()
+                    exam.getIdentifier().toString(),
+                    exam.getScore() == null ? Double.toString(0.000) : exam.getScore().toString(),
+                    " " + gradeCalculator.convertPointToGrade(exam.getScore()).getText()
             );
         });
     }
