@@ -1,27 +1,23 @@
-package gammaaex.infrastructure.input;
+package gammaaex.infrastructure.repository;
 
 import gammaaex.domain.model.value_object.Assignments;
-import gammaaex.domain.service.ConvertingService;
+import gammaaex.infrastructure.dao.FileDAO;
+import gammaaex.infrastructure.service.ConvertingService;
 
 import java.nio.file.Path;
 import java.util.List;
 import java.util.TreeMap;
 
 /**
- * assignments.csvを解析するクラス
+ * assignments.csvを操作するクラス
  */
-public class AssignmentsAnalyzer extends FileAnalyzer {
-
-    /**
-     * Service変数
-     */
-    private final ConvertingService convertingService;
+public class AssignmentsRepository extends FileDAO {
 
     /**
      * コンストラクタ
      */
-    public AssignmentsAnalyzer() {
-        this.convertingService = new ConvertingService();
+    public AssignmentsRepository() {
+        super();
     }
 
     /**
@@ -35,7 +31,7 @@ public class AssignmentsAnalyzer extends FileAnalyzer {
         List<String> lines = this.fileToList(resource);
 
         for (String line : lines) {
-            Integer[] assignmentsArray = this.convertingService.convertArrayToArray(parseCSVLine(line));
+            Integer[] assignmentsArray = new ConvertingService().convertArrayToArray(this.parseCSVLine(line));
             Assignments assignments = new Assignments(
                     assignmentsArray[0],
                     assignmentsArray[1],

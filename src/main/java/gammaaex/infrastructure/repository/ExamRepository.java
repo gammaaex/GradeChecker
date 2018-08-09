@@ -1,21 +1,22 @@
-package gammaaex.infrastructure.input;
+package gammaaex.infrastructure.repository;
 
 import gammaaex.domain.model.value_object.Exam;
+import gammaaex.infrastructure.dao.FileDAO;
 
 import java.nio.file.Path;
 import java.util.List;
 import java.util.TreeMap;
 
 /**
- * exam.csvを解析するクラス
+ * exam.csvを操作するクラス
  */
-public class ExamAnalyzer extends FileAnalyzer {
+public class ExamRepository extends FileDAO {
 
     /**
      * コンストラクタ
      */
-    public ExamAnalyzer() {
-
+    public ExamRepository() {
+        super();
     }
 
     /**

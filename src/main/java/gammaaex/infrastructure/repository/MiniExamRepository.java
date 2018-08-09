@@ -1,27 +1,23 @@
-package gammaaex.infrastructure.input;
+package gammaaex.infrastructure.repository;
 
 import gammaaex.domain.model.value_object.MiniExam;
-import gammaaex.domain.service.ConvertingService;
+import gammaaex.infrastructure.dao.FileDAO;
+import gammaaex.infrastructure.service.ConvertingService;
 
 import java.nio.file.Path;
 import java.util.List;
 import java.util.TreeMap;
 
 /**
- * miniexam.csvを解析するクラス
+ * miniexam.csvを操作するクラス
  */
-public class MiniExamAnalyzer extends FileAnalyzer {
-
-    /**
-     * Service変数
-     */
-    private final ConvertingService convertingService;
+public class MiniExamRepository extends FileDAO {
 
     /**
      * コンストラクタ
      */
-    public MiniExamAnalyzer() {
-        this.convertingService = new ConvertingService();
+    public MiniExamRepository() {
+        super();
     }
 
     /**
@@ -68,7 +64,7 @@ public class MiniExamAnalyzer extends FileAnalyzer {
         List<String> lines = this.fileToList(resource);
 
         for (String line : lines) {
-            Integer[] miniExamArray = this.convertingService.convertArrayToArray(parseCSVLine(line));
+            Integer[] miniExamArray = new ConvertingService().convertArrayToArray(this.parseCSVLine(line));
             MiniExam miniExam = new MiniExam(
                     miniExamArray[0],
                     miniExamArray[1],

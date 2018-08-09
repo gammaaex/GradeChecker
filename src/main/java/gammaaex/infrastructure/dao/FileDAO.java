@@ -1,9 +1,8 @@
-package gammaaex.infrastructure.input;
+package gammaaex.infrastructure.dao;
 
 
 import gammaaex.Main;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -16,12 +15,12 @@ import java.util.stream.Collectors;
  * ファイル解析の基底クラス
  * 個別のファイル解析クラスを実装する場合はこのクラスを継承すること
  */
-public class FileAnalyzer {
+public class FileDAO {
 
     /**
      * コンストラクタ
      */
-    public FileAnalyzer() {
+    public FileDAO() {
 
     }
 
@@ -62,11 +61,7 @@ public class FileAnalyzer {
         try {
             resource = Paths.get(Main.class.getResource(fileName).getPath());
         } catch (NullPointerException nullPointerException) {
-            try {
-                throw new FileNotFoundException("課題データファイルが見つかりません。");
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
+            throw new RuntimeException("課題データファイルが見つかりません。");
         }
 
         return resource;

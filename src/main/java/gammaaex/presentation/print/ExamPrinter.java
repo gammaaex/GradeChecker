@@ -14,7 +14,7 @@ public class ExamPrinter extends Printer {
      * コンストラクタ
      */
     public ExamPrinter() {
-
+        super();
     }
 
     /**

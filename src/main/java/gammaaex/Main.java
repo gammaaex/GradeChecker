@@ -17,5 +17,4 @@ public class Main {
 //        new GradeChecker1().run(args);
         new GradeChecker2().run(args);
     }
-
 }

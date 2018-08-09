@@ -1,4 +1,4 @@
-package gammaaex.infrastructure.input;
+package gammaaex.domain.service;
 
 
 import gammaaex.presentation.print.Printer;
@@ -8,7 +8,7 @@ import java.nio.file.Path;
 /**
  * 引数を解析するクラス
  */
-public class ArgumentAnalyzer {
+public class ArgumentAnalyzingService {
 
     /**
      * exam.csvのパス
@@ -32,8 +32,8 @@ public class ArgumentAnalyzer {
 //     * @param assignmentsFileName assignments.csvに相当するファイルのファイル名
 //     * @param miniExamFileName miniExam.csvに相当するファイルのファイル名
 //     */
-//    public ArgumentAnalyzer(String examFileName, String assignmentsFileName, String miniExamFileName) {
-//        FileAnalyzer fileAnalyzer = new FileAnalyzer();
+//    public ArgumentAnalyzingService(String examFileName, String assignmentsFileName, String miniExamFileName) {
+//        FileDAO fileAnalyzer = new FileDAO();
 //
 //        this.setExam(fileAnalyzer.getResource(examFileName));
 //        this.setAssignments(fileAnalyzer.getResource(assignmentsFileName));
@@ -43,7 +43,7 @@ public class ArgumentAnalyzer {
     /**
      * コンストラクタ
      */
-    public ArgumentAnalyzer() {
+    public ArgumentAnalyzingService() {
 
     }
 

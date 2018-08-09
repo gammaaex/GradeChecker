@@ -4,11 +4,11 @@ import gammaaex.domain.model.value_object.Assignments;
 import gammaaex.domain.model.value_object.Exam;
 import gammaaex.domain.model.value_object.MiniExam;
 import gammaaex.domain.model.value_object.ScoreSet;
+import gammaaex.domain.service.ArgumentAnalyzingService;
 import gammaaex.domain.service.ScoreSetService;
-import gammaaex.infrastructure.input.ArgumentAnalyzer;
-import gammaaex.infrastructure.input.AssignmentsAnalyzer;
-import gammaaex.infrastructure.input.ExamAnalyzer;
-import gammaaex.infrastructure.input.MiniExamAnalyzer;
+import gammaaex.infrastructure.repository.AssignmentsRepository;
+import gammaaex.infrastructure.repository.ExamRepository;
+import gammaaex.infrastructure.repository.MiniExamRepository;
 import gammaaex.presentation.print.Printer;
 
 import java.util.TreeMap;
@@ -20,21 +20,25 @@ import java.util.TreeMap;
  */
 public class GradeChecker2 {
 
+    public GradeChecker2() {
+
+    }
+
     /**
      * 問題を解くメソッド
      *
      * @param arguments 実行時引数
      */
     public void run(String[] arguments) {
-        new ArgumentAnalyzer().validateForMany(arguments);
+        new ArgumentAnalyzingService().validateForMany(arguments);
 
-        ExamAnalyzer examAnalyzer = new ExamAnalyzer();
-        AssignmentsAnalyzer assignmentsAnalyzer = new AssignmentsAnalyzer();
-        MiniExamAnalyzer miniExamAnalyzer = new MiniExamAnalyzer();
-
+        ExamRepository examAnalyzer = new ExamRepository();
+        AssignmentsRepository assignmentsAnalyzer = new AssignmentsRepository();
+        MiniExamRepository miniExamAnalyzer = new MiniExamRepository();
         TreeMap<Integer, Exam> exam = examAnalyzer.createExamMapFillId(examAnalyzer.getResource(arguments[0]));
         TreeMap<Integer, Assignments> assignments = assignmentsAnalyzer.createAssignmentsMap(assignmentsAnalyzer.getResource(arguments[1]));
         TreeMap<Integer, MiniExam> miniExam = miniExamAnalyzer.createExamMapFillId(miniExamAnalyzer.getResource(arguments[2]));
+
         TreeMap<Integer, ScoreSet> scoreSetMap = new ScoreSetService().createScoreSetMap(exam, assignments, miniExam);
 
         scoreSetMap.forEach((index, scoreSet) -> {
