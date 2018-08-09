@@ -1,6 +1,5 @@
 package gammaaex;
 
-import gammaaex.application.GradeChecker1;
 import gammaaex.application.GradeChecker2;
 
 /**

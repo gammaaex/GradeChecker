@@ -1,9 +1,13 @@
-package gammaaex.domain.service;
+package gammaaex.domain.service.other;
 
 import gammaaex.domain.model.type.Grade;
 import gammaaex.domain.model.value_object.Assignments;
 import gammaaex.domain.model.value_object.Exam;
 import gammaaex.domain.model.value_object.MiniExam;
+import gammaaex.domain.service.AssignmentsService;
+import gammaaex.domain.service.MiniExamService;
+import gammaaex.infrastructure.repository.AssignmentsRepository;
+import gammaaex.infrastructure.repository.MiniExamRepository;
 
 /**
  * 成績を計算するクラス
@@ -61,8 +65,8 @@ public class GradeCalculatingService {
         if (exam.point == null) return null;
 
         Double finalScore = 70 * this.convertingService.convertNullToDouble(exam.point) / 100
-                + 25 * new AssignmentsService().calculateTotalScore(assignments) / 60
-                + 5 * new MiniExamService().calculateAdmissionRate(miniExam);
+                + 25 * new AssignmentsService(new AssignmentsRepository()).calculateTotalScore(assignments) / 60
+                + 5 * new MiniExamService(new MiniExamRepository()).calculateAdmissionRate(miniExam);
 
         return (Double) Math.ceil(finalScore);
     }

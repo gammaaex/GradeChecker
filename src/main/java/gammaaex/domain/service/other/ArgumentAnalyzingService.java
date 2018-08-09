@@ -1,4 +1,4 @@
-package gammaaex.domain.service;
+package gammaaex.domain.service.other;
 
 
 import gammaaex.presentation.print.Printer;
@@ -33,7 +33,7 @@ public class ArgumentAnalyzingService {
 //     * @param miniExamFileName miniExam.csvに相当するファイルのファイル名
 //     */
 //    public ArgumentAnalyzingService(String examFileName, String assignmentsFileName, String miniExamFileName) {
-//        FileDAO fileAnalyzer = new FileDAO();
+//        FileRepository fileAnalyzer = new FileRepository();
 //
 //        this.setExam(fileAnalyzer.getResource(examFileName));
 //        this.setAssignments(fileAnalyzer.getResource(assignmentsFileName));

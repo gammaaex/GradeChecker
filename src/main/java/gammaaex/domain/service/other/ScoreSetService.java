@@ -1,4 +1,4 @@
-package gammaaex.domain.service;
+package gammaaex.domain.service.other;
 
 import gammaaex.domain.model.value_object.Assignments;
 import gammaaex.domain.model.value_object.Exam;

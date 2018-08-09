@@ -1,6 +1,11 @@
 package gammaaex.domain.service;
 
 import gammaaex.domain.model.value_object.MiniExam;
+import gammaaex.domain.repository.AbstractMiniExamRepository;
+import gammaaex.domain.service.other.ConvertingService;
+
+import java.util.List;
+import java.util.TreeMap;
 
 /**
  * MiniExamのビジネスロジックを司るクラス
@@ -8,10 +13,15 @@ import gammaaex.domain.model.value_object.MiniExam;
 public class MiniExamService {
 
     /**
+     * リポジトリ
+     */
+    private final AbstractMiniExamRepository repository;
+
+    /**
      * コンストラクタ
      */
-    public MiniExamService() {
-
+    public MiniExamService(AbstractMiniExamRepository repository) {
+        this.repository = repository;
     }
 
     /**
@@ -65,5 +75,75 @@ public class MiniExamService {
      */
     private Integer getCount(Integer number) {
         return number != null ? 1 : 0;
+    }
+
+
+    /**
+     * exam用のTreeMapを連番（番号飛びなし）で生成する。
+     *
+     * @param fileName 対象ファイルへのパス
+     * @return TreeMap
+     */
+    public TreeMap<Integer, MiniExam> createExamMapFillId(String fileName) {
+        TreeMap<Integer, MiniExam> treeMap = this.createMap(fileName);
+
+        for (Integer index = treeMap.firstKey(); index <= treeMap.size(); index++) {
+            if (treeMap.containsKey(index)) continue;
+
+            treeMap.put(index, new MiniExam(index,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null
+            ));
+        }
+
+        return treeMap;
+    }
+
+    /**
+     * exam用のTreeMapを生成する。
+     *
+     * @param fileName 対象ファイルへのpath
+     * @return TreeMap
+     */
+    public TreeMap<Integer, MiniExam> createMap(String fileName) {
+        TreeMap<Integer, MiniExam> treeMap = new TreeMap<>();
+        List<String> lines = this.repository.fileToList(this.repository.getResource(fileName));
+
+        for (String line : lines) {
+            Integer[] miniExamArray = new ConvertingService().convertArrayToArray(this.repository.parseCSVLine(line));
+            MiniExam miniExam = new MiniExam(
+                    miniExamArray[0],
+                    miniExamArray[1],
+                    miniExamArray[2],
+                    miniExamArray[3],
+                    miniExamArray[4],
+                    miniExamArray[5],
+                    miniExamArray[6],
+                    miniExamArray[7],
+                    miniExamArray[8],
+                    miniExamArray[9],
+                    miniExamArray[10],
+                    miniExamArray[11],
+                    miniExamArray[12],
+                    miniExamArray[13],
+                    miniExamArray[14]
+            );
+
+            treeMap.put(miniExam.id, miniExam);
+        }
+
+        return treeMap;
     }
 }

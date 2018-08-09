@@ -1,7 +1,7 @@
 package gammaaex.presentation.print;
 
-import gammaaex.domain.service.GradeCalculatingService;
 import gammaaex.domain.model.value_object.Exam;
+import gammaaex.domain.service.other.GradeCalculatingService;
 
 import java.util.TreeMap;
 

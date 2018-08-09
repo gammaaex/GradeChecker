@@ -1,8 +1,8 @@
 package gammaaex.application;
 
-import gammaaex.domain.service.ArgumentAnalyzingService;
+import gammaaex.domain.service.ExamService;
+import gammaaex.domain.service.other.ArgumentAnalyzingService;
 import gammaaex.infrastructure.repository.ExamRepository;
-import gammaaex.infrastructure.dao.FileDAO;
 import gammaaex.presentation.print.ExamPrinter;
 
 /**
@@ -21,8 +21,8 @@ public class GradeChecker1 {
         new ArgumentAnalyzingService().validateForOne(arguments);
 
         new ExamPrinter().print(
-                new ExamRepository().createExamMapFillId(
-                        new FileDAO().getResource(arguments[0])
+                new ExamService(new ExamRepository()).createMapFillId(
+                        arguments[0]
                 )
         );
     }

@@ -5,8 +5,10 @@ import gammaaex.domain.model.value_object.Exam;
 import gammaaex.domain.model.value_object.MiniExam;
 import gammaaex.domain.model.value_object.ScoreSet;
 import gammaaex.domain.service.AssignmentsService;
-import gammaaex.domain.service.GradeCalculatingService;
 import gammaaex.domain.service.MiniExamService;
+import gammaaex.domain.service.other.GradeCalculatingService;
+import gammaaex.infrastructure.repository.AssignmentsRepository;
+import gammaaex.infrastructure.repository.MiniExamRepository;
 
 /**
  * 標準出力を司るクラス
@@ -67,8 +69,8 @@ public class Printer {
                 exam.id,
                 finalScore != null ? finalScore : 0.0,
                 exam.point != null ? exam.point : 0,
-                new AssignmentsService().calculateTotalScore(assignments),
-                new MiniExamService().calculateAdmissionRate(miniExam),
+                new AssignmentsService(new AssignmentsRepository()).calculateTotalScore(assignments),
+                new MiniExamService(new MiniExamRepository()).calculateAdmissionRate(miniExam),
                 gradeCalculatingService.convertPointToGrade(finalScore).getText()
         );
     }
