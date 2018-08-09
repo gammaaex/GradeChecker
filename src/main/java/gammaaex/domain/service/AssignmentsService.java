@@ -55,7 +55,7 @@ public class AssignmentsService {
      * @param fileName 対象ファイルの名前
      * @return assignments用のTreeMap
      */
-    public TreeMap<Integer, Assignments> createAssignmentsMap(String fileName) {
+    public TreeMap<Integer, Assignments> createMap(String fileName) {
         TreeMap<Integer, Assignments> treeMap = new TreeMap<>();
         List<String> lines = this.repository.fileToList(this.repository.getResource(fileName));
 

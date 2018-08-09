@@ -40,10 +40,10 @@ public class GradeChecker2 {
         MiniExamService miniExamService = new MiniExamService(new MiniExamRepository());
 
         TreeMap<Integer, Exam> exam = examService.createMapFillId(arguments[0]);
-        TreeMap<Integer, Assignments> assignments = assignmentsService.createAssignmentsMap(arguments[1]);
-        TreeMap<Integer, MiniExam> miniExam = miniExamService.createExamMapFillId(arguments[2]);
+        TreeMap<Integer, Assignments> assignments = assignmentsService.createMap(arguments[1]);
+        TreeMap<Integer, MiniExam> miniExam = miniExamService.createMapFillId(arguments[2]);
 
-        TreeMap<Integer, ScoreSet> scoreSetMap = new ScoreSetService().createScoreSetMap(exam, assignments, miniExam);
+        TreeMap<Integer, ScoreSet> scoreSetMap = new ScoreSetService().createMap(exam, assignments, miniExam);
 
         scoreSetMap.forEach((index, scoreSet) -> {
             new Printer().printAll(scoreSet);

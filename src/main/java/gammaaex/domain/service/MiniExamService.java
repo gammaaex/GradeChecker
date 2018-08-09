@@ -77,14 +77,13 @@ public class MiniExamService {
         return number != null ? 1 : 0;
     }
 
-
     /**
      * exam用のTreeMapを連番（番号飛びなし）で生成する。
      *
      * @param fileName 対象ファイルへのパス
      * @return TreeMap
      */
-    public TreeMap<Integer, MiniExam> createExamMapFillId(String fileName) {
+    public TreeMap<Integer, MiniExam> createMapFillId(String fileName) {
         TreeMap<Integer, MiniExam> treeMap = this.createMap(fileName);
 
         for (Integer index = treeMap.firstKey(); index <= treeMap.size(); index++) {

@@ -20,7 +20,7 @@ public class ScoreSetService {
      * @param filledMiniExam ID飛びがない小テスト
      * @return ScoreSet用のMap
      */
-    public TreeMap<Integer, ScoreSet> createScoreSetMap(TreeMap<Integer, Exam> filledExamMap, TreeMap<Integer, Assignments> assignmentsMap, TreeMap<Integer, MiniExam> filledMiniExam) {
+    public TreeMap<Integer, ScoreSet> createMap(TreeMap<Integer, Exam> filledExamMap, TreeMap<Integer, Assignments> assignmentsMap, TreeMap<Integer, MiniExam> filledMiniExam) {
         this.validateMapBySize(filledExamMap, assignmentsMap, filledMiniExam);
 
         TreeMap<Integer, ScoreSet> scoreSetMap = new TreeMap<>();
