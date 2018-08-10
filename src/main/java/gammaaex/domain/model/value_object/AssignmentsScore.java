@@ -17,7 +17,6 @@ public final class AssignmentsScore extends AbstractValueObject {
      * @param score 課題の成績
      */
     public AssignmentsScore(Integer score) {
-        if (score.equals(null)) throw new RuntimeException("Nullは許可されません。");
         this.score = score;
     }
 

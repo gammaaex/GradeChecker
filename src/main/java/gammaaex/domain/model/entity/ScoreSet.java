@@ -1,16 +1,11 @@
-package gammaaex.domain.model.value_object;
+package gammaaex.domain.model.entity;
 
-import gammaaex.domain.model.AbstractValueObject;
-import gammaaex.domain.model.entity.Assignments;
-import gammaaex.domain.model.entity.Exam;
-import gammaaex.domain.model.entity.MiniExam;
-
-import java.util.Objects;
+import gammaaex.domain.model.AbstractEntity;
 
 /**
  * 同一idのexam, assigments, miniexamのセット
  */
-public final class ScoreSet extends AbstractValueObject {
+public final class ScoreSet extends AbstractEntity<ScoreSet> {
 
     /**
      * テスト結果
@@ -35,6 +30,15 @@ public final class ScoreSet extends AbstractValueObject {
      * @param miniExam    小テスト
      */
     public ScoreSet(Exam exam, Assignments assignments, MiniExam miniExam) {
+        super(exam.getIdentifier());
+
+        if (!exam.getIdentifier().equals(assignments.getIdentifier())) {
+            throw new IllegalArgumentException("examとassignmentsのidが一致しません。");
+        }
+        if (!exam.getIdentifier().equals(miniExam.getIdentifier())){
+            throw new IllegalArgumentException("examとminiexamのidが一致しません。");
+        }
+
         this.exam = exam;
         this.assignments = assignments;
         this.miniExam = miniExam;
@@ -59,29 +63,5 @@ public final class ScoreSet extends AbstractValueObject {
      */
     public MiniExam getMiniExam() {
         return miniExam;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        if (this == object) return true;
-
-        if (object == null) return false;
-
-        if (this.getClass() != object.getClass()) return false;
-
-        ScoreSet that = (ScoreSet) object;
-
-        if (!this.getExam().equals(that.getExam())) return false;
-
-        if (!this.getAssignments().equals(that.getAssignments())) return false;
-
-        if (!this.getMiniExam().equals(that.getMiniExam())) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(exam, assignments, miniExam);
     }
 }

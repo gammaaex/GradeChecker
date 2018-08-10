@@ -15,7 +15,6 @@ public class MiniExamScore {
      * @param score 課題の成績
      */
     public MiniExamScore(Integer score) {
-        if (score.equals(null)) throw new RuntimeException("Nullは許可されません。");
         this.score = score;
     }
 
