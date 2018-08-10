@@ -2,7 +2,7 @@ package gammaaex.domain.service;
 
 import gammaaex.domain.model.entity.Assignments;
 import gammaaex.domain.repository.AbstractAssignmentsRepository;
-import gammaaex.domain.service.other.ConvertingService;
+import gammaaex.domain.service.multiple.ConvertingService;
 
 import java.util.List;
 import java.util.TreeMap;

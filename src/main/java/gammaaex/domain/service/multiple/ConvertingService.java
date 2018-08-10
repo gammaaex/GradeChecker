@@ -1,4 +1,4 @@
-package gammaaex.domain.service.other;
+package gammaaex.domain.service.multiple;
 
 /**
  * 変換を司るクラス
