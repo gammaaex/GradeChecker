@@ -12,6 +12,7 @@ public class ExamScore extends AbstractValueObject {
     private final Double score;
 
     public ExamScore(Double score) {
+        if (score == null) throw new RuntimeException("Nullは許容されません。");
         this.score = score;
     }
 
