@@ -58,7 +58,7 @@ public class Printer {
         System.out.printf("%d, %f, %f, %d, %f, %s\n",
                 exam.getIdentifier(),
                 finalScore != null ? finalScore : 0.0,
-                exam.getScore() != null ? exam.getScore().getScore() : 0,
+                exam.getScore().getScore() != null ? exam.getScore().getScore() : 0,
                 assignmentScore,
                 admissionRate,
                 grade

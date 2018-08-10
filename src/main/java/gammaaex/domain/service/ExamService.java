@@ -36,7 +36,7 @@ public class ExamService {
         for (Integer index = treeMap.firstKey(); index <= treeMap.size(); index++) {
             if (treeMap.containsKey(index)) continue;
 
-            treeMap.put(index, new Exam(index, null));
+            treeMap.put(index, new Exam(index, new ExamScore(null)));
         }
 
         return treeMap;

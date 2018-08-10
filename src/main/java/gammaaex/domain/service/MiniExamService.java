@@ -75,7 +75,7 @@ public class MiniExamService {
      * @return Integer 0か1
      */
     private Integer getCount(MiniExamScore score) {
-        return score != null ? 1 : 0;
+        return score.getScore() != null ? 1 : 0;
     }
 
     /**
@@ -91,20 +91,20 @@ public class MiniExamService {
             if (treeMap.containsKey(index)) continue;
 
             treeMap.put(index, new MiniExam(index,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null
+                    new MiniExamScore(null),
+                    new MiniExamScore(null),
+                    new MiniExamScore(null),
+                    new MiniExamScore(null),
+                    new MiniExamScore(null),
+                    new MiniExamScore(null),
+                    new MiniExamScore(null),
+                    new MiniExamScore(null),
+                    new MiniExamScore(null),
+                    new MiniExamScore(null),
+                    new MiniExamScore(null),
+                    new MiniExamScore(null),
+                    new MiniExamScore(null),
+                    new MiniExamScore(null)
             ));
         }
 

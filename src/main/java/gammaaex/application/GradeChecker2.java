@@ -14,9 +14,6 @@ import gammaaex.domain.service.ScoreSetService;
 import gammaaex.domain.service.shared.GradeCalculatingService;
 import gammaaex.domain.service.utility.ArgumentAnalyzingService;
 import gammaaex.domain.service.utility.ConvertingService;
-import gammaaex.infrastructure.repository.AssignmentsRepository;
-import gammaaex.infrastructure.repository.ExamRepository;
-import gammaaex.infrastructure.repository.MiniExamRepository;
 import gammaaex.presentation.print.Printer;
 
 import java.util.TreeMap;

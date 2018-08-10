@@ -21,6 +21,9 @@ public final class Exam extends AbstractEntity {
      */
     public Exam(Integer id, ExamScore score) {
         super(id);
+
+        if (score == null) throw new IllegalArgumentException();
+
         this.score = score;
     }
 

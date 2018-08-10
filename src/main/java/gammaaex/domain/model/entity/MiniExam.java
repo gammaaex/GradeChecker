@@ -96,6 +96,22 @@ public final class MiniExam extends AbstractEntity<MiniExam> {
             MiniExamScore score14
     ) {
         super(id);
+
+        if (score1 == null) throw new IllegalArgumentException();
+        if (score2 == null) throw new IllegalArgumentException();
+        if (score3 == null) throw new IllegalArgumentException();
+        if (score4 == null) throw new IllegalArgumentException();
+        if (score5 == null) throw new IllegalArgumentException();
+        if (score6 == null) throw new IllegalArgumentException();
+        if (score7 == null) throw new IllegalArgumentException();
+        if (score8 == null) throw new IllegalArgumentException();
+        if (score9 == null) throw new IllegalArgumentException();
+        if (score10 == null) throw new IllegalArgumentException();
+        if (score11 == null) throw new IllegalArgumentException();
+        if (score12 == null) throw new IllegalArgumentException();
+        if (score13 == null) throw new IllegalArgumentException();
+        if (score14 == null) throw new IllegalArgumentException();
+
         this.score1 = score1;
         this.score2 = score2;
         this.score3 = score3;

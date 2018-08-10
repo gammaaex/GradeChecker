@@ -48,6 +48,14 @@ public final class Assignments extends AbstractEntity<Assignments> {
             AssignmentsScore score6
     ) {
         super(id);
+
+        if (score1 == null) throw new IllegalArgumentException();
+        if (score2 == null) throw new IllegalArgumentException();
+        if (score3 == null) throw new IllegalArgumentException();
+        if (score4 == null) throw new IllegalArgumentException();
+        if (score5 == null) throw new IllegalArgumentException();
+        if (score6 == null) throw new IllegalArgumentException();
+
         this.score1 = score1;
         this.score2 = score2;
         this.score3 = score3;

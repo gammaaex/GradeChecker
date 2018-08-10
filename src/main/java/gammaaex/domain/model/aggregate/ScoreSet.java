@@ -36,10 +36,10 @@ public final class ScoreSet extends AbstractEntity<ScoreSet> {
         super(exam.getIdentifier());
 
         if (!exam.getIdentifier().equals(assignments.getIdentifier())) {
-            throw new IllegalArgumentException("examとassignmentsのidが一致しません。");
+            throw new IllegalArgumentException();
         }
-        if (!exam.getIdentifier().equals(miniExam.getIdentifier())){
-            throw new IllegalArgumentException("examとminiexamのidが一致しません。");
+        if (!exam.getIdentifier().equals(miniExam.getIdentifier())) {
+            throw new IllegalArgumentException();
         }
 
         this.exam = exam;
