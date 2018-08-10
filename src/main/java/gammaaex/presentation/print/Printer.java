@@ -1,14 +1,6 @@
 package gammaaex.presentation.print;
 
-import gammaaex.domain.model.entity.Assignments;
 import gammaaex.domain.model.entity.Exam;
-import gammaaex.domain.model.entity.MiniExam;
-import gammaaex.domain.model.value_object.ScoreSet;
-import gammaaex.domain.service.AssignmentsService;
-import gammaaex.domain.service.MiniExamService;
-import gammaaex.domain.service.other.GradeCalculatingService;
-import gammaaex.infrastructure.repository.AssignmentsRepository;
-import gammaaex.infrastructure.repository.MiniExamRepository;
 
 /**
  * 標準出力を司るクラス
@@ -51,27 +43,25 @@ public class Printer {
         System.err.println(ARGUMENT_NOT_FOUND);
     }
 
+
     /**
      * 全ての情報を一度に出力する。
      * 表示内容：ID，最終成績，試験の点数，課題の合計点，小テストの受験回数，グレード
      *
-     * @param scoreSet nullがないScoreSet
+     * @param exam            テスト結果
+     * @param finalScore      最終成績
+     * @param assignmentScore 課題の合計点
+     * @param admissionRate   小テストの受験回数
+     * @param grade           グレードのテキスト表現
      */
-    public void printAll(ScoreSet scoreSet) {
-        Exam exam = scoreSet.getExam();
-        Assignments assignments = scoreSet.getAssignments();
-        MiniExam miniExam = scoreSet.getMiniExam();
-
-        GradeCalculatingService gradeCalculatingService = new GradeCalculatingService();
-        Double finalScore = gradeCalculatingService.calculateFinalScore(exam, assignments, miniExam);
-
+    public void printAll(Exam exam, Double finalScore, Integer assignmentScore, Double admissionRate, String grade) {
         System.out.printf("%d, %f, %f, %d, %f, %s\n",
                 exam.getIdentifier(),
                 finalScore != null ? finalScore : 0.0,
                 exam.getScore() != null ? exam.getScore() : 0,
-                new AssignmentsService(new AssignmentsRepository()).calculateTotalScore(assignments),
-                new MiniExamService(new MiniExamRepository()).calculateAdmissionRate(miniExam),
-                gradeCalculatingService.convertPointToGrade(finalScore).getText()
+                assignmentScore,
+                admissionRate,
+                grade
         );
     }
 }

@@ -1,9 +1,7 @@
 package gammaaex.presentation.print;
 
 import gammaaex.domain.model.entity.Exam;
-import gammaaex.domain.service.other.GradeCalculatingService;
-
-import java.util.TreeMap;
+import gammaaex.domain.model.type.Grade;
 
 /**
  * Examの標準出力を司るクラス
@@ -18,19 +16,16 @@ public class ExamPrinter extends Printer {
     }
 
     /**
-     * exam用の出力を行う。
+     * exam用の出力を行う
      *
-     * @param filledExamTreeMap 番号飛びがないTreeMap
+     * @param exam  テスト結果
+     * @param grade グレード
      */
-    public void print(TreeMap<Integer, Exam> filledExamTreeMap) {
-        GradeCalculatingService gradeCalculator = new GradeCalculatingService();
-
-        filledExamTreeMap.forEach((key, exam) -> {
-            this.printCSVLine(
-                    exam.getIdentifier().toString(),
-                    exam.getScore() == null ? Double.toString(0.000) : exam.getScore().toString(),
-                    " " + gradeCalculator.convertPointToGrade(exam.getScore()).getText()
-            );
-        });
+    public void print(Exam exam, Grade grade) {
+        this.printCSVLine(
+                exam.getIdentifier().toString(),
+                exam.getScore() == null ? Double.toString(0.000) : exam.getScore().toString(),
+                " " + grade.getText()
+        );
     }
 }

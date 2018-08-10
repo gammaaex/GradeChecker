@@ -8,6 +8,7 @@ import gammaaex.domain.service.AssignmentsService;
 import gammaaex.domain.service.ExamService;
 import gammaaex.domain.service.MiniExamService;
 import gammaaex.domain.service.other.ArgumentAnalyzingService;
+import gammaaex.domain.service.other.GradeCalculatingService;
 import gammaaex.domain.service.other.ScoreSetService;
 import gammaaex.infrastructure.repository.AssignmentsRepository;
 import gammaaex.infrastructure.repository.ExamRepository;
@@ -39,14 +40,27 @@ public class GradeChecker2 {
         AssignmentsService assignmentsService = new AssignmentsService(new AssignmentsRepository());
         MiniExamService miniExamService = new MiniExamService(new MiniExamRepository());
 
-        TreeMap<Integer, Exam> exam = examService.createMapFillId(arguments[0]);
-        TreeMap<Integer, Assignments> assignments = assignmentsService.createMap(arguments[1]);
-        TreeMap<Integer, MiniExam> miniExam = miniExamService.createMapFillId(arguments[2]);
+        TreeMap<Integer, Exam> examMap = examService.createMapFillId(arguments[0]);
+        TreeMap<Integer, Assignments> assignmentsMap = assignmentsService.createMap(arguments[1]);
+        TreeMap<Integer, MiniExam> miniExamMap = miniExamService.createMapFillId(arguments[2]);
 
-        TreeMap<Integer, ScoreSet> scoreSetMap = new ScoreSetService().createMap(exam, assignments, miniExam);
+        TreeMap<Integer, ScoreSet> scoreSetMap = new ScoreSetService().createMap(examMap, assignmentsMap, miniExamMap);
 
         scoreSetMap.forEach((index, scoreSet) -> {
-            new Printer().printAll(scoreSet);
+            Exam exam = scoreSet.getExam();
+            Assignments assignments = scoreSet.getAssignments();
+            MiniExam miniExam = scoreSet.getMiniExam();
+
+            GradeCalculatingService gradeCalculatingService = new GradeCalculatingService();
+            Double finalScore = gradeCalculatingService.calculateFinalScore(exam, assignments, miniExam);
+
+            new Printer().printAll(
+                    exam,
+                    finalScore,
+                    new AssignmentsService(new AssignmentsRepository()).calculateTotalScore(assignments),
+                    new MiniExamService(new MiniExamRepository()).calculateAdmissionRate(miniExam),
+                    gradeCalculatingService.convertPointToGrade(finalScore).getText()
+            );
         });
     }
 }

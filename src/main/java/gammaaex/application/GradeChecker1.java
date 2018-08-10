@@ -1,9 +1,13 @@
 package gammaaex.application;
 
+import gammaaex.domain.model.entity.Exam;
 import gammaaex.domain.service.ExamService;
 import gammaaex.domain.service.other.ArgumentAnalyzingService;
+import gammaaex.domain.service.other.GradeCalculatingService;
 import gammaaex.infrastructure.repository.ExamRepository;
 import gammaaex.presentation.print.ExamPrinter;
+
+import java.util.TreeMap;
 
 /**
  * ステップ1に相当するクラス
@@ -20,10 +24,12 @@ public class GradeChecker1 {
     public void run(String[] arguments) {
         new ArgumentAnalyzingService().validateForOne(arguments);
 
-        new ExamPrinter().print(
-                new ExamService(new ExamRepository()).createMapFillId(
-                        arguments[0]
-                )
-        );
+        TreeMap<Integer, Exam> examMap = new ExamService(new ExamRepository()).createMapFillId(arguments[0]);
+        ExamPrinter examPrinter = new ExamPrinter();
+        GradeCalculatingService gradeCalculatingService = new GradeCalculatingService();
+
+        examMap.forEach((index, exam) -> {
+            examPrinter.print(exam, gradeCalculatingService.convertPointToGrade(exam.getScore()));
+        });
     }
 }
