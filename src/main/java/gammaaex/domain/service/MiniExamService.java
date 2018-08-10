@@ -1,6 +1,7 @@
 package gammaaex.domain.service;
 
 import gammaaex.domain.model.entity.MiniExam;
+import gammaaex.domain.model.value_object.MiniExamScore;
 import gammaaex.domain.repository.AbstractMiniExamRepository;
 import gammaaex.domain.service.utility.ConvertingService;
 
@@ -70,11 +71,11 @@ public class MiniExamService {
     /**
      * Integerオブジェクトがnullかどうか判断し、結果によって0か1を返す。
      *
-     * @param number 対象のIntegerオブジェクト
+     * @param score 対象のIntegerオブジェクト
      * @return Integer 0か1
      */
-    private Integer getCount(Integer number) {
-        return number != null ? 1 : 0;
+    private Integer getCount(MiniExamScore score) {
+        return score != null ? 1 : 0;
     }
 
     /**
@@ -124,20 +125,20 @@ public class MiniExamService {
             Integer[] miniExamArray = new ConvertingService().convertArrayToArray(this.repository.parseCSVLine(line));
             MiniExam miniExam = new MiniExam(
                     miniExamArray[0],
-                    miniExamArray[1],
-                    miniExamArray[2],
-                    miniExamArray[3],
-                    miniExamArray[4],
-                    miniExamArray[5],
-                    miniExamArray[6],
-                    miniExamArray[7],
-                    miniExamArray[8],
-                    miniExamArray[9],
-                    miniExamArray[10],
-                    miniExamArray[11],
-                    miniExamArray[12],
-                    miniExamArray[13],
-                    miniExamArray[14]
+                    new MiniExamScore(miniExamArray[1]),
+                    new MiniExamScore(miniExamArray[2]),
+                    new MiniExamScore(miniExamArray[3]),
+                    new MiniExamScore(miniExamArray[4]),
+                    new MiniExamScore(miniExamArray[5]),
+                    new MiniExamScore(miniExamArray[6]),
+                    new MiniExamScore(miniExamArray[7]),
+                    new MiniExamScore(miniExamArray[8]),
+                    new MiniExamScore(miniExamArray[9]),
+                    new MiniExamScore(miniExamArray[10]),
+                    new MiniExamScore(miniExamArray[11]),
+                    new MiniExamScore(miniExamArray[12]),
+                    new MiniExamScore(miniExamArray[13]),
+                    new MiniExamScore(miniExamArray[14])
             );
 
             treeMap.put(miniExam.getIdentifier(), miniExam);
