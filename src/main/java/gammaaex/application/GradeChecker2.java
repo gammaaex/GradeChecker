@@ -1,15 +1,19 @@
 package gammaaex.application;
 
+import gammaaex.domain.model.aggregate.ScoreSet;
 import gammaaex.domain.model.entity.Assignments;
 import gammaaex.domain.model.entity.Exam;
 import gammaaex.domain.model.entity.MiniExam;
-import gammaaex.domain.model.aggregate.ScoreSet;
+import gammaaex.domain.repository.AbstractAssignmentsRepository;
+import gammaaex.domain.repository.AbstractExamRepository;
+import gammaaex.domain.repository.AbstractMiniExamRepository;
 import gammaaex.domain.service.AssignmentsService;
 import gammaaex.domain.service.ExamService;
 import gammaaex.domain.service.MiniExamService;
-import gammaaex.domain.service.utility.ArgumentAnalyzingService;
-import gammaaex.domain.service.shared.GradeCalculatingService;
 import gammaaex.domain.service.ScoreSetService;
+import gammaaex.domain.service.shared.GradeCalculatingService;
+import gammaaex.domain.service.utility.ArgumentAnalyzingService;
+import gammaaex.domain.service.utility.ConvertingService;
 import gammaaex.infrastructure.repository.AssignmentsRepository;
 import gammaaex.infrastructure.repository.ExamRepository;
 import gammaaex.infrastructure.repository.MiniExamRepository;
@@ -24,14 +28,18 @@ import java.util.TreeMap;
  */
 public class GradeChecker2 {
 
-    private final ExamRepository examRepository;
-    private final AssignmentsRepository assignmentsRepository;
-    private final MiniExamRepository miniExamRepository;
+    private final AbstractExamRepository examRepository;
+    private final AbstractAssignmentsRepository assignmentsRepository;
+    private final AbstractMiniExamRepository miniExamRepository;
 
-    public GradeChecker2() {
-        this.examRepository = new ExamRepository();
-        this.assignmentsRepository = new AssignmentsRepository();
-        this.miniExamRepository = new MiniExamRepository();
+    public GradeChecker2(
+            AbstractExamRepository examRepository,
+            AbstractAssignmentsRepository assignmentsRepository,
+            AbstractMiniExamRepository miniExamRepository
+    ) {
+        this.examRepository = examRepository;
+        this.assignmentsRepository = assignmentsRepository;
+        this.miniExamRepository = miniExamRepository;
     }
 
     /**
@@ -56,7 +64,11 @@ public class GradeChecker2 {
             Exam exam = scoreSet.getExam();
             Assignments assignments = scoreSet.getAssignments();
             MiniExam miniExam = scoreSet.getMiniExam();
-            GradeCalculatingService gradeCalculatingService = new GradeCalculatingService();
+            GradeCalculatingService gradeCalculatingService = new GradeCalculatingService(
+                    new ConvertingService(),
+                    assignmentsService,
+                    miniExamService
+            );
 
             Double finalScore = gradeCalculatingService.calculateFinalScore(exam, assignments, miniExam);
 

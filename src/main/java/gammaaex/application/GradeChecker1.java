@@ -1,10 +1,15 @@
 package gammaaex.application;
 
 import gammaaex.domain.model.entity.Exam;
+import gammaaex.domain.repository.AbstractAssignmentsRepository;
+import gammaaex.domain.repository.AbstractExamRepository;
+import gammaaex.domain.repository.AbstractMiniExamRepository;
+import gammaaex.domain.service.AssignmentsService;
 import gammaaex.domain.service.ExamService;
-import gammaaex.domain.service.utility.ArgumentAnalyzingService;
+import gammaaex.domain.service.MiniExamService;
 import gammaaex.domain.service.shared.GradeCalculatingService;
-import gammaaex.infrastructure.repository.ExamRepository;
+import gammaaex.domain.service.utility.ArgumentAnalyzingService;
+import gammaaex.domain.service.utility.ConvertingService;
 import gammaaex.presentation.print.ExamPrinter;
 
 import java.util.TreeMap;
@@ -16,10 +21,18 @@ import java.util.TreeMap;
  */
 public class GradeChecker1 {
 
-    private final ExamRepository examRepository;
+    private final AbstractExamRepository examRepository;
+    private final AbstractAssignmentsRepository assignmentsRepository;
+    private final AbstractMiniExamRepository miniExamRepository;
 
-    public GradeChecker1() {
-        this.examRepository = new ExamRepository();
+    public GradeChecker1(
+            AbstractExamRepository examRepository,
+            AbstractAssignmentsRepository assignmentsRepository,
+            AbstractMiniExamRepository miniExamRepository
+    ) {
+        this.examRepository = examRepository;
+        this.assignmentsRepository = assignmentsRepository;
+        this.miniExamRepository = miniExamRepository;
     }
 
     /**
@@ -32,7 +45,11 @@ public class GradeChecker1 {
 
         TreeMap<Integer, Exam> examMap = new ExamService(this.examRepository).createMapFillId(arguments[0]);
         ExamPrinter examPrinter = new ExamPrinter();
-        GradeCalculatingService gradeCalculatingService = new GradeCalculatingService();
+        GradeCalculatingService gradeCalculatingService = new GradeCalculatingService(
+                new ConvertingService(),
+                new AssignmentsService(this.assignmentsRepository),
+                new MiniExamService(this.miniExamRepository)
+        );
 
         examMap.forEach((index, exam) -> {
             examPrinter.print(exam, gradeCalculatingService.convertPointToGrade(exam.getScore().getScore()));

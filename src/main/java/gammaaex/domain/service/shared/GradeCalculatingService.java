@@ -7,8 +7,6 @@ import gammaaex.domain.model.type.Grade;
 import gammaaex.domain.service.AssignmentsService;
 import gammaaex.domain.service.MiniExamService;
 import gammaaex.domain.service.utility.ConvertingService;
-import gammaaex.infrastructure.repository.AssignmentsRepository;
-import gammaaex.infrastructure.repository.MiniExamRepository;
 
 /**
  * 成績を計算するクラス
@@ -19,12 +17,24 @@ public class GradeCalculatingService {
      * Service変数
      */
     private final ConvertingService convertingService;
+    private final AssignmentsService assignmentsService;
+    private final MiniExamService miniExamService;
 
     /**
      * コンストラクタ
+     *
+     * @param convertingService
+     * @param assignmentsService
+     * @param miniExamService
      */
-    public GradeCalculatingService() {
-        this.convertingService = new ConvertingService();
+    public GradeCalculatingService(
+            ConvertingService convertingService,
+            AssignmentsService assignmentsService,
+            MiniExamService miniExamService
+    ) {
+        this.convertingService = convertingService;
+        this.assignmentsService = assignmentsService;
+        this.miniExamService = miniExamService;
     }
 
     /**
@@ -66,8 +76,8 @@ public class GradeCalculatingService {
         if (exam.getScore() == null) return null;
 
         Double finalScore = 70 * this.convertingService.convertNullToDouble(exam.getScore().getScore()) / 100
-                + 25 * new AssignmentsService(new AssignmentsRepository()).calculateTotalScore(assignments) / 60
-                + 5 * new MiniExamService(new MiniExamRepository()).calculateAdmissionRate(miniExam);
+                + 25 * this.assignmentsService.calculateTotalScore(assignments) / 60
+                + 5 * this.miniExamService.calculateAdmissionRate(miniExam);
 
         return (Double) Math.ceil(finalScore);
     }
