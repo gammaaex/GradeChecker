@@ -1,6 +1,7 @@
 package gammaaex.domain.service;
 
 import gammaaex.domain.model.entity.Assignments;
+import gammaaex.domain.model.value_object.AssignmentsScore;
 import gammaaex.domain.repository.AbstractAssignmentsRepository;
 import gammaaex.domain.service.utility.ConvertingService;
 
@@ -39,12 +40,12 @@ public class AssignmentsService {
     public Integer calculateTotalScore(Assignments assignments) {
         Integer totalScore = 0;
 
-        totalScore += this.convertingService.convertNullToInteger(assignments.getScore1());
-        totalScore += this.convertingService.convertNullToInteger(assignments.getScore2());
-        totalScore += this.convertingService.convertNullToInteger(assignments.getScore3());
-        totalScore += this.convertingService.convertNullToInteger(assignments.getScore4());
-        totalScore += this.convertingService.convertNullToInteger(assignments.getScore5());
-        totalScore += this.convertingService.convertNullToInteger(assignments.getScore6());
+        totalScore += this.convertingService.convertNullToInteger(assignments.getScore1().getScore());
+        totalScore += this.convertingService.convertNullToInteger(assignments.getScore2().getScore());
+        totalScore += this.convertingService.convertNullToInteger(assignments.getScore3().getScore());
+        totalScore += this.convertingService.convertNullToInteger(assignments.getScore4().getScore());
+        totalScore += this.convertingService.convertNullToInteger(assignments.getScore5().getScore());
+        totalScore += this.convertingService.convertNullToInteger(assignments.getScore6().getScore());
 
         return totalScore;
     }
@@ -63,12 +64,12 @@ public class AssignmentsService {
             Integer[] assignmentsArray = new ConvertingService().convertArrayToArray(this.repository.parseCSVLine(line));
             Assignments assignments = new Assignments(
                     assignmentsArray[0],
-                    assignmentsArray[1],
-                    assignmentsArray[2],
-                    assignmentsArray[3],
-                    assignmentsArray[4],
-                    assignmentsArray[5],
-                    assignmentsArray[6]
+                    new AssignmentsScore(assignmentsArray[1]),
+                    new AssignmentsScore(assignmentsArray[2]),
+                    new AssignmentsScore(assignmentsArray[3]),
+                    new AssignmentsScore(assignmentsArray[4]),
+                    new AssignmentsScore(assignmentsArray[5]),
+                    new AssignmentsScore(assignmentsArray[6])
             );
 
             treeMap.put(assignments.getIdentifier(), assignments);
