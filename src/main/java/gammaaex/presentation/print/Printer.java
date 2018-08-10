@@ -9,11 +9,6 @@ import gammaaex.domain.model.entity.Exam;
 public class Printer {
 
     /**
-     * ファイルが指定されていない場合のエラーメッセージ
-     */
-    public static final String ARGUMENT_NOT_FOUND = "ERROR: 試験の成績ファイルが指定されていません．";
-
-    /**
      * コンストラクタ
      */
     public Printer() {
@@ -37,10 +32,10 @@ public class Printer {
     }
 
     /**
-     * Error文を出力する。
+     * ファイルが指定されていない場合のError文を出力する。
      */
     public void printErrorByArgumentNotFound(String rightCommand) {
-        System.err.println(ARGUMENT_NOT_FOUND);
+        System.err.println("ERROR: 試験の成績ファイルが指定されていません．");
         System.err.println(rightCommand);
     }
 
