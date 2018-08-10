@@ -12,7 +12,7 @@ import gammaaex.domain.service.ExamService;
 import gammaaex.domain.service.MiniExamService;
 import gammaaex.domain.service.ScoreSetService;
 import gammaaex.domain.service.shared.GradeCalculatingService;
-import gammaaex.domain.service.utility.ArgumentAnalyzingService;
+import gammaaex.domain.service.utility.ArgumentValidatorService;
 import gammaaex.domain.service.utility.ConvertingService;
 import gammaaex.presentation.print.Printer;
 
@@ -45,7 +45,10 @@ public class GradeChecker2 {
      * @param arguments 実行時引数
      */
     public void run(String[] arguments) {
-        new ArgumentAnalyzingService().validateForMany(arguments);
+        if (!new ArgumentValidatorService().validateForMany(arguments)) {
+            new Printer().printErrorByArgumentNotFound("java GradeChecker2 <EXAM.CSV> <ASSIGNMENTS.CSV> <MINIEXAM.CSV>");
+            return;
+        }
 
         ExamService examService = new ExamService(this.examRepository);
         AssignmentsService assignmentsService = new AssignmentsService(this.assignmentsRepository);

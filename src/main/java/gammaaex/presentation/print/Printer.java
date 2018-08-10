@@ -39,10 +39,10 @@ public class Printer {
     /**
      * Error文を出力する。
      */
-    public void printError() {
+    public void printErrorByArgumentNotFound(String rightCommand) {
         System.err.println(ARGUMENT_NOT_FOUND);
+        System.err.println(rightCommand);
     }
-
 
     /**
      * 全ての情報を一度に出力する。
@@ -58,7 +58,7 @@ public class Printer {
         System.out.printf("%d, %f, %f, %d, %f, %s\n",
                 exam.getIdentifier(),
                 finalScore != null ? finalScore : 0.0,
-                exam.getScore().getScore() != null ? exam.getScore().getScore() : 0,
+                exam.getExamScore().getScore() != null ? exam.getExamScore().getScore() : 0,
                 assignmentScore,
                 admissionRate,
                 grade

@@ -11,7 +11,7 @@ public final class Exam extends AbstractEntity {
     /**
      * 点数
      */
-    private final ExamScore score;
+    private final ExamScore examScore;
 
     /**
      * コンストラクタ
@@ -24,13 +24,13 @@ public final class Exam extends AbstractEntity {
 
         if (score == null) throw new IllegalArgumentException();
 
-        this.score = score;
+        this.examScore = score;
     }
 
     /**
-     * @return get score.
+     * @return get examScore.
      */
-    public ExamScore getScore() {
-        return score;
+    public ExamScore getExamScore() {
+        return examScore;
     }
 }

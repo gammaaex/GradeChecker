@@ -8,9 +8,10 @@ import gammaaex.domain.service.AssignmentsService;
 import gammaaex.domain.service.ExamService;
 import gammaaex.domain.service.MiniExamService;
 import gammaaex.domain.service.shared.GradeCalculatingService;
-import gammaaex.domain.service.utility.ArgumentAnalyzingService;
+import gammaaex.domain.service.utility.ArgumentValidatorService;
 import gammaaex.domain.service.utility.ConvertingService;
 import gammaaex.presentation.print.ExamPrinter;
+import gammaaex.presentation.print.Printer;
 
 import java.util.TreeMap;
 
@@ -41,7 +42,10 @@ public class GradeChecker1 {
      * @param arguments 実行時引数
      */
     public void run(String[] arguments) {
-        new ArgumentAnalyzingService().validateForOne(arguments);
+        if (!new ArgumentValidatorService().validateForOne(arguments)) {
+            new Printer().printErrorByArgumentNotFound("java GradeChecker1 <EXAM.CSV>");
+            return;
+        }
 
         TreeMap<Integer, Exam> examMap = new ExamService(this.examRepository).createMapFillId(arguments[0]);
         ExamPrinter examPrinter = new ExamPrinter();
@@ -52,7 +56,7 @@ public class GradeChecker1 {
         );
 
         examMap.forEach((index, exam) -> {
-            examPrinter.print(exam, gradeCalculatingService.convertPointToGrade(exam.getScore().getScore()));
+            examPrinter.print(exam, gradeCalculatingService.convertPointToGrade(exam.getExamScore().getScore()));
         });
     }
 }
