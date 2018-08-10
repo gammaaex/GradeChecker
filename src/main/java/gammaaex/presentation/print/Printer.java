@@ -50,11 +50,11 @@ public class Printer {
      * @param grade           グレードのテキスト表現
      */
     public void printAll(Exam exam, Double finalScore, Integer assignmentScore, Double admissionRate, String grade) {
-        System.out.printf("%d, %f, %f, %d, %f, %s\n",
+        System.out.printf("%d, %.1f, %.8f, %.4f, %f, %s\n",
                 exam.getIdentifier(),
                 finalScore != null ? finalScore : 0.0,
                 exam.getExamScore().getScore() != null ? exam.getExamScore().getScore() : 0,
-                assignmentScore,
+                assignmentScore.doubleValue(),
                 admissionRate,
                 grade
         );

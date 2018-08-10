@@ -16,7 +16,16 @@ public class Main {
      * @param args 実行時引数
      */
     public static void main(String[] args) {
-        //new GradeChecker1(new ExamRepository()).run(args);
-        new GradeChecker2(new ExamRepository(), new AssignmentsRepository(), new MiniExamRepository()).run(args);
+//        new GradeChecker1(
+//                new ExamRepository(),
+//                new AssignmentsRepository(),
+//                new MiniExamRepository()
+//        ).run(args);
+
+        new GradeChecker2(
+                new ExamRepository(),
+                new AssignmentsRepository(),
+                new MiniExamRepository()
+        ).run(args);
     }
 }

@@ -43,8 +43,8 @@ public class GradeChecker1 {
      */
     public void run(String[] arguments) {
         if (!new ArgumentValidatorService().validateForOne(arguments)) {
-            new Printer().printErrorByArgumentNotFound("java GradeChecker1 <EXAM.CSV>");
-            return;
+//            new Printer().printErrorByArgumentNotFound("java GradeChecker1 <EXAM.CSV>");
+//            return;
         }
 
         TreeMap<Integer, Exam> examMap = new ExamService(this.examRepository).createMapFillId(arguments[0]);
