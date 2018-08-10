@@ -3,7 +3,7 @@ package gammaaex.domain.service;
 import gammaaex.domain.model.entity.Assignments;
 import gammaaex.domain.model.entity.Exam;
 import gammaaex.domain.model.entity.MiniExam;
-import gammaaex.domain.model.entity.ScoreSet;
+import gammaaex.domain.model.aggregate.ScoreSet;
 
 import java.util.TreeMap;
 

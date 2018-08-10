@@ -3,7 +3,7 @@ package gammaaex.application;
 import gammaaex.domain.model.entity.Assignments;
 import gammaaex.domain.model.entity.Exam;
 import gammaaex.domain.model.entity.MiniExam;
-import gammaaex.domain.model.entity.ScoreSet;
+import gammaaex.domain.model.aggregate.ScoreSet;
 import gammaaex.domain.service.AssignmentsService;
 import gammaaex.domain.service.ExamService;
 import gammaaex.domain.service.MiniExamService;

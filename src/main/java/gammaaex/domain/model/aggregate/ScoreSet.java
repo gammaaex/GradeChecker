@@ -1,6 +1,9 @@
-package gammaaex.domain.model.entity;
+package gammaaex.domain.model.aggregate;
 
 import gammaaex.domain.model.AbstractEntity;
+import gammaaex.domain.model.entity.Assignments;
+import gammaaex.domain.model.entity.Exam;
+import gammaaex.domain.model.entity.MiniExam;
 
 /**
  * 同一idのexam, assigments, miniexamのセット
