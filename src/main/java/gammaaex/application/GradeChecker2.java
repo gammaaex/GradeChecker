@@ -24,8 +24,14 @@ import java.util.TreeMap;
  */
 public class GradeChecker2 {
 
-    public GradeChecker2() {
+    private final ExamRepository examRepository;
+    private final AssignmentsRepository assignmentsRepository;
+    private final MiniExamRepository miniExamRepository;
 
+    public GradeChecker2() {
+        this.examRepository = new ExamRepository();
+        this.assignmentsRepository = new AssignmentsRepository();
+        this.miniExamRepository = new MiniExamRepository();
     }
 
     /**
@@ -36,9 +42,9 @@ public class GradeChecker2 {
     public void run(String[] arguments) {
         new ArgumentAnalyzingService().validateForMany(arguments);
 
-        ExamService examService = new ExamService(new ExamRepository());
-        AssignmentsService assignmentsService = new AssignmentsService(new AssignmentsRepository());
-        MiniExamService miniExamService = new MiniExamService(new MiniExamRepository());
+        ExamService examService = new ExamService(this.examRepository);
+        AssignmentsService assignmentsService = new AssignmentsService(this.assignmentsRepository);
+        MiniExamService miniExamService = new MiniExamService(this.miniExamRepository);
 
         TreeMap<Integer, Exam> examMap = examService.createMapFillId(arguments[0]);
         TreeMap<Integer, Assignments> assignmentsMap = assignmentsService.createMap(arguments[1]);
@@ -50,15 +56,15 @@ public class GradeChecker2 {
             Exam exam = scoreSet.getExam();
             Assignments assignments = scoreSet.getAssignments();
             MiniExam miniExam = scoreSet.getMiniExam();
-
             GradeCalculatingService gradeCalculatingService = new GradeCalculatingService();
+
             Double finalScore = gradeCalculatingService.calculateFinalScore(exam, assignments, miniExam);
 
             new Printer().printAll(
                     exam,
                     finalScore,
-                    new AssignmentsService(new AssignmentsRepository()).calculateTotalScore(assignments),
-                    new MiniExamService(new MiniExamRepository()).calculateAdmissionRate(miniExam),
+                    assignmentsService.calculateTotalScore(assignments),
+                    miniExamService.calculateAdmissionRate(miniExam),
                     gradeCalculatingService.convertPointToGrade(finalScore).getText()
             );
         });

@@ -16,6 +16,12 @@ import java.util.TreeMap;
  */
 public class GradeChecker1 {
 
+    private final ExamRepository examRepository;
+
+    public GradeChecker1() {
+        this.examRepository = new ExamRepository();
+    }
+
     /**
      * 問題を解くメソッド
      *
@@ -24,7 +30,7 @@ public class GradeChecker1 {
     public void run(String[] arguments) {
         new ArgumentAnalyzingService().validateForOne(arguments);
 
-        TreeMap<Integer, Exam> examMap = new ExamService(new ExamRepository()).createMapFillId(arguments[0]);
+        TreeMap<Integer, Exam> examMap = new ExamService(this.examRepository).createMapFillId(arguments[0]);
         ExamPrinter examPrinter = new ExamPrinter();
         GradeCalculatingService gradeCalculatingService = new GradeCalculatingService();
 
