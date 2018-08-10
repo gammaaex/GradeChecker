@@ -2,8 +2,8 @@ package gammaaex.application;
 
 import gammaaex.domain.model.entity.Exam;
 import gammaaex.domain.service.ExamService;
-import gammaaex.domain.service.multiple.ArgumentAnalyzingService;
-import gammaaex.domain.service.multiple.GradeCalculatingService;
+import gammaaex.domain.service.utility.ArgumentAnalyzingService;
+import gammaaex.domain.service.shared.GradeCalculatingService;
 import gammaaex.infrastructure.repository.ExamRepository;
 import gammaaex.presentation.print.ExamPrinter;
 

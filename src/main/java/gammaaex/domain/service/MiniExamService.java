@@ -2,7 +2,7 @@ package gammaaex.domain.service;
 
 import gammaaex.domain.model.entity.MiniExam;
 import gammaaex.domain.repository.AbstractMiniExamRepository;
-import gammaaex.domain.service.multiple.ConvertingService;
+import gammaaex.domain.service.utility.ConvertingService;
 
 import java.util.List;
 import java.util.TreeMap;

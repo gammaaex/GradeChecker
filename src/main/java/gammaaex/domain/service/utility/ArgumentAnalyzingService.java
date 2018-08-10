@@ -1,4 +1,4 @@
-package gammaaex.domain.service.multiple;
+package gammaaex.domain.service.utility;
 
 
 import gammaaex.presentation.print.Printer;

@@ -1,4 +1,4 @@
-package gammaaex.domain.service.multiple;
+package gammaaex.domain.service.shared;
 
 import gammaaex.domain.model.entity.Assignments;
 import gammaaex.domain.model.entity.Exam;
@@ -6,6 +6,7 @@ import gammaaex.domain.model.entity.MiniExam;
 import gammaaex.domain.model.type.Grade;
 import gammaaex.domain.service.AssignmentsService;
 import gammaaex.domain.service.MiniExamService;
+import gammaaex.domain.service.utility.ConvertingService;
 import gammaaex.infrastructure.repository.AssignmentsRepository;
 import gammaaex.infrastructure.repository.MiniExamRepository;
 
