@@ -1,6 +1,7 @@
 package gammaaex.domain.model.entity;
 
 import gammaaex.domain.model.AbstractEntity;
+import gammaaex.domain.model.value_object.ExamScore;
 
 /**
  * 成績を表現するイミュータブルなクラス
@@ -10,7 +11,7 @@ public final class Exam extends AbstractEntity {
     /**
      * 点数
      */
-    private final Double score;
+    private final ExamScore score;
 
     /**
      * コンストラクタ
@@ -18,7 +19,7 @@ public final class Exam extends AbstractEntity {
      * @param id    識別子
      * @param score 点数
      */
-    public Exam(Integer id, Double score) {
+    public Exam(Integer id, ExamScore score) {
         super(id);
         this.score = score;
     }
@@ -26,7 +27,7 @@ public final class Exam extends AbstractEntity {
     /**
      * @return get score.
      */
-    public Double getScore() {
+    public ExamScore getScore() {
         return score;
     }
 }

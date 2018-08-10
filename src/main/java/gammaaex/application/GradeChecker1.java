@@ -35,7 +35,7 @@ public class GradeChecker1 {
         GradeCalculatingService gradeCalculatingService = new GradeCalculatingService();
 
         examMap.forEach((index, exam) -> {
-            examPrinter.print(exam, gradeCalculatingService.convertPointToGrade(exam.getScore()));
+            examPrinter.print(exam, gradeCalculatingService.convertPointToGrade(exam.getScore().getScore()));
         });
     }
 }
