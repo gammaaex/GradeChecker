@@ -9,7 +9,7 @@ import gammaaex.domain.service.ExamService;
 import gammaaex.domain.service.MiniExamService;
 import gammaaex.domain.service.multiple.ArgumentAnalyzingService;
 import gammaaex.domain.service.multiple.GradeCalculatingService;
-import gammaaex.domain.service.multiple.ScoreSetService;
+import gammaaex.domain.service.ScoreSetService;
 import gammaaex.infrastructure.repository.AssignmentsRepository;
 import gammaaex.infrastructure.repository.ExamRepository;
 import gammaaex.infrastructure.repository.MiniExamRepository;

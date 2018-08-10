@@ -1,4 +1,4 @@
-package gammaaex.domain.service.multiple;
+package gammaaex.domain.service;
 
 import gammaaex.domain.model.entity.Assignments;
 import gammaaex.domain.model.entity.Exam;
