@@ -1,6 +1,9 @@
 package gammaaex;
 
-import gammaaex.grade.checker.GradeChecker1;
+import gammaaex.application.GradeChecker2;
+import gammaaex.infrastructure.repository.AssignmentsRepository;
+import gammaaex.infrastructure.repository.ExamRepository;
+import gammaaex.infrastructure.repository.MiniExamRepository;
 
 /**
  * メインクラス
@@ -13,8 +16,16 @@ public class Main {
      * @param args 実行時引数
      */
     public static void main(String[] args) {
-        GradeChecker1 gradeChecker1 = new GradeChecker1();
-        gradeChecker1.run(args);
-    }
+//        new GradeChecker1(
+//                new ExamRepository(),
+//                new AssignmentsRepository(),
+//                new MiniExamRepository()
+//        ).run(args);
 
+        new GradeChecker2(
+                new ExamRepository(),
+                new AssignmentsRepository(),
+                new MiniExamRepository()
+        ).run(args);
+    }
 }

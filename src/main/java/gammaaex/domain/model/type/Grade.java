@@ -1,4 +1,4 @@
-package gammaaex.grade;
+package gammaaex.domain.model.type;
 
 /**
  * 成績を表現するEnum
@@ -42,6 +42,7 @@ public enum Grade {
 
     /**
      * コンストラクタ
+     *
      * @param text Gradeのテキスト
      */
     Grade(String text) {
