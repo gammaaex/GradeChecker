@@ -6,7 +6,7 @@ import gammaaex.domain.model.entity.Exam;
 import gammaaex.domain.model.entity.MiniExam;
 
 /**
- * 同一idのexam, assigments, miniexamのセット
+ * 同一idのexam, assigments, miniexamの集約
  */
 public final class ScoreSet extends AbstractEntity<ScoreSet> {
 

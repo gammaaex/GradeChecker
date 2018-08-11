@@ -13,12 +13,14 @@ import java.util.TreeMap;
 public class ExamService {
 
     /**
-     * リポジトリ
+     * ExamのRepository
      */
     private final AbstractExamRepository repository;
 
     /**
      * コンストラクタ
+     *
+     * @param repository ExamのRepository
      */
     public ExamService(AbstractExamRepository repository) {
         this.repository = repository;

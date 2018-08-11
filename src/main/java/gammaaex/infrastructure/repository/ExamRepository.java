@@ -3,7 +3,7 @@ package gammaaex.infrastructure.repository;
 import gammaaex.domain.repository.AbstractExamRepository;
 
 /**
- * exam.csvを操作するクラス
+ * ExamのRepository
  */
 public class ExamRepository extends AbstractExamRepository {
 

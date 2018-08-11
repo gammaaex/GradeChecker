@@ -14,12 +14,14 @@ import java.util.TreeMap;
 public class MiniExamService {
 
     /**
-     * リポジトリ
+     * MiniExamのRepository
      */
     private final AbstractMiniExamRepository repository;
 
     /**
      * コンストラクタ
+     *
+     * @param repository MiniExamのRepository
      */
     public MiniExamService(AbstractMiniExamRepository repository) {
         this.repository = repository;

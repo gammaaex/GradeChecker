@@ -22,10 +22,28 @@ import java.util.TreeMap;
  */
 public class GradeChecker1 {
 
+    /**
+     * ExamのRepository
+     */
     private final AbstractExamRepository examRepository;
+
+    /**
+     * AssignmentsのRepository
+     */
     private final AbstractAssignmentsRepository assignmentsRepository;
+
+    /**
+     * MiniExamのRepository
+     */
     private final AbstractMiniExamRepository miniExamRepository;
 
+    /**
+     * コンストラクタ
+     *
+     * @param examRepository        ExamのRepository
+     * @param assignmentsRepository AssignmentsのRepository
+     * @param miniExamRepository    MiniExamのRepository
+     */
     public GradeChecker1(
             AbstractExamRepository examRepository,
             AbstractAssignmentsRepository assignmentsRepository,
@@ -51,7 +69,7 @@ public class GradeChecker1 {
         ExamPrinter examPrinter = new ExamPrinter();
         GradeCalculatingService gradeCalculatingService = new GradeCalculatingService(
                 new ConvertingService(),
-                new AssignmentsService(this.assignmentsRepository),
+                new AssignmentsService(this.assignmentsRepository, new ConvertingService()),
                 new MiniExamService(this.miniExamRepository)
         );
 

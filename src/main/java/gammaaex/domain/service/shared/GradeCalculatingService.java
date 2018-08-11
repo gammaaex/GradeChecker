@@ -14,18 +14,26 @@ import gammaaex.domain.service.utility.ConvertingService;
 public class GradeCalculatingService {
 
     /**
-     * Service変数
+     * {@link ConvertingService ConvertingServiceを参照}
      */
     private final ConvertingService convertingService;
+
+    /**
+     * AssignmentsのService
+     */
     private final AssignmentsService assignmentsService;
+
+    /**
+     * MiniExamのService
+     */
     private final MiniExamService miniExamService;
 
     /**
      * コンストラクタ
      *
-     * @param convertingService
-     * @param assignmentsService
-     * @param miniExamService
+     * @param convertingService  {@link ConvertingService ConvertingServiceを参照}
+     * @param assignmentsService AssignmentsのService
+     * @param miniExamService    MiniExamのService
      */
     public GradeCalculatingService(
             ConvertingService convertingService,

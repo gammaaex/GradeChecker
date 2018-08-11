@@ -38,6 +38,17 @@ public final class Assignments extends AbstractEntity<Assignments> {
      */
     private final AssignmentsScore score6;
 
+    /**
+     * コンストラクタ
+     *
+     * @param id     識別子
+     * @param score1 課題1の成績
+     * @param score2 課題2の成績
+     * @param score3 課題3の成績
+     * @param score4 課題4の成績
+     * @param score5 課題5の成績
+     * @param score6 課題6の成績
+     */
     public Assignments(
             Integer id,
             AssignmentsScore score1,

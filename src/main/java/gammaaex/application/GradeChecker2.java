@@ -25,10 +25,28 @@ import java.util.TreeMap;
  */
 public class GradeChecker2 {
 
+    /**
+     * ExamのRepository
+     */
     private final AbstractExamRepository examRepository;
+
+    /**
+     * AssignmentsのRepository
+     */
     private final AbstractAssignmentsRepository assignmentsRepository;
+
+    /**
+     * MiniExamのRepository
+     */
     private final AbstractMiniExamRepository miniExamRepository;
 
+    /**
+     * コンストラクタ
+     *
+     * @param examRepository        ExamのRepository
+     * @param assignmentsRepository AssignmentsのRepository
+     * @param miniExamRepository    MiniExamのRepository
+     */
     public GradeChecker2(
             AbstractExamRepository examRepository,
             AbstractAssignmentsRepository assignmentsRepository,
@@ -50,8 +68,10 @@ public class GradeChecker2 {
             return;
         }
 
+        ConvertingService convertingService = new ConvertingService();
+
         ExamService examService = new ExamService(this.examRepository);
-        AssignmentsService assignmentsService = new AssignmentsService(this.assignmentsRepository);
+        AssignmentsService assignmentsService = new AssignmentsService(this.assignmentsRepository, convertingService);
         MiniExamService miniExamService = new MiniExamService(this.miniExamRepository);
 
         TreeMap<Integer, Exam> examMap = examService.createMapFillId(arguments[0]);
@@ -65,7 +85,7 @@ public class GradeChecker2 {
             Assignments assignments = scoreSet.getAssignments();
             MiniExam miniExam = scoreSet.getMiniExam();
             GradeCalculatingService gradeCalculatingService = new GradeCalculatingService(
-                    new ConvertingService(),
+                    convertingService,
                     assignmentsService,
                     miniExamService
             );

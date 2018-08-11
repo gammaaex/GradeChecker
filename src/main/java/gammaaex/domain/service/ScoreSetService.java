@@ -8,7 +8,7 @@ import gammaaex.domain.model.entity.MiniExam;
 import java.util.TreeMap;
 
 /**
- * MiniExamのビジネスロジックを司るクラス
+ * ScoreSetのビジネスロジックを司るクラス
  */
 public class ScoreSetService {
 

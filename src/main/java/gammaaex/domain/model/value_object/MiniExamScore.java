@@ -12,7 +12,7 @@ public class MiniExamScore {
     /**
      * コンストラクタ
      *
-     * @param score 課題の成績
+     * @param score 小テストの成績
      */
     public MiniExamScore(Integer score) {
         this.score = score;

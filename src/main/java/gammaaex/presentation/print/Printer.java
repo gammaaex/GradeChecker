@@ -9,13 +9,6 @@ import gammaaex.domain.model.entity.Exam;
 public class Printer {
 
     /**
-     * コンストラクタ
-     */
-    public Printer() {
-
-    }
-
-    /**
      * CSV形式でPrintする。
      *
      * @param arguments 文字列の可変長引数
@@ -48,6 +41,7 @@ public class Printer {
      * @param assignmentScore 課題の合計点
      * @param admissionRate   小テストの受験回数
      * @param grade           グレードのテキスト表現
+     * @see <a href="https://ksuap.github.io/2018spring/lesson14/assignments/#2-b-実行例">出力仕様</a>
      */
     public void printAll(Exam exam, Double finalScore, Integer assignmentScore, Double admissionRate, String grade) {
         System.out.printf("%d, %.1f, %.8f, %.4f, %f, %s\n",

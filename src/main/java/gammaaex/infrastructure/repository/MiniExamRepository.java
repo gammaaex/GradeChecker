@@ -3,7 +3,7 @@ package gammaaex.infrastructure.repository;
 import gammaaex.domain.repository.AbstractMiniExamRepository;
 
 /**
- * miniexam.csvを操作するクラス
+ * MiniExamのRepository
  */
 public class MiniExamRepository extends AbstractMiniExamRepository {
 

@@ -14,21 +14,24 @@ import java.util.TreeMap;
 public class AssignmentsService {
 
     /**
-     * リポジトリ
+     * AssignmentsのRepository
      */
     private final AbstractAssignmentsRepository repository;
 
     /**
-     * Service変数
+     * {@link ConvertingService ConvertingServiceを参照}
      */
     private final ConvertingService convertingService;
 
     /**
      * コンストラクタ
+     *
+     * @param repository        AssignmentsのRepository
+     * @param convertingService {@link ConvertingService ConvertingServiceを参照}
      */
-    public AssignmentsService(AbstractAssignmentsRepository repository) {
+    public AssignmentsService(AbstractAssignmentsRepository repository, ConvertingService convertingService) {
         this.repository = repository;
-        this.convertingService = new ConvertingService();
+        this.convertingService = convertingService;
     }
 
     /**

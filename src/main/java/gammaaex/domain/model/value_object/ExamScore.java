@@ -11,6 +11,11 @@ public class ExamScore extends AbstractValueObject {
      */
     private final Double score;
 
+    /**
+     * コンストラクタ
+     *
+     * @param score テスト結果
+     */
     public ExamScore(Double score) {
         this.score = score;
     }

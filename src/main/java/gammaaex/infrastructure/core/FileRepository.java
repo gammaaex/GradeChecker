@@ -19,13 +19,6 @@ import java.util.stream.Collectors;
 public class FileRepository implements FileRepositoryInterface {
 
     /**
-     * コンストラクタ
-     */
-    public FileRepository() {
-
-    }
-
-    /**
      * CSV形式の行を文字列型配列に変換する。
      *
      * @param line 対象の行
@@ -55,8 +48,8 @@ public class FileRepository implements FileRepositoryInterface {
     /**
      * リソースとなるファイルを取得する。
      *
-     * @param fileName resource file name.
-     * @return get resource path.
+     * @param fileName ファイル名
+     * @return ファイルのPath
      */
     @Override
     public Path getResource(String fileName) {

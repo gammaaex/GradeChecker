@@ -20,6 +20,7 @@ public class ExamPrinter extends Printer {
      *
      * @param exam  テスト結果
      * @param grade グレード
+     * @see <a href="https://ksuap.github.io/2018spring/lesson14/assignments/#1-b-実行例">出力仕様</a>
      */
     public void print(Exam exam, Grade grade) {
         this.printCSVLine(

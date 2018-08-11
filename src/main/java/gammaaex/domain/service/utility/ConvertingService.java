@@ -6,13 +6,6 @@ package gammaaex.domain.service.utility;
 public class ConvertingService {
 
     /**
-     * コンストラクタ
-     */
-    public ConvertingService() {
-
-    }
-
-    /**
      * nullを整数値に変換する
      *
      * @param number Integerオブジェクト

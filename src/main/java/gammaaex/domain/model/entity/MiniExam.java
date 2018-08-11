@@ -78,6 +78,25 @@ public final class MiniExam extends AbstractEntity<MiniExam> {
      */
     private final MiniExamScore score14;
 
+    /**
+     * コンストラクタ
+     *
+     * @param id      識別子
+     * @param score1  第1回小テストの点数
+     * @param score2  第2回小テストの点数
+     * @param score3  第3回小テストの点数
+     * @param score4  第4回小テストの点数
+     * @param score5  第5回小テストの点数
+     * @param score6  第6回小テストの点数
+     * @param score7  第7回小テストの点数
+     * @param score8  第8回小テストの点数
+     * @param score9  第9回小テストの点数
+     * @param score10 第10回小テストの点数
+     * @param score11 第11回小テストの点数
+     * @param score12 第12回小テストの点数
+     * @param score13 第13回小テストの点数
+     * @param score14 第14回小テストの点数
+     */
     public MiniExam(
             Integer id,
             MiniExamScore score1,
