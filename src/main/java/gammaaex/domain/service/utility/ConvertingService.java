@@ -37,7 +37,7 @@ public class ConvertingService {
         for (Integer index = 0; index < stringArray.length; index++) {
             try {
                 integerArray[index] = Integer.parseInt(stringArray[index]);
-            } catch (NumberFormatException numberFormatException) {
+            } catch (NumberFormatException e) {
                 integerArray[index] = null;
             }
         }

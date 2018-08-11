@@ -48,6 +48,6 @@ public class ScoreSetService {
             TreeMap<Integer, MiniExam> miniExamMap
     ) {
         if (examMap.size() != assignmentsMap.size() || examMap.size() != miniExamMap.size())
-            throw new RuntimeException("3つのファイルのidが一致しません。");
+            throw new RuntimeException("3つのidが一致しません。");
     }
 }
