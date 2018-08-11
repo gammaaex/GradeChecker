@@ -4,19 +4,19 @@ import gammaaex.domain.model.aggregate.ScoreSet;
 import gammaaex.domain.model.entity.Assignments;
 import gammaaex.domain.model.entity.Exam;
 import gammaaex.domain.model.entity.MiniExam;
+import gammaaex.domain.model.type.Grade;
 import gammaaex.domain.model.value_object.CalculatedScore;
 import gammaaex.domain.repository.AbstractAssignmentsRepository;
 import gammaaex.domain.repository.AbstractExamRepository;
 import gammaaex.domain.repository.AbstractMiniExamRepository;
 import gammaaex.domain.service.AssignmentsService;
+import gammaaex.domain.service.CalculatedScoreService;
 import gammaaex.domain.service.ExamService;
 import gammaaex.domain.service.MiniExamService;
 import gammaaex.domain.service.ScoreSetService;
 import gammaaex.domain.service.shared.GradeCalculatingService;
-import gammaaex.domain.service.utility.ArgumentValidatorService;
 import gammaaex.domain.service.utility.ConvertingService;
 import gammaaex.presentation.print.CalculatedScorePrinter;
-import gammaaex.presentation.print.Printer;
 
 import java.util.TreeMap;
 
@@ -25,7 +25,7 @@ import java.util.TreeMap;
  *
  * @see <a href="https://ksuap.github.io/2018spring/lesson14/assignments/#ステップ2">課題ページを参照</a>
  */
-public class GradeChecker2 {
+public class GradeChecker3 {
 
     /**
      * ExamのRepository
@@ -49,7 +49,7 @@ public class GradeChecker2 {
      * @param assignmentsRepository AssignmentsのRepository
      * @param miniExamRepository    MiniExamのRepository
      */
-    public GradeChecker2(
+    public GradeChecker3(
             AbstractExamRepository examRepository,
             AbstractAssignmentsRepository assignmentsRepository,
             AbstractMiniExamRepository miniExamRepository
@@ -65,10 +65,11 @@ public class GradeChecker2 {
      * @param arguments 実行時引数
      */
     public void run(String[] arguments) {
-        if (!new ArgumentValidatorService().validateForMany(arguments)) {
-            new Printer().printErrorByArgumentNotFound("java GradeChecker2 <EXAM.CSV> <ASSIGNMENTS.CSV> <MINIEXAM.CSV>");
-            return;
-        }
+        new GradeChecker2(
+                this.examRepository,
+                this.assignmentsRepository,
+                this.miniExamRepository
+        ).run(arguments);
 
         ConvertingService convertingService = new ConvertingService();
 
@@ -87,9 +88,43 @@ public class GradeChecker2 {
                 assignmentsService,
                 miniExamService
         );
+
         TreeMap<Integer, CalculatedScore> calculatedScoreMap =
                 gradeCalculatingService.convertMapFromScoreSetToCalculatedScore(scoreSetMap);
 
         new CalculatedScorePrinter().printCalculatedScore(calculatedScoreMap);
+
+        CalculatedScoreService calculatedScoreService = new CalculatedScoreService();
+        CalculatedScorePrinter calculatedScorePrinter = new CalculatedScorePrinter();
+
+        calculatedScorePrinter.printAverage(
+                calculatedScoreService.calculateAverage(calculatedScoreMap),
+                calculatedScoreService.calculateAverage(
+                        calculatedScoreService.extractByCreditGetter(calculatedScoreMap)
+                )
+        );
+
+        calculatedScorePrinter.printMaximize(
+                calculatedScoreService.calculateMaximize(calculatedScoreMap),
+                calculatedScoreService.calculateMaximize(
+                        calculatedScoreService.extractByCreditGetter(calculatedScoreMap)
+                )
+        );
+
+        calculatedScorePrinter.printMinimum(
+                calculatedScoreService.calculateMinimum(calculatedScoreMap),
+                calculatedScoreService.calculateMinimum(
+                        calculatedScoreService.extractByCreditGetter(calculatedScoreMap)
+                )
+        );
+
+        calculatedScorePrinter.printGradeStats(
+                calculatedScoreService.countByGrade(calculatedScoreMap, Grade.A),
+                calculatedScoreService.countByGrade(calculatedScoreMap, Grade.B),
+                calculatedScoreService.countByGrade(calculatedScoreMap, Grade.C),
+                calculatedScoreService.countByGrade(calculatedScoreMap, Grade.D),
+                calculatedScoreService.countByGrade(calculatedScoreMap, Grade.E),
+                calculatedScoreService.countByGrade(calculatedScoreMap, Grade.K)
+        );
     }
 }

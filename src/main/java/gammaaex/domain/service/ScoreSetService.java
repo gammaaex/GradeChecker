@@ -4,7 +4,6 @@ import gammaaex.domain.model.aggregate.ScoreSet;
 import gammaaex.domain.model.entity.Assignments;
 import gammaaex.domain.model.entity.Exam;
 import gammaaex.domain.model.entity.MiniExam;
-import gammaaex.domain.model.value_object.CalculatedScore;
 
 import java.util.TreeMap;
 
