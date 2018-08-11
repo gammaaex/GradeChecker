@@ -27,7 +27,7 @@ public class AssignmentsService {
      * コンストラクタ
      *
      * @param repository        AssignmentsのRepository
-     * @param convertingService {@link ConvertingService ConvertingServiceを参照}
+     * @param convertingService ConvertingServiceのインスタンス
      */
     public AssignmentsService(AbstractAssignmentsRepository repository, ConvertingService convertingService) {
         this.repository = repository;

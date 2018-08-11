@@ -31,7 +31,7 @@ public class GradeCalculatingService {
     /**
      * コンストラクタ
      *
-     * @param convertingService  {@link ConvertingService ConvertingServiceを参照}
+     * @param convertingService  ConvertingServiceのインスタンス
      * @param assignmentsService AssignmentsのService
      * @param miniExamService    MiniExamのService
      */
