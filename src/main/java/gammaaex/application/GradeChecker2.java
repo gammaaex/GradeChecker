@@ -4,6 +4,7 @@ import gammaaex.domain.model.aggregate.ScoreSet;
 import gammaaex.domain.model.entity.Assignments;
 import gammaaex.domain.model.entity.Exam;
 import gammaaex.domain.model.entity.MiniExam;
+import gammaaex.domain.model.value_object.CalculatedScore;
 import gammaaex.domain.repository.AbstractAssignmentsRepository;
 import gammaaex.domain.repository.AbstractExamRepository;
 import gammaaex.domain.repository.AbstractMiniExamRepository;
@@ -14,6 +15,7 @@ import gammaaex.domain.service.ScoreSetService;
 import gammaaex.domain.service.shared.GradeCalculatingService;
 import gammaaex.domain.service.utility.ArgumentValidatorService;
 import gammaaex.domain.service.utility.ConvertingService;
+import gammaaex.presentation.print.CalculatedScorePrinter;
 import gammaaex.presentation.print.Printer;
 
 import java.util.TreeMap;
@@ -80,6 +82,8 @@ public class GradeChecker2 {
 
         TreeMap<Integer, ScoreSet> scoreSetMap = new ScoreSetService().createMap(examMap, assignmentsMap, miniExamMap);
 
+        TreeMap<Integer, CalculatedScore> calculatedScoreMap = new TreeMap<>();
+
         scoreSetMap.forEach((index, scoreSet) -> {
             Exam exam = scoreSet.getExam();
             Assignments assignments = scoreSet.getAssignments();
@@ -92,13 +96,16 @@ public class GradeChecker2 {
 
             Double finalScore = gradeCalculatingService.calculateFinalScore(exam, assignments, miniExam);
 
-            new Printer().printAll(
-                    exam,
+            calculatedScoreMap.put(index, new CalculatedScore(
+                    exam.getIdentifier(),
                     finalScore,
-                    assignmentsService.calculateTotalScore(assignments),
+                    exam.getExamScore().getScore(),
+                    assignmentsService.calculateTotalScore(assignments).doubleValue(),
                     miniExamService.calculateAdmissionRate(miniExam),
-                    gradeCalculatingService.convertPointToGrade(finalScore).getText()
-            );
+                    gradeCalculatingService.convertPointToGrade(finalScore)
+            ));
         });
+
+        new CalculatedScorePrinter().printCalculatedScore(calculatedScoreMap);
     }
 }
