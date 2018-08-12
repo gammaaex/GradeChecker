@@ -89,12 +89,14 @@ public class GradeCalculatingService {
         Double examScore = exam.getExamScore().getScore() == null
                 ? 0
                 : exam.getExamScore().getScore();
+        Integer totalScore = this.assignmentsService.calculateTotalScore(assignments);
+        Double admissionRate = this.miniExamService.calculateAdmissionRate(miniExam);
 
-        Double finalScore = 70 * this.convertingService.convertNullToDouble(examScore) / 100
-                + 25 * this.assignmentsService.calculateTotalScore(assignments) / 60
-                + 5 * this.miniExamService.calculateAdmissionRate(miniExam);
+        Double finalScore = 70 * examScore / 100
+                + 25 * totalScore.doubleValue() / 60
+                + 5 * admissionRate;
 
-        return (Double) Math.ceil(finalScore);
+        return Math.ceil(finalScore);
     }
 
     public TreeMap<Integer, CalculatedScore> convertMapFromScoreSetToCalculatedScore(TreeMap<Integer, ScoreSet> scoreSetMap) {
@@ -110,15 +112,14 @@ public class GradeCalculatingService {
 //                    miniExamService
 //            );
 
-
             Double finalScore = this.calculateFinalScore(exam, assignments, miniExam);
 
             calculatedScoreMap.put(index, new CalculatedScore(
                     exam.getIdentifier(),
                     finalScore,
                     exam.getExamScore().getScore(),
-                    assignmentsService.calculateTotalScore(assignments).doubleValue(),
-                    miniExamService.calculateAdmissionRate(miniExam),
+                    this.assignmentsService.calculateTotalScore(assignments).doubleValue(),
+                    this.miniExamService.calculateAdmissionRate(miniExam),
                     this.convertPointToGrade(
                             exam.getExamScore().getScore() == null ? null : finalScore
                     )

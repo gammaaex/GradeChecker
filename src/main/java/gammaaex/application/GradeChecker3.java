@@ -92,8 +92,6 @@ public class GradeChecker3 {
         TreeMap<Integer, CalculatedScore> calculatedScoreMap =
                 gradeCalculatingService.convertMapFromScoreSetToCalculatedScore(scoreSetMap);
 
-        new CalculatedScorePrinter().printCalculatedScore(calculatedScoreMap);
-
         CalculatedScoreService calculatedScoreService = new CalculatedScoreService();
         CalculatedScorePrinter calculatedScorePrinter = new CalculatedScorePrinter();
 
