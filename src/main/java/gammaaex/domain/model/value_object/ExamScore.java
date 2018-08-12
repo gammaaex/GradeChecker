@@ -44,6 +44,6 @@ public class ExamScore extends AbstractValueObject {
 
     @Override
     public int hashCode() {
-        return Objects.hash(score);
+        return Objects.hash(this.getScore());
     }
 }

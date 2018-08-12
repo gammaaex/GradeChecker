@@ -39,9 +39,9 @@ public class FileRepository implements FileRepositoryInterface {
     public List<String> fileToList(Path path) {
         try {
             return Files.lines(path, StandardCharsets.UTF_8).collect(Collectors.toList());
-        } catch (IOException exception) {
-            exception.printStackTrace();
-            throw new RuntimeException(exception);
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -57,7 +57,7 @@ public class FileRepository implements FileRepositoryInterface {
 
         try {
             resource = Paths.get(Main.class.getResource(fileName).getPath());
-        } catch (NullPointerException nullPointerException) {
+        } catch (NullPointerException e) {
             throw new RuntimeException("課題データファイルが見つかりません。");
         }
 

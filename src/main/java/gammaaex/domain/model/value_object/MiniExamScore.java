@@ -1,8 +1,10 @@
 package gammaaex.domain.model.value_object;
 
+import gammaaex.domain.model.AbstractValueObject;
+
 import java.util.Objects;
 
-public class MiniExamScore {
+public class MiniExamScore extends AbstractValueObject {
 
     /**
      * 小テストの成績
