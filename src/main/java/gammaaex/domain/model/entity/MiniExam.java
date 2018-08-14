@@ -269,31 +269,21 @@ public final class MiniExam extends AbstractEntity<MiniExam> {
     public Integer calculateNumberOfAdmission() {
         Integer count = 0;
 
-        count += getCount(this.getScore1());
-        count += getCount(this.getScore2());
-        count += getCount(this.getScore3());
-        count += getCount(this.getScore4());
-        count += getCount(this.getScore5());
-        count += getCount(this.getScore6());
-        count += getCount(this.getScore7());
-        count += getCount(this.getScore8());
-        count += getCount(this.getScore9());
-        count += getCount(this.getScore10());
-        count += getCount(this.getScore11());
-        count += getCount(this.getScore12());
-        count += getCount(this.getScore13());
-        count += getCount(this.getScore14());
+        count += this.getScore1().getZeroOrOne();
+        count += this.getScore2().getZeroOrOne();
+        count += this.getScore3().getZeroOrOne();
+        count += this.getScore4().getZeroOrOne();
+        count += this.getScore5().getZeroOrOne();
+        count += this.getScore6().getZeroOrOne();
+        count += this.getScore7().getZeroOrOne();
+        count += this.getScore8().getZeroOrOne();
+        count += this.getScore9().getZeroOrOne();
+        count += this.getScore10().getZeroOrOne();
+        count += this.getScore11().getZeroOrOne();
+        count += this.getScore12().getZeroOrOne();
+        count += this.getScore13().getZeroOrOne();
+        count += this.getScore14().getZeroOrOne();
 
         return count;
-    }
-
-    /**
-     * Integerオブジェクトがnullかどうか判断し、結果によって0か1を返す。
-     *
-     * @param score 対象のIntegerオブジェクト
-     * @return Integer 0か1
-     */
-    private Integer getCount(NormalScore score) {
-        return score.getScore() != null ? 1 : 0;
     }
 }

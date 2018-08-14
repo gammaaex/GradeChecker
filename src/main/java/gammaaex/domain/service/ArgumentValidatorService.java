@@ -1,4 +1,4 @@
-package gammaaex.domain.service.utility;
+package gammaaex.domain.service;
 
 
 /**

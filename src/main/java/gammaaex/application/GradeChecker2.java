@@ -8,9 +8,9 @@ import gammaaex.domain.model.entity.MiniExam;
 import gammaaex.domain.repository.AssignmentsRepositoryInterface;
 import gammaaex.domain.repository.ExamRepositoryInterface;
 import gammaaex.domain.repository.MiniExamRepositoryInterface;
-import gammaaex.domain.service.shared.GradeCalculatingService;
-import gammaaex.domain.service.utility.ArgumentValidatorService;
-import gammaaex.domain.service.utility.ConvertingService;
+import gammaaex.domain.service.GradeCalculatingService;
+import gammaaex.domain.service.ArgumentValidatorService;
+import gammaaex.domain.service.ConvertingService;
 import gammaaex.presentation.print.CalculatedScorePrinter;
 import gammaaex.presentation.print.Printer;
 
@@ -74,7 +74,7 @@ public class GradeChecker2 {
 
         List<ScoreSet> scoreSetList = convertingService.createScoreSetList(examList, assignmentsList, miniExamList);
 
-        GradeCalculatingService gradeCalculatingService = new GradeCalculatingService(convertingService);
+        GradeCalculatingService gradeCalculatingService = new GradeCalculatingService();
         List<CalculatedScore> calculatedScoreList =
                 gradeCalculatingService.convertListFromScoreSetToCalculatedScore(scoreSetList);
 

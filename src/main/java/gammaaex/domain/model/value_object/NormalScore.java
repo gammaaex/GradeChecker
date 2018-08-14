@@ -24,10 +24,21 @@ public final class NormalScore extends AbstractValueObject {
     }
 
     /**
-     * @return get score.
+     * scoreがnullかどうか判断し、結果によって0か1を返す。
+     *
+     * @return Integer 0か1
      */
-    public Integer getScore() {
-        return score;
+    public Integer getZeroOrOne() {
+        return this.score == null ? 0 : 1;
+    }
+
+    /**
+     * scoreがnullかどうか判断し、結果によって0か自身の値を返す。
+     *
+     * @return 0かscoreの値
+     */
+    public Integer getZeroOrThis() {
+        return this.score == null ? 0 : this.score;
     }
 
     @Override
@@ -40,13 +51,13 @@ public final class NormalScore extends AbstractValueObject {
 
         NormalScore that = (NormalScore) object;
 
-        if (!this.getScore().equals(that.getScore())) return false;
+        if (!this.score.equals(that.score)) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.getScore());
+        return Objects.hash(this.score);
     }
 }

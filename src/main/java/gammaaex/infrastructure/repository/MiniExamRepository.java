@@ -3,7 +3,7 @@ package gammaaex.infrastructure.repository;
 import gammaaex.domain.model.entity.MiniExam;
 import gammaaex.domain.model.value_object.NormalScore;
 import gammaaex.domain.repository.MiniExamRepositoryInterface;
-import gammaaex.domain.service.utility.ConvertingService;
+import gammaaex.infrastructure.dao.DaoConvertingService;
 import gammaaex.infrastructure.dao.FileDao;
 
 import java.util.ArrayList;
@@ -39,7 +39,7 @@ public class MiniExamRepository implements MiniExamRepositoryInterface {
         List<MiniExam> resultSet = new ArrayList<>();
 
         for (String line : lines) {
-            Integer[] miniExamArray = new ConvertingService().convertArrayToArray(this.fileDao.parseCSVLine(line));
+            Integer[] miniExamArray = new DaoConvertingService().convertArrayToArray(this.fileDao.parseCSVLine(line));
             MiniExam miniExam = new MiniExam(
                     miniExamArray[0],
                     new NormalScore(miniExamArray[1]),

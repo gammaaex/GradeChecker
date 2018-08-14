@@ -3,7 +3,7 @@ package gammaaex.infrastructure.repository;
 import gammaaex.domain.model.entity.Assignments;
 import gammaaex.domain.model.value_object.NormalScore;
 import gammaaex.domain.repository.AssignmentsRepositoryInterface;
-import gammaaex.domain.service.utility.ConvertingService;
+import gammaaex.infrastructure.dao.DaoConvertingService;
 import gammaaex.infrastructure.dao.FileDao;
 
 import java.util.ArrayList;
@@ -39,7 +39,7 @@ public class AssignmentsRepository implements AssignmentsRepositoryInterface {
         List<Assignments> resultSet = new ArrayList<>();
 
         for (String line : lines) {
-            Integer[] assignmentsArray = new ConvertingService().convertArrayToArray(this.fileDao.parseCSVLine(line));
+            Integer[] assignmentsArray = new DaoConvertingService().convertArrayToArray(this.fileDao.parseCSVLine(line));
             Assignments assignments = new Assignments(
                     assignmentsArray[0],
                     new NormalScore(assignmentsArray[1]),

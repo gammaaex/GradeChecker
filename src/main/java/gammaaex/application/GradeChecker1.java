@@ -2,9 +2,8 @@ package gammaaex.application;
 
 import gammaaex.domain.model.entity.Exam;
 import gammaaex.domain.repository.ExamRepositoryInterface;
-import gammaaex.domain.service.shared.GradeCalculatingService;
-import gammaaex.domain.service.utility.ArgumentValidatorService;
-import gammaaex.domain.service.utility.ConvertingService;
+import gammaaex.domain.service.GradeCalculatingService;
+import gammaaex.domain.service.ArgumentValidatorService;
 import gammaaex.presentation.print.ExamPrinter;
 import gammaaex.presentation.print.Printer;
 
@@ -45,7 +44,7 @@ public class GradeChecker1 {
         }
 
         List<Exam> examList = this.examRepository.findAllByFillId();
-        GradeCalculatingService gradeCalculatingService = new GradeCalculatingService(new ConvertingService());
+        GradeCalculatingService gradeCalculatingService = new GradeCalculatingService();
         ExamPrinter examPrinter = new ExamPrinter();
 
         examList.forEach(exam -> {

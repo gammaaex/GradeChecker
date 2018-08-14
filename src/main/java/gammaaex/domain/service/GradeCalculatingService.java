@@ -1,4 +1,4 @@
-package gammaaex.domain.service.shared;
+package gammaaex.domain.service;
 
 import gammaaex.domain.model.aggregate.ScoreSet;
 import gammaaex.domain.model.entity.Assignments;
@@ -7,7 +7,6 @@ import gammaaex.domain.model.entity.Exam;
 import gammaaex.domain.model.entity.MiniExam;
 import gammaaex.domain.model.type.Grade;
 import gammaaex.domain.model.value_object.DetailScore;
-import gammaaex.domain.service.utility.ConvertingService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,20 +15,6 @@ import java.util.List;
  * 成績を計算するクラス
  */
 public class GradeCalculatingService {
-
-    /**
-     * {@link ConvertingService ConvertingServiceを参照}
-     */
-    private final ConvertingService convertingService;
-
-    /**
-     * コンストラクタ
-     *
-     * @param convertingService ConvertingServiceのインスタンス
-     */
-    public GradeCalculatingService(ConvertingService convertingService) {
-        this.convertingService = convertingService;
-    }
 
     /**
      * 成績をGradeに変換する。
@@ -71,7 +56,7 @@ public class GradeCalculatingService {
         Double examScore = exam.getDetailScore().getScore() == null
                 ? 0
                 : exam.getDetailScore().getScore();
-        Integer totalScore = assignments.calculateTotalScore(convertingService);
+        Integer totalScore = assignments.calculateTotalScore();
         Double admissionRate = miniExam.calculateAdmissionRate();
 
         Double finalScore = 70 * examScore / 100
@@ -95,7 +80,7 @@ public class GradeCalculatingService {
                     exam.getIdentifier(),
                     new DetailScore(finalScore),
                     new DetailScore(exam.getDetailScore().getScore()),
-                    new DetailScore(assignments.calculateTotalScore(convertingService).doubleValue()),
+                    new DetailScore(assignments.calculateTotalScore().doubleValue()),
                     new DetailScore(miniExam.calculateAdmissionRate()),
                     this.convertPointToGrade(
                             exam.getDetailScore().getScore() == null ? null : finalScore
