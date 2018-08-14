@@ -1,7 +1,7 @@
 package gammaaex.domain.model.entity;
 
 import gammaaex.domain.model.AbstractEntity;
-import gammaaex.domain.model.value_object.AssignmentsScore;
+import gammaaex.domain.model.value_object.NormalScore;
 
 /**
  * 課題を表現するイミュータブルなクラス
@@ -11,32 +11,32 @@ public final class Assignments extends AbstractEntity<Assignments> {
     /**
      * 課題1の成績
      */
-    private final AssignmentsScore score1;
+    private final NormalScore score1;
 
     /**
      * 課題2の成績
      */
-    private final AssignmentsScore score2;
+    private final NormalScore score2;
 
     /**
      * 課題3の成績
      */
-    private final AssignmentsScore score3;
+    private final NormalScore score3;
 
     /**
      * 課題4の成績
      */
-    private final AssignmentsScore score4;
+    private final NormalScore score4;
 
     /**
      * 課題5の成績
      */
-    private final AssignmentsScore score5;
+    private final NormalScore score5;
 
     /**
      * 課題6の成績
      */
-    private final AssignmentsScore score6;
+    private final NormalScore score6;
 
     /**
      * コンストラクタ
@@ -51,12 +51,12 @@ public final class Assignments extends AbstractEntity<Assignments> {
      */
     public Assignments(
             Integer id,
-            AssignmentsScore score1,
-            AssignmentsScore score2,
-            AssignmentsScore score3,
-            AssignmentsScore score4,
-            AssignmentsScore score5,
-            AssignmentsScore score6
+            NormalScore score1,
+            NormalScore score2,
+            NormalScore score3,
+            NormalScore score4,
+            NormalScore score5,
+            NormalScore score6
     ) {
         super(id);
 
@@ -78,42 +78,42 @@ public final class Assignments extends AbstractEntity<Assignments> {
     /**
      * @return get score1.
      */
-    public AssignmentsScore getScore1() {
+    public NormalScore getScore1() {
         return score1;
     }
 
     /**
      * @return get score2.
      */
-    public AssignmentsScore getScore2() {
+    public NormalScore getScore2() {
         return score2;
     }
 
     /**
      * @return get score3.
      */
-    public AssignmentsScore getScore3() {
+    public NormalScore getScore3() {
         return score3;
     }
 
     /**
      * @return get score4.
      */
-    public AssignmentsScore getScore4() {
+    public NormalScore getScore4() {
         return score4;
     }
 
     /**
      * @return get score5.
      */
-    public AssignmentsScore getScore5() {
+    public NormalScore getScore5() {
         return score5;
     }
 
     /**
      * @return get score6.
      */
-    public AssignmentsScore getScore6() {
+    public NormalScore getScore6() {
         return score6;
     }
 }

@@ -4,26 +4,29 @@ import gammaaex.domain.model.AbstractValueObject;
 
 import java.util.Objects;
 
-public class ExamScore extends AbstractValueObject {
+/**
+ * 通常の成績を表現するクラス
+ */
+public final class NormalScore extends AbstractValueObject {
 
     /**
-     * テスト結果
+     * テストの成績
      */
-    private final Double score;
+    private final Integer score;
 
     /**
      * コンストラクタ
      *
-     * @param score テスト結果
+     * @param score テストの成績
      */
-    public ExamScore(Double score) {
+    public NormalScore(Integer score) {
         this.score = score;
     }
 
     /**
      * @return get score.
      */
-    public Double getScore() {
+    public Integer getScore() {
         return score;
     }
 
@@ -35,7 +38,7 @@ public class ExamScore extends AbstractValueObject {
 
         if (this.getClass() != object.getClass()) return false;
 
-        ExamScore that = (ExamScore) object;
+        NormalScore that = (NormalScore) object;
 
         if (!this.getScore().equals(that.getScore())) return false;
 

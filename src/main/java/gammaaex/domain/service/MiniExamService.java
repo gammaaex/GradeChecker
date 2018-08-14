@@ -1,7 +1,7 @@
 package gammaaex.domain.service;
 
 import gammaaex.domain.model.entity.MiniExam;
-import gammaaex.domain.model.value_object.MiniExamScore;
+import gammaaex.domain.model.value_object.NormalScore;
 import gammaaex.domain.repository.AbstractMiniExamRepository;
 import gammaaex.domain.service.utility.ConvertingService;
 
@@ -76,7 +76,7 @@ public class MiniExamService {
      * @param score 対象のIntegerオブジェクト
      * @return Integer 0か1
      */
-    private Integer getCount(MiniExamScore score) {
+    private Integer getCount(NormalScore score) {
         return score.getScore() != null ? 1 : 0;
     }
 
@@ -93,20 +93,20 @@ public class MiniExamService {
             if (treeMap.containsKey(index)) continue;
 
             treeMap.put(index, new MiniExam(index,
-                    new MiniExamScore(null),
-                    new MiniExamScore(null),
-                    new MiniExamScore(null),
-                    new MiniExamScore(null),
-                    new MiniExamScore(null),
-                    new MiniExamScore(null),
-                    new MiniExamScore(null),
-                    new MiniExamScore(null),
-                    new MiniExamScore(null),
-                    new MiniExamScore(null),
-                    new MiniExamScore(null),
-                    new MiniExamScore(null),
-                    new MiniExamScore(null),
-                    new MiniExamScore(null)
+                    new NormalScore(null),
+                    new NormalScore(null),
+                    new NormalScore(null),
+                    new NormalScore(null),
+                    new NormalScore(null),
+                    new NormalScore(null),
+                    new NormalScore(null),
+                    new NormalScore(null),
+                    new NormalScore(null),
+                    new NormalScore(null),
+                    new NormalScore(null),
+                    new NormalScore(null),
+                    new NormalScore(null),
+                    new NormalScore(null)
             ));
         }
 
@@ -127,20 +127,20 @@ public class MiniExamService {
             Integer[] miniExamArray = new ConvertingService().convertArrayToArray(this.repository.parseCSVLine(line));
             MiniExam miniExam = new MiniExam(
                     miniExamArray[0],
-                    new MiniExamScore(miniExamArray[1]),
-                    new MiniExamScore(miniExamArray[2]),
-                    new MiniExamScore(miniExamArray[3]),
-                    new MiniExamScore(miniExamArray[4]),
-                    new MiniExamScore(miniExamArray[5]),
-                    new MiniExamScore(miniExamArray[6]),
-                    new MiniExamScore(miniExamArray[7]),
-                    new MiniExamScore(miniExamArray[8]),
-                    new MiniExamScore(miniExamArray[9]),
-                    new MiniExamScore(miniExamArray[10]),
-                    new MiniExamScore(miniExamArray[11]),
-                    new MiniExamScore(miniExamArray[12]),
-                    new MiniExamScore(miniExamArray[13]),
-                    new MiniExamScore(miniExamArray[14])
+                    new NormalScore(miniExamArray[1]),
+                    new NormalScore(miniExamArray[2]),
+                    new NormalScore(miniExamArray[3]),
+                    new NormalScore(miniExamArray[4]),
+                    new NormalScore(miniExamArray[5]),
+                    new NormalScore(miniExamArray[6]),
+                    new NormalScore(miniExamArray[7]),
+                    new NormalScore(miniExamArray[8]),
+                    new NormalScore(miniExamArray[9]),
+                    new NormalScore(miniExamArray[10]),
+                    new NormalScore(miniExamArray[11]),
+                    new NormalScore(miniExamArray[12]),
+                    new NormalScore(miniExamArray[13]),
+                    new NormalScore(miniExamArray[14])
             );
 
             treeMap.put(miniExam.getIdentifier(), miniExam);

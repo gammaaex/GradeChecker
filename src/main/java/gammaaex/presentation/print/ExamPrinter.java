@@ -25,9 +25,9 @@ public class ExamPrinter extends Printer {
     public void print(Exam exam, Grade grade) {
         this.printCSVLine(
                 exam.getIdentifier().toString(),
-                exam.getExamScore().getScore() == null
+                exam.getDetailScore().getScore() == null
                         ? Double.toString(0.000)
-                        : String.format("%.3f", exam.getExamScore().getScore()),
+                        : String.format("%.3f", exam.getDetailScore().getScore()),
                 " " + grade.getText()
         );
     }

@@ -74,7 +74,7 @@ public class GradeChecker1 {
         );
 
         examMap.forEach((index, exam) -> {
-            examPrinter.print(exam, gradeCalculatingService.convertPointToGrade(exam.getExamScore().getScore()));
+            examPrinter.print(exam, gradeCalculatingService.convertPointToGrade(exam.getDetailScore().getScore()));
         });
     }
 }

@@ -1,7 +1,7 @@
 package gammaaex.domain.service;
 
 import gammaaex.domain.model.entity.Assignments;
-import gammaaex.domain.model.value_object.AssignmentsScore;
+import gammaaex.domain.model.value_object.NormalScore;
 import gammaaex.domain.repository.AbstractAssignmentsRepository;
 import gammaaex.domain.service.utility.ConvertingService;
 
@@ -67,12 +67,12 @@ public class AssignmentsService {
             Integer[] assignmentsArray = new ConvertingService().convertArrayToArray(this.repository.parseCSVLine(line));
             Assignments assignments = new Assignments(
                     assignmentsArray[0],
-                    new AssignmentsScore(assignmentsArray[1]),
-                    new AssignmentsScore(assignmentsArray[2]),
-                    new AssignmentsScore(assignmentsArray[3]),
-                    new AssignmentsScore(assignmentsArray[4]),
-                    new AssignmentsScore(assignmentsArray[5]),
-                    new AssignmentsScore(assignmentsArray[6])
+                    new NormalScore(assignmentsArray[1]),
+                    new NormalScore(assignmentsArray[2]),
+                    new NormalScore(assignmentsArray[3]),
+                    new NormalScore(assignmentsArray[4]),
+                    new NormalScore(assignmentsArray[5]),
+                    new NormalScore(assignmentsArray[6])
             );
 
             treeMap.put(assignments.getIdentifier(), assignments);
