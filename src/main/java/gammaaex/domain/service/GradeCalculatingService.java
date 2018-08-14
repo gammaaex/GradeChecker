@@ -64,6 +64,12 @@ public class GradeCalculatingService {
         return Math.ceil(finalScore);
     }
 
+    /**
+     * scoreSetのリストから各値を計算し、CalculatedScoreのListに変換する。
+     *
+     * @param scoreSetList {@link ScoreSet}のList
+     * @return {@link CalculatedScore}のList
+     */
     public List<CalculatedScore> convertListFromScoreSetToCalculatedScore(List<ScoreSet> scoreSetList) {
         List<CalculatedScore> calculatedScoreList = new ArrayList<>();
 
