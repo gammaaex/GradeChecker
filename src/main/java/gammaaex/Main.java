@@ -17,15 +17,13 @@ public class Main {
      */
     public static void main(String[] args) {
 //        new GradeChecker1(
-//                new ExamRepository(),
-//                new AssignmentsRepository(),
-//                new MiniExamRepository()
+//                new ExamRepository(args[0])
 //        ).run(args);
-
+//
 //        new GradeChecker2(
-//                new ExamRepository(),
-//                new AssignmentsRepository(),
-//                new MiniExamRepository()
+//                new ExamRepository(args[0]),
+//                new AssignmentsRepository(args[1]),
+//                new MiniExamRepository(args[2])
 //        ).run(args);
 
         new GradeChecker3(

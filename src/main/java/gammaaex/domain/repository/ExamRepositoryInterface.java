@@ -10,6 +10,11 @@ import java.util.List;
  */
 public interface ExamRepositoryInterface extends RepositoryInterface<Exam> {
 
+    /**
+     * id埋めがされたListを返す。
+     *
+     * @return id埋めがされたList
+     */
     List<Exam> findAllByFillId();
 
 }

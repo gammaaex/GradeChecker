@@ -10,6 +10,11 @@ import java.util.List;
  */
 public interface MiniExamRepositoryInterface extends RepositoryInterface<MiniExam> {
 
+    /**
+     * id埋めがされたListを返す。
+     *
+     * @return id埋めがされたList
+     */
     List<MiniExam> findAllByFillId();
 
 }

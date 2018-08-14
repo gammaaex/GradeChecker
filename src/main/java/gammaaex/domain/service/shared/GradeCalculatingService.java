@@ -88,11 +88,6 @@ public class GradeCalculatingService {
             Exam exam = scoreSet.getExam();
             Assignments assignments = scoreSet.getAssignments();
             MiniExam miniExam = scoreSet.getMiniExam();
-//            GradeCalculatingService gradeCalculatingService = new GradeCalculatingService(
-//                    convertingService,
-//                    assignmentsService,
-//                    miniExamService
-//            );
 
             Double finalScore = this.calculateFinalScore(exam, assignments, miniExam);
 

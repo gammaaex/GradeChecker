@@ -7,6 +7,11 @@ import java.util.List;
  */
 public interface RepositoryInterface<Type> {
 
+    /**
+     * リソースをEntityのListに変換して返す。
+     *
+     * @return EntityのList
+     */
     List<Type> findAll();
 
 }
