@@ -18,23 +18,23 @@ public class GradeCalculatingService {
 
     /**
      * 成績をGradeに変換する。
-     * pointをnullに設定すると{@code Grade.K}が出力される。
+     * scoreをnullに設定すると{@code Grade.K}が出力される。
      *
-     * @param point 成績
+     * @param score 成績
      * @return Grade
      */
-    public Grade convertPointToGrade(Double point) {
+    public Grade convertPointToGrade(Double score) {
         Grade grade = Grade.K;
 
-        if (point == null) return grade;
+        if (score == null) return grade;
 
-        if (point >= 90) {
+        if (score >= 90) {
             grade = Grade.A;
-        } else if (point >= 80) {
+        } else if (score >= 80) {
             grade = Grade.B;
-        } else if (point >= 70) {
+        } else if (score >= 70) {
             grade = Grade.C;
-        } else if (point >= 60) {
+        } else if (score >= 60) {
             grade = Grade.D;
         } else {
             grade = Grade.E;
@@ -53,9 +53,7 @@ public class GradeCalculatingService {
      * @see <a href="https://ksuap.github.io/2018spring/lesson14/assignments/#2-a-4-成績の算出">仕様</a>
      */
     public Double calculateFinalScore(Exam exam, Assignments assignments, MiniExam miniExam) {
-        Double examScore = exam.getDetailScore().getScore() == null
-                ? 0
-                : exam.getDetailScore().getScore();
+        Double examScore = exam.getDetailScore().getZeroOrScore();
         Integer totalScore = assignments.calculateTotalScore();
         Double admissionRate = miniExam.calculateAdmissionRate();
 
@@ -79,11 +77,11 @@ public class GradeCalculatingService {
             calculatedScoreList.add(new CalculatedScore(
                     exam.getIdentifier(),
                     new DetailScore(finalScore),
-                    new DetailScore(exam.getDetailScore().getScore()),
+                    new DetailScore(exam.getDetailScore().getNullOrScore()),
                     new DetailScore(assignments.calculateTotalScore().doubleValue()),
                     new DetailScore(miniExam.calculateAdmissionRate()),
                     this.convertPointToGrade(
-                            exam.getDetailScore().getScore() == null ? null : finalScore
+                            exam.getDetailScore().getNullOrScore() == null ? null : finalScore
                     )
             ));
         });

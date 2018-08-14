@@ -8,9 +8,9 @@ import gammaaex.domain.model.entity.MiniExam;
 import gammaaex.domain.repository.AssignmentsRepositoryInterface;
 import gammaaex.domain.repository.ExamRepositoryInterface;
 import gammaaex.domain.repository.MiniExamRepositoryInterface;
-import gammaaex.domain.service.GradeCalculatingService;
 import gammaaex.domain.service.ArgumentValidatorService;
 import gammaaex.domain.service.ConvertingService;
+import gammaaex.domain.service.GradeCalculatingService;
 import gammaaex.presentation.print.CalculatedScorePrinter;
 import gammaaex.presentation.print.Printer;
 

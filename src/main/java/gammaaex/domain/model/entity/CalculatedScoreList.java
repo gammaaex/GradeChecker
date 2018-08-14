@@ -30,9 +30,7 @@ public class CalculatedScoreList {
         Double average = 0.0;
 
         for (CalculatedScore calculatedScore : this.calculatedScoreList) {
-            average += calculatedScore.getFinalScore().getScore() != null
-                    ? calculatedScore.getFinalScore().getScore()
-                    : 0.0;
+            average += calculatedScore.getFinalScore().getZeroOrScore();
         }
 
         average = average / this.calculatedScoreList.size();
@@ -49,8 +47,8 @@ public class CalculatedScoreList {
         Double maximize = Double.MIN_VALUE;
 
         for (CalculatedScore calculatedScore : this.calculatedScoreList) {
-            if (calculatedScore.getFinalScore().getScore() > maximize) {
-                maximize = calculatedScore.getFinalScore().getScore();
+            if (calculatedScore.getFinalScore().getZeroOrScore() > maximize) {
+                maximize = calculatedScore.getFinalScore().getZeroOrScore();
             }
         }
 
@@ -66,8 +64,8 @@ public class CalculatedScoreList {
         Double minimum = Double.MAX_VALUE;
 
         for (CalculatedScore calculatedScore : this.calculatedScoreList) {
-            if (calculatedScore.getFinalScore().getScore() < minimum) {
-                minimum = calculatedScore.getFinalScore().getScore();
+            if (calculatedScore.getFinalScore().getZeroOrScore() < minimum) {
+                minimum = calculatedScore.getFinalScore().getZeroOrScore();
             }
         }
 

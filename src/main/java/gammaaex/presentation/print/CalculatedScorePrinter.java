@@ -26,10 +26,10 @@ public class CalculatedScorePrinter extends Printer {
         calculatedScoreList.forEach(calculatedScore -> {
             this.printAll(
                     calculatedScore.getIdentifier(),
-                    calculatedScore.getFinalScore().getScore(),
-                    calculatedScore.getExamScore().getScore(),
-                    calculatedScore.getAssignmentsTotalScore().getScore(),
-                    calculatedScore.getMiniExamAdmissionRate().getScore(),
+                    calculatedScore.getFinalScore().getZeroOrScore(),
+                    calculatedScore.getExamScore().getZeroOrScore(),
+                    calculatedScore.getAssignmentsTotalScore().getZeroOrScore(),
+                    calculatedScore.getMiniExamAdmissionRate().getZeroOrScore(),
                     calculatedScore.getGrade()
             );
         });
@@ -57,8 +57,8 @@ public class CalculatedScorePrinter extends Printer {
     ) {
         System.out.printf("%d, %.1f, %.8f, %.4f, %f, %s\n",
                 id,
-                finalScore != null ? finalScore : 0.0,
-                examScore != null ? examScore : 0,
+                finalScore,
+                examScore,
                 assignmentScore,
                 admissionRate,
                 grade.getText()
