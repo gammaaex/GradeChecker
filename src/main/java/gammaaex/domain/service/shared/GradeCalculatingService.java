@@ -2,10 +2,10 @@ package gammaaex.domain.service.shared;
 
 import gammaaex.domain.model.aggregate.ScoreSet;
 import gammaaex.domain.model.entity.Assignments;
+import gammaaex.domain.model.entity.CalculatedScore;
 import gammaaex.domain.model.entity.Exam;
 import gammaaex.domain.model.entity.MiniExam;
 import gammaaex.domain.model.type.Grade;
-import gammaaex.domain.model.entity.CalculatedScore;
 import gammaaex.domain.model.value_object.DetailScore;
 import gammaaex.domain.service.AssignmentsService;
 import gammaaex.domain.service.MiniExamService;

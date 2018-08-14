@@ -1,11 +1,8 @@
 package gammaaex.domain.model.entity;
 
 import gammaaex.domain.model.AbstractEntity;
-import gammaaex.domain.model.AbstractValueObject;
 import gammaaex.domain.model.type.Grade;
 import gammaaex.domain.model.value_object.DetailScore;
-
-import java.util.Objects;
 
 /**
  * 計算された成績を保持する

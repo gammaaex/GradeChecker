@@ -2,10 +2,10 @@ package gammaaex.application;
 
 import gammaaex.domain.model.aggregate.ScoreSet;
 import gammaaex.domain.model.entity.Assignments;
+import gammaaex.domain.model.entity.CalculatedScore;
 import gammaaex.domain.model.entity.Exam;
 import gammaaex.domain.model.entity.MiniExam;
 import gammaaex.domain.model.type.Grade;
-import gammaaex.domain.model.entity.CalculatedScore;
 import gammaaex.domain.repository.AbstractAssignmentsRepository;
 import gammaaex.domain.repository.AbstractExamRepository;
 import gammaaex.domain.repository.AbstractMiniExamRepository;

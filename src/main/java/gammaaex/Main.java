@@ -1,6 +1,5 @@
 package gammaaex;
 
-import gammaaex.application.GradeChecker2;
 import gammaaex.application.GradeChecker3;
 import gammaaex.infrastructure.repository.AssignmentsRepository;
 import gammaaex.infrastructure.repository.ExamRepository;
