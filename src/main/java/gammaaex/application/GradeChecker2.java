@@ -5,20 +5,16 @@ import gammaaex.domain.model.entity.Assignments;
 import gammaaex.domain.model.entity.CalculatedScore;
 import gammaaex.domain.model.entity.Exam;
 import gammaaex.domain.model.entity.MiniExam;
-import gammaaex.domain.repository.AbstractAssignmentsRepository;
-import gammaaex.domain.repository.AbstractExamRepository;
-import gammaaex.domain.repository.AbstractMiniExamRepository;
-import gammaaex.domain.service.AssignmentsService;
-import gammaaex.domain.service.ExamService;
-import gammaaex.domain.service.MiniExamService;
-import gammaaex.domain.service.ScoreSetService;
+import gammaaex.domain.repository.AssignmentsRepositoryInterface;
+import gammaaex.domain.repository.ExamRepositoryInterface;
+import gammaaex.domain.repository.MiniExamRepositoryInterface;
 import gammaaex.domain.service.shared.GradeCalculatingService;
 import gammaaex.domain.service.utility.ArgumentValidatorService;
 import gammaaex.domain.service.utility.ConvertingService;
 import gammaaex.presentation.print.CalculatedScorePrinter;
 import gammaaex.presentation.print.Printer;
 
-import java.util.TreeMap;
+import java.util.List;
 
 /**
  * ステップ2に相当するクラス
@@ -30,17 +26,17 @@ public class GradeChecker2 {
     /**
      * ExamのRepository
      */
-    private final AbstractExamRepository examRepository;
+    private final ExamRepositoryInterface examRepository;
 
     /**
      * AssignmentsのRepository
      */
-    private final AbstractAssignmentsRepository assignmentsRepository;
+    private final AssignmentsRepositoryInterface assignmentsRepository;
 
     /**
      * MiniExamのRepository
      */
-    private final AbstractMiniExamRepository miniExamRepository;
+    private final MiniExamRepositoryInterface miniExamRepository;
 
     /**
      * コンストラクタ
@@ -50,9 +46,9 @@ public class GradeChecker2 {
      * @param miniExamRepository    MiniExamのRepository
      */
     public GradeChecker2(
-            AbstractExamRepository examRepository,
-            AbstractAssignmentsRepository assignmentsRepository,
-            AbstractMiniExamRepository miniExamRepository
+            ExamRepositoryInterface examRepository,
+            AssignmentsRepositoryInterface assignmentsRepository,
+            MiniExamRepositoryInterface miniExamRepository
     ) {
         this.examRepository = examRepository;
         this.assignmentsRepository = assignmentsRepository;
@@ -72,24 +68,16 @@ public class GradeChecker2 {
 
         ConvertingService convertingService = new ConvertingService();
 
-        ExamService examService = new ExamService(this.examRepository);
-        AssignmentsService assignmentsService = new AssignmentsService(this.assignmentsRepository, convertingService);
-        MiniExamService miniExamService = new MiniExamService(this.miniExamRepository);
+        List<Exam> examList = this.examRepository.findAllByFillId();
+        List<Assignments> assignmentsList = this.assignmentsRepository.findAll();
+        List<MiniExam> miniExamList = this.miniExamRepository.findAllByFillId();
 
-        TreeMap<Integer, Exam> examMap = examService.createMapFillId(arguments[0]);
-        TreeMap<Integer, Assignments> assignmentsMap = assignmentsService.createMap(arguments[1]);
-        TreeMap<Integer, MiniExam> miniExamMap = miniExamService.createMapFillId(arguments[2]);
+        List<ScoreSet> scoreSetList = convertingService.createScoreSetList(examList, assignmentsList, miniExamList);
 
-        TreeMap<Integer, ScoreSet> scoreSetMap = new ScoreSetService().createMap(examMap, assignmentsMap, miniExamMap);
+        GradeCalculatingService gradeCalculatingService = new GradeCalculatingService(convertingService);
+        List<CalculatedScore> calculatedScoreList =
+                gradeCalculatingService.convertListFromScoreSetToCalculatedScore(scoreSetList);
 
-        GradeCalculatingService gradeCalculatingService = new GradeCalculatingService(
-                convertingService,
-                assignmentsService,
-                miniExamService
-        );
-        TreeMap<Integer, CalculatedScore> calculatedScoreMap =
-                gradeCalculatingService.convertMapFromScoreSetToCalculatedScore(scoreSetMap);
-
-        new CalculatedScorePrinter().printCalculatedScore(calculatedScoreMap);
+        new CalculatedScorePrinter().printCalculatedScore(calculatedScoreList);
     }
 }

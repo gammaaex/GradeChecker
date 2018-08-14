@@ -1,8 +1,7 @@
-package gammaaex.infrastructure.core;
+package gammaaex.infrastructure.dao;
 
 
 import gammaaex.Main;
-import gammaaex.domain.repository.core.FileRepositoryInterface;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -16,7 +15,7 @@ import java.util.stream.Collectors;
  * ファイル解析の基底クラス
  * 個別のファイル解析クラスを実装する場合はこのクラスを継承すること
  */
-public class FileRepository implements FileRepositoryInterface {
+public class FileDao implements DaoInterface {
 
     /**
      * CSV形式の行を文字列型配列に変換する。
@@ -24,7 +23,6 @@ public class FileRepository implements FileRepositoryInterface {
      * @param line 対象の行
      * @return 文字列配列
      */
-    @Override
     public String[] parseCSVLine(String line) {
         return line.split(",", -1);
     }
@@ -35,7 +33,6 @@ public class FileRepository implements FileRepositoryInterface {
      * @param path 対象ファイルへのpath
      * @return List
      */
-    @Override
     public List<String> fileToList(Path path) {
         try {
             return Files.lines(path, StandardCharsets.UTF_8).collect(Collectors.toList());
@@ -51,7 +48,6 @@ public class FileRepository implements FileRepositoryInterface {
      * @param fileName ファイル名
      * @return ファイルのPath
      */
-    @Override
     public Path getResource(String fileName) {
         Path resource = null;
 

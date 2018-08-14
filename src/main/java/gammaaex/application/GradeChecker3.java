@@ -3,22 +3,20 @@ package gammaaex.application;
 import gammaaex.domain.model.aggregate.ScoreSet;
 import gammaaex.domain.model.entity.Assignments;
 import gammaaex.domain.model.entity.CalculatedScore;
+import gammaaex.domain.model.entity.CalculatedScoreList;
 import gammaaex.domain.model.entity.Exam;
 import gammaaex.domain.model.entity.MiniExam;
 import gammaaex.domain.model.type.Grade;
-import gammaaex.domain.repository.AbstractAssignmentsRepository;
-import gammaaex.domain.repository.AbstractExamRepository;
-import gammaaex.domain.repository.AbstractMiniExamRepository;
-import gammaaex.domain.service.AssignmentsService;
-import gammaaex.domain.service.CalculatedScoreService;
-import gammaaex.domain.service.ExamService;
-import gammaaex.domain.service.MiniExamService;
-import gammaaex.domain.service.ScoreSetService;
+import gammaaex.domain.repository.AssignmentsRepositoryInterface;
+import gammaaex.domain.repository.ExamRepositoryInterface;
+import gammaaex.domain.repository.MiniExamRepositoryInterface;
 import gammaaex.domain.service.shared.GradeCalculatingService;
+import gammaaex.domain.service.utility.ArgumentValidatorService;
 import gammaaex.domain.service.utility.ConvertingService;
 import gammaaex.presentation.print.CalculatedScorePrinter;
+import gammaaex.presentation.print.Printer;
 
-import java.util.TreeMap;
+import java.util.List;
 
 /**
  * ステップ2に相当するクラス
@@ -30,17 +28,17 @@ public class GradeChecker3 {
     /**
      * ExamのRepository
      */
-    private final AbstractExamRepository examRepository;
+    private final ExamRepositoryInterface examRepository;
 
     /**
      * AssignmentsのRepository
      */
-    private final AbstractAssignmentsRepository assignmentsRepository;
+    private final AssignmentsRepositoryInterface assignmentsRepository;
 
     /**
      * MiniExamのRepository
      */
-    private final AbstractMiniExamRepository miniExamRepository;
+    private final MiniExamRepositoryInterface miniExamRepository;
 
     /**
      * コンストラクタ
@@ -50,9 +48,9 @@ public class GradeChecker3 {
      * @param miniExamRepository    MiniExamのRepository
      */
     public GradeChecker3(
-            AbstractExamRepository examRepository,
-            AbstractAssignmentsRepository assignmentsRepository,
-            AbstractMiniExamRepository miniExamRepository
+            ExamRepositoryInterface examRepository,
+            AssignmentsRepositoryInterface assignmentsRepository,
+            MiniExamRepositoryInterface miniExamRepository
     ) {
         this.examRepository = examRepository;
         this.assignmentsRepository = assignmentsRepository;
@@ -65,64 +63,48 @@ public class GradeChecker3 {
      * @param arguments 実行時引数
      */
     public void run(String[] arguments) {
-        new GradeChecker2(
-                this.examRepository,
-                this.assignmentsRepository,
-                this.miniExamRepository
-        ).run(arguments);
+        if (!new ArgumentValidatorService().validateForMany(arguments)) {
+            new Printer().printErrorByArgumentNotFound("java GradeChecker3 <EXAM.CSV> <ASSIGNMENTS.CSV> <MINIEXAM.CSV>");
+            return;
+        }
 
         ConvertingService convertingService = new ConvertingService();
 
-        ExamService examService = new ExamService(this.examRepository);
-        AssignmentsService assignmentsService = new AssignmentsService(this.assignmentsRepository, convertingService);
-        MiniExamService miniExamService = new MiniExamService(this.miniExamRepository);
+        List<Exam> examList = this.examRepository.findAllByFillId();
+        List<Assignments> assignmentsList = this.assignmentsRepository.findAll();
+        List<MiniExam> miniExamList = this.miniExamRepository.findAllByFillId();
 
-        TreeMap<Integer, Exam> examMap = examService.createMapFillId(arguments[0]);
-        TreeMap<Integer, Assignments> assignmentsMap = assignmentsService.createMap(arguments[1]);
-        TreeMap<Integer, MiniExam> miniExamMap = miniExamService.createMapFillId(arguments[2]);
+        List<ScoreSet> scoreSetList = convertingService.createScoreSetList(examList, assignmentsList, miniExamList);
 
-        TreeMap<Integer, ScoreSet> scoreSetMap = new ScoreSetService().createMap(examMap, assignmentsMap, miniExamMap);
-
-        GradeCalculatingService gradeCalculatingService = new GradeCalculatingService(
-                convertingService,
-                assignmentsService,
-                miniExamService
-        );
-
-        TreeMap<Integer, CalculatedScore> calculatedScoreMap =
-                gradeCalculatingService.convertMapFromScoreSetToCalculatedScore(scoreSetMap);
-
-        CalculatedScoreService calculatedScoreService = new CalculatedScoreService();
+        GradeCalculatingService gradeCalculatingService = new GradeCalculatingService(convertingService);
+        List<CalculatedScore> convertedList = gradeCalculatingService.convertListFromScoreSetToCalculatedScore(scoreSetList);
+        CalculatedScoreList calculatedScoreList = new CalculatedScoreList(convertedList);
         CalculatedScorePrinter calculatedScorePrinter = new CalculatedScorePrinter();
 
+        calculatedScorePrinter.printCalculatedScore(convertedList);
+
         calculatedScorePrinter.printAverage(
-                calculatedScoreService.calculateAverage(calculatedScoreMap),
-                calculatedScoreService.calculateAverage(
-                        calculatedScoreService.extractByCreditGetter(calculatedScoreMap)
-                )
+                calculatedScoreList.calculateAverage(),
+                new CalculatedScoreList(calculatedScoreList.extractByCreditGetter()).calculateAverage()
         );
 
         calculatedScorePrinter.printMaximize(
-                calculatedScoreService.calculateMaximize(calculatedScoreMap),
-                calculatedScoreService.calculateMaximize(
-                        calculatedScoreService.extractByCreditGetter(calculatedScoreMap)
-                )
+                calculatedScoreList.calculateMaximize(),
+                new CalculatedScoreList(calculatedScoreList.extractByCreditGetter()).calculateMaximize()
         );
 
         calculatedScorePrinter.printMinimum(
-                calculatedScoreService.calculateMinimum(calculatedScoreMap),
-                calculatedScoreService.calculateMinimum(
-                        calculatedScoreService.extractByCreditGetter(calculatedScoreMap)
-                )
+                calculatedScoreList.calculateMinimum(),
+                new CalculatedScoreList(calculatedScoreList.extractByCreditGetter()).calculateMinimum()
         );
 
         calculatedScorePrinter.printGradeStats(
-                calculatedScoreService.countByGrade(calculatedScoreMap, Grade.A),
-                calculatedScoreService.countByGrade(calculatedScoreMap, Grade.B),
-                calculatedScoreService.countByGrade(calculatedScoreMap, Grade.C),
-                calculatedScoreService.countByGrade(calculatedScoreMap, Grade.D),
-                calculatedScoreService.countByGrade(calculatedScoreMap, Grade.E),
-                calculatedScoreService.countByGrade(calculatedScoreMap, Grade.K)
+                calculatedScoreList.countByGrade(Grade.A),
+                calculatedScoreList.countByGrade(Grade.B),
+                calculatedScoreList.countByGrade(Grade.C),
+                calculatedScoreList.countByGrade(Grade.D),
+                calculatedScoreList.countByGrade(Grade.E),
+                calculatedScoreList.countByGrade(Grade.K)
         );
     }
 }

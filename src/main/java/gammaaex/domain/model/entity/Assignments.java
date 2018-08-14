@@ -2,6 +2,7 @@ package gammaaex.domain.model.entity;
 
 import gammaaex.domain.model.AbstractEntity;
 import gammaaex.domain.model.value_object.NormalScore;
+import gammaaex.domain.service.utility.ConvertingService;
 
 /**
  * 課題を表現するイミュータブルなクラス
@@ -115,5 +116,24 @@ public final class Assignments extends AbstractEntity<Assignments> {
      */
     public NormalScore getScore6() {
         return score6;
+    }
+
+    /**
+     * 課題の合計点を計算する。
+     *
+     * @param convertingService
+     * @return 合計点
+     */
+    public Integer calculateTotalScore(ConvertingService convertingService) {
+        Integer totalScore = 0;
+
+        totalScore += convertingService.convertNullToInteger(getScore1().getScore());
+        totalScore += convertingService.convertNullToInteger(getScore2().getScore());
+        totalScore += convertingService.convertNullToInteger(getScore3().getScore());
+        totalScore += convertingService.convertNullToInteger(getScore4().getScore());
+        totalScore += convertingService.convertNullToInteger(getScore5().getScore());
+        totalScore += convertingService.convertNullToInteger(getScore6().getScore());
+
+        return totalScore;
     }
 }

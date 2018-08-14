@@ -244,4 +244,56 @@ public final class MiniExam extends AbstractEntity<MiniExam> {
     public NormalScore getScore14() {
         return score14;
     }
+
+
+    /**
+     * 小テストの受験率を計算する。
+     *
+     * @return 受験率
+     */
+    public Double calculateAdmissionRate() {
+        Integer totalScore = this.calculateNumberOfAdmission();
+        Integer numberOfMaxMiniExam = 14;
+        Double rate = totalScore.doubleValue() / numberOfMaxMiniExam.doubleValue();
+
+        if (rate < 0.0 && rate > 1.0) throw new RuntimeException("受験率の値が不正です。");
+
+        return rate;
+    }
+
+    /**
+     * 小テストの回数を計算する。
+     *
+     * @return 受験
+     */
+    public Integer calculateNumberOfAdmission() {
+        Integer count = 0;
+
+        count += getCount(this.getScore1());
+        count += getCount(this.getScore2());
+        count += getCount(this.getScore3());
+        count += getCount(this.getScore4());
+        count += getCount(this.getScore5());
+        count += getCount(this.getScore6());
+        count += getCount(this.getScore7());
+        count += getCount(this.getScore8());
+        count += getCount(this.getScore9());
+        count += getCount(this.getScore10());
+        count += getCount(this.getScore11());
+        count += getCount(this.getScore12());
+        count += getCount(this.getScore13());
+        count += getCount(this.getScore14());
+
+        return count;
+    }
+
+    /**
+     * Integerオブジェクトがnullかどうか判断し、結果によって0か1を返す。
+     *
+     * @param score 対象のIntegerオブジェクト
+     * @return Integer 0か1
+     */
+    private Integer getCount(NormalScore score) {
+        return score.getScore() != null ? 1 : 0;
+    }
 }

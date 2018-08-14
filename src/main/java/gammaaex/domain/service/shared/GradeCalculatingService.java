@@ -7,11 +7,10 @@ import gammaaex.domain.model.entity.Exam;
 import gammaaex.domain.model.entity.MiniExam;
 import gammaaex.domain.model.type.Grade;
 import gammaaex.domain.model.value_object.DetailScore;
-import gammaaex.domain.service.AssignmentsService;
-import gammaaex.domain.service.MiniExamService;
 import gammaaex.domain.service.utility.ConvertingService;
 
-import java.util.TreeMap;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 成績を計算するクラス
@@ -24,30 +23,12 @@ public class GradeCalculatingService {
     private final ConvertingService convertingService;
 
     /**
-     * AssignmentsのService
-     */
-    private final AssignmentsService assignmentsService;
-
-    /**
-     * MiniExamのService
-     */
-    private final MiniExamService miniExamService;
-
-    /**
      * コンストラクタ
      *
-     * @param convertingService  ConvertingServiceのインスタンス
-     * @param assignmentsService AssignmentsのService
-     * @param miniExamService    MiniExamのService
+     * @param convertingService ConvertingServiceのインスタンス
      */
-    public GradeCalculatingService(
-            ConvertingService convertingService,
-            AssignmentsService assignmentsService,
-            MiniExamService miniExamService
-    ) {
+    public GradeCalculatingService(ConvertingService convertingService) {
         this.convertingService = convertingService;
-        this.assignmentsService = assignmentsService;
-        this.miniExamService = miniExamService;
     }
 
     /**
@@ -90,8 +71,8 @@ public class GradeCalculatingService {
         Double examScore = exam.getDetailScore().getScore() == null
                 ? 0
                 : exam.getDetailScore().getScore();
-        Integer totalScore = this.assignmentsService.calculateTotalScore(assignments);
-        Double admissionRate = this.miniExamService.calculateAdmissionRate(miniExam);
+        Integer totalScore = assignments.calculateTotalScore(convertingService);
+        Double admissionRate = miniExam.calculateAdmissionRate();
 
         Double finalScore = 70 * examScore / 100
                 + 25 * totalScore.doubleValue() / 60
@@ -100,10 +81,10 @@ public class GradeCalculatingService {
         return Math.ceil(finalScore);
     }
 
-    public TreeMap<Integer, CalculatedScore> convertMapFromScoreSetToCalculatedScore(TreeMap<Integer, ScoreSet> scoreSetMap) {
-        TreeMap<Integer, CalculatedScore> calculatedScoreMap = new TreeMap<>();
+    public List<CalculatedScore> convertListFromScoreSetToCalculatedScore(List<ScoreSet> scoreSetList) {
+        List<CalculatedScore> calculatedScoreList = new ArrayList<>();
 
-        scoreSetMap.forEach((index, scoreSet) -> {
+        scoreSetList.forEach(scoreSet -> {
             Exam exam = scoreSet.getExam();
             Assignments assignments = scoreSet.getAssignments();
             MiniExam miniExam = scoreSet.getMiniExam();
@@ -115,18 +96,18 @@ public class GradeCalculatingService {
 
             Double finalScore = this.calculateFinalScore(exam, assignments, miniExam);
 
-            calculatedScoreMap.put(index, new CalculatedScore(
+            calculatedScoreList.add(new CalculatedScore(
                     exam.getIdentifier(),
                     new DetailScore(finalScore),
                     new DetailScore(exam.getDetailScore().getScore()),
-                    new DetailScore(this.assignmentsService.calculateTotalScore(assignments).doubleValue()),
-                    new DetailScore(this.miniExamService.calculateAdmissionRate(miniExam)),
+                    new DetailScore(assignments.calculateTotalScore(convertingService).doubleValue()),
+                    new DetailScore(miniExam.calculateAdmissionRate()),
                     this.convertPointToGrade(
                             exam.getDetailScore().getScore() == null ? null : finalScore
                     )
             ));
         });
 
-        return calculatedScoreMap;
+        return calculatedScoreList;
     }
 }

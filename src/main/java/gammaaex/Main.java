@@ -29,9 +29,9 @@ public class Main {
 //        ).run(args);
 
         new GradeChecker3(
-                new ExamRepository(),
-                new AssignmentsRepository(),
-                new MiniExamRepository()
+                new ExamRepository(args[0]),
+                new AssignmentsRepository(args[1]),
+                new MiniExamRepository(args[2])
         ).run(args);
     }
 }

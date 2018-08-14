@@ -3,7 +3,7 @@ package gammaaex.presentation.print;
 import gammaaex.domain.model.entity.CalculatedScore;
 import gammaaex.domain.model.type.Grade;
 
-import java.util.TreeMap;
+import java.util.List;
 
 /**
  * CalculatedScoreの標準出力を司るクラス
@@ -20,10 +20,10 @@ public class CalculatedScorePrinter extends Printer {
     /**
      * CalculatedScoreのデータを全て標準出力する
      *
-     * @param calculatedScoreMap CalculatedScoreのコレクション
+     * @param calculatedScoreList CalculatedScoreのコレクション
      */
-    public void printCalculatedScore(TreeMap<Integer, CalculatedScore> calculatedScoreMap) {
-        calculatedScoreMap.forEach((index, calculatedScore) -> {
+    public void printCalculatedScore(List<CalculatedScore> calculatedScoreList) {
+        calculatedScoreList.forEach(calculatedScore -> {
             this.printAll(
                     calculatedScore.getIdentifier(),
                     calculatedScore.getFinalScore().getScore(),
