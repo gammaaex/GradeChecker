@@ -1,7 +1,7 @@
 package gammaaex.presentation.print;
 
 import gammaaex.domain.model.type.Grade;
-import gammaaex.domain.model.value_object.CalculatedScore;
+import gammaaex.domain.model.entity.CalculatedScore;
 
 import java.util.TreeMap;
 
@@ -25,11 +25,11 @@ public class CalculatedScorePrinter extends Printer {
     public void printCalculatedScore(TreeMap<Integer, CalculatedScore> calculatedScoreMap) {
         calculatedScoreMap.forEach((index, calculatedScore) -> {
             this.printAll(
-                    calculatedScore.getId(),
-                    calculatedScore.getFinalScore(),
-                    calculatedScore.getExamScore(),
-                    calculatedScore.getAssignmentsTotalScore(),
-                    calculatedScore.getMiniExamAdmissionRate(),
+                    calculatedScore.getIdentifier(),
+                    calculatedScore.getFinalScore().getScore(),
+                    calculatedScore.getExamScore().getScore(),
+                    calculatedScore.getAssignmentsTotalScore().getScore(),
+                    calculatedScore.getMiniExamAdmissionRate().getScore(),
                     calculatedScore.getGrade()
             );
         });

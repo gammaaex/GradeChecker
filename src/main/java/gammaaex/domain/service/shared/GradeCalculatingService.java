@@ -5,7 +5,8 @@ import gammaaex.domain.model.entity.Assignments;
 import gammaaex.domain.model.entity.Exam;
 import gammaaex.domain.model.entity.MiniExam;
 import gammaaex.domain.model.type.Grade;
-import gammaaex.domain.model.value_object.CalculatedScore;
+import gammaaex.domain.model.entity.CalculatedScore;
+import gammaaex.domain.model.value_object.DetailScore;
 import gammaaex.domain.service.AssignmentsService;
 import gammaaex.domain.service.MiniExamService;
 import gammaaex.domain.service.utility.ConvertingService;
@@ -116,10 +117,10 @@ public class GradeCalculatingService {
 
             calculatedScoreMap.put(index, new CalculatedScore(
                     exam.getIdentifier(),
-                    finalScore,
-                    exam.getDetailScore().getScore(),
-                    this.assignmentsService.calculateTotalScore(assignments).doubleValue(),
-                    this.miniExamService.calculateAdmissionRate(miniExam),
+                    new DetailScore(finalScore),
+                    new DetailScore(exam.getDetailScore().getScore()),
+                    new DetailScore(this.assignmentsService.calculateTotalScore(assignments).doubleValue()),
+                    new DetailScore(this.miniExamService.calculateAdmissionRate(miniExam)),
                     this.convertPointToGrade(
                             exam.getDetailScore().getScore() == null ? null : finalScore
                     )

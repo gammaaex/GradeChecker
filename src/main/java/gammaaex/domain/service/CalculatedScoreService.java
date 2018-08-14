@@ -1,7 +1,7 @@
 package gammaaex.domain.service;
 
 import gammaaex.domain.model.type.Grade;
-import gammaaex.domain.model.value_object.CalculatedScore;
+import gammaaex.domain.model.entity.CalculatedScore;
 
 import java.util.TreeMap;
 
@@ -21,8 +21,8 @@ public class CalculatedScoreService {
 
         for (Integer key : calculatedScoreMap.keySet()) {
             CalculatedScore calculatedScore = calculatedScoreMap.get(key);
-            average += calculatedScore.getFinalScore() != null
-                    ? calculatedScore.getFinalScore()
+            average += calculatedScore.getFinalScore().getScore() != null
+                    ? calculatedScore.getFinalScore().getScore()
                     : 0.0;
         }
 
@@ -43,7 +43,7 @@ public class CalculatedScoreService {
         for (Integer key : calculatedScoreMap.keySet()) {
             CalculatedScore calculatedScore = calculatedScoreMap.get(key);
 
-            if (calculatedScore.getFinalScore() > max) max = calculatedScore.getFinalScore();
+            if (calculatedScore.getFinalScore().getScore() > max) max = calculatedScore.getFinalScore().getScore();
         }
 
         return max;
@@ -62,7 +62,7 @@ public class CalculatedScoreService {
         for (Integer key : calculatedScoreMap.keySet()) {
             CalculatedScore calculatedScore = calculatedScoreMap.get(key);
 
-            if (calculatedScore.getFinalScore() < max) max = calculatedScore.getFinalScore();
+            if (calculatedScore.getFinalScore().getScore() < max) max = calculatedScore.getFinalScore().getScore();
         }
 
         return max;
