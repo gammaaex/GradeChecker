@@ -121,7 +121,7 @@ public final class Assignments extends AbstractEntity<Assignments> {
     /**
      * 課題の合計点を計算する。
      *
-     * @param convertingService
+     * @param convertingService {@link ConvertingService ConvertingServiceを参照}
      * @return 合計点
      */
     public Integer calculateTotalScore(ConvertingService convertingService) {
