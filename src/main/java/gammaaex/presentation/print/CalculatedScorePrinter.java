@@ -1,9 +1,9 @@
 package gammaaex.presentation.print;
 
+import gammaaex.domain.model.entity.CalculatedScore;
 import gammaaex.domain.model.type.Grade;
-import gammaaex.domain.model.value_object.CalculatedScore;
 
-import java.util.TreeMap;
+import java.util.List;
 
 /**
  * CalculatedScoreの標準出力を司るクラス
@@ -20,16 +20,16 @@ public class CalculatedScorePrinter extends Printer {
     /**
      * CalculatedScoreのデータを全て標準出力する
      *
-     * @param calculatedScoreMap CalculatedScoreのコレクション
+     * @param calculatedScoreList CalculatedScoreのコレクション
      */
-    public void printCalculatedScore(TreeMap<Integer, CalculatedScore> calculatedScoreMap) {
-        calculatedScoreMap.forEach((index, calculatedScore) -> {
+    public void printCalculatedScore(List<CalculatedScore> calculatedScoreList) {
+        calculatedScoreList.forEach(calculatedScore -> {
             this.printAll(
-                    calculatedScore.getId(),
-                    calculatedScore.getFinalScore(),
-                    calculatedScore.getExamScore(),
-                    calculatedScore.getAssignmentsTotalScore(),
-                    calculatedScore.getMiniExamAdmissionRate(),
+                    calculatedScore.getIdentifier(),
+                    calculatedScore.getFinalScore().getZeroOrScore(),
+                    calculatedScore.getExamScore().getZeroOrScore(),
+                    calculatedScore.getAssignmentsTotalScore().getZeroOrScore(),
+                    calculatedScore.getMiniExamAdmissionRate().getZeroOrScore(),
                     calculatedScore.getGrade()
             );
         });
@@ -57,8 +57,8 @@ public class CalculatedScorePrinter extends Printer {
     ) {
         System.out.printf("%d, %.1f, %.8f, %.4f, %f, %s\n",
                 id,
-                finalScore != null ? finalScore : 0.0,
-                examScore != null ? examScore : 0,
+                finalScore,
+                examScore,
                 assignmentScore,
                 admissionRate,
                 grade.getText()
@@ -98,12 +98,12 @@ public class CalculatedScorePrinter extends Printer {
     /**
      * 成績の統計を出力する。
      *
-     * @param gradeA
-     * @param gradeB
-     * @param gradeC
-     * @param gradeD
-     * @param gradeE
-     * @param gradeK
+     * @param gradeA {@code Grade.A} の数
+     * @param gradeB {@code Grade.B} の数
+     * @param gradeC {@code Grade.C} の数
+     * @param gradeD {@code Grade.D} の数
+     * @param gradeE {@code Grade.E} の数
+     * @param gradeK {@code Grade.K} の数
      */
     public void printGradeStats(
             Integer gradeA,

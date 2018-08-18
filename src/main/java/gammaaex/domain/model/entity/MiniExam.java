@@ -1,7 +1,7 @@
 package gammaaex.domain.model.entity;
 
 import gammaaex.domain.model.AbstractEntity;
-import gammaaex.domain.model.value_object.MiniExamScore;
+import gammaaex.domain.model.value_object.NormalScore;
 
 /**
  * 小テストを表現するイミュータブルなクラス
@@ -11,72 +11,72 @@ public final class MiniExam extends AbstractEntity<MiniExam> {
     /**
      * 第1回小テストの点数
      */
-    private final MiniExamScore score1;
+    private final NormalScore score1;
 
     /**
      * 第2回小テストの点数
      */
-    private final MiniExamScore score2;
+    private final NormalScore score2;
 
     /**
      * 第3回小テストの点数
      */
-    private final MiniExamScore score3;
+    private final NormalScore score3;
 
     /**
      * 第4回小テストの点数
      */
-    private final MiniExamScore score4;
+    private final NormalScore score4;
 
     /**
      * 第5回小テストの点数
      */
-    private final MiniExamScore score5;
+    private final NormalScore score5;
 
     /**
      * 第6回小テストの点数
      */
-    private final MiniExamScore score6;
+    private final NormalScore score6;
 
     /**
      * 第7回小テストの点数
      */
-    private final MiniExamScore score7;
+    private final NormalScore score7;
 
     /**
      * 第8回小テストの点数
      */
-    private final MiniExamScore score8;
+    private final NormalScore score8;
 
     /**
      * 第9回小テストの点数
      */
-    private final MiniExamScore score9;
+    private final NormalScore score9;
 
     /**
      * 第10回小テストの点数
      */
-    private final MiniExamScore score10;
+    private final NormalScore score10;
 
     /**
      * 第11回小テストの点数
      */
-    private final MiniExamScore score11;
+    private final NormalScore score11;
 
     /**
      * 第12回小テストの点数
      */
-    private final MiniExamScore score12;
+    private final NormalScore score12;
 
     /**
      * 第13回小テストの点数
      */
-    private final MiniExamScore score13;
+    private final NormalScore score13;
 
     /**
      * 第14回小テストの点数
      */
-    private final MiniExamScore score14;
+    private final NormalScore score14;
 
     /**
      * コンストラクタ
@@ -99,20 +99,20 @@ public final class MiniExam extends AbstractEntity<MiniExam> {
      */
     public MiniExam(
             Integer id,
-            MiniExamScore score1,
-            MiniExamScore score2,
-            MiniExamScore score3,
-            MiniExamScore score4,
-            MiniExamScore score5,
-            MiniExamScore score6,
-            MiniExamScore score7,
-            MiniExamScore score8,
-            MiniExamScore score9,
-            MiniExamScore score10,
-            MiniExamScore score11,
-            MiniExamScore score12,
-            MiniExamScore score13,
-            MiniExamScore score14
+            NormalScore score1,
+            NormalScore score2,
+            NormalScore score3,
+            NormalScore score4,
+            NormalScore score5,
+            NormalScore score6,
+            NormalScore score7,
+            NormalScore score8,
+            NormalScore score9,
+            NormalScore score10,
+            NormalScore score11,
+            NormalScore score12,
+            NormalScore score13,
+            NormalScore score14
     ) {
         super(id);
 
@@ -150,98 +150,140 @@ public final class MiniExam extends AbstractEntity<MiniExam> {
     /**
      * @return get score1.
      */
-    public MiniExamScore getScore1() {
+    public NormalScore getScore1() {
         return score1;
     }
 
     /**
      * @return get score2.
      */
-    public MiniExamScore getScore2() {
+    public NormalScore getScore2() {
         return score2;
     }
 
     /**
      * @return get score3.
      */
-    public MiniExamScore getScore3() {
+    public NormalScore getScore3() {
         return score3;
     }
 
     /**
      * @return get score4.
      */
-    public MiniExamScore getScore4() {
+    public NormalScore getScore4() {
         return score4;
     }
 
     /**
      * @return get score5.
      */
-    public MiniExamScore getScore5() {
+    public NormalScore getScore5() {
         return score5;
     }
 
     /**
      * @return get score6.
      */
-    public MiniExamScore getScore6() {
+    public NormalScore getScore6() {
         return score6;
     }
 
     /**
      * @return get score7.
      */
-    public MiniExamScore getScore7() {
+    public NormalScore getScore7() {
         return score7;
     }
 
     /**
      * @return get score8.
      */
-    public MiniExamScore getScore8() {
+    public NormalScore getScore8() {
         return score8;
     }
 
     /**
      * @return get score9.
      */
-    public MiniExamScore getScore9() {
+    public NormalScore getScore9() {
         return score9;
     }
 
     /**
      * @return get score10.
      */
-    public MiniExamScore getScore10() {
+    public NormalScore getScore10() {
         return score10;
     }
 
     /**
      * @return get score11.
      */
-    public MiniExamScore getScore11() {
+    public NormalScore getScore11() {
         return score11;
     }
 
     /**
      * @return get score12.
      */
-    public MiniExamScore getScore12() {
+    public NormalScore getScore12() {
         return score12;
     }
 
     /**
      * @return get score13.
      */
-    public MiniExamScore getScore13() {
+    public NormalScore getScore13() {
         return score13;
     }
 
     /**
      * @return get score14.
      */
-    public MiniExamScore getScore14() {
+    public NormalScore getScore14() {
         return score14;
+    }
+
+
+    /**
+     * 小テストの受験率を計算する。
+     *
+     * @return 受験率
+     */
+    public Double calculateAdmissionRate() {
+        Integer totalScore = this.calculateNumberOfAdmission();
+        Integer numberOfMaxMiniExam = 14;
+        Double rate = totalScore.doubleValue() / numberOfMaxMiniExam.doubleValue();
+
+        if (rate < 0.0 && rate > 1.0) throw new RuntimeException("受験率の値が不正です。");
+
+        return rate;
+    }
+
+    /**
+     * 小テストの回数を計算する。
+     *
+     * @return 受験
+     */
+    public Integer calculateNumberOfAdmission() {
+        Integer count = 0;
+
+        count += this.getScore1().getZeroOrOne();
+        count += this.getScore2().getZeroOrOne();
+        count += this.getScore3().getZeroOrOne();
+        count += this.getScore4().getZeroOrOne();
+        count += this.getScore5().getZeroOrOne();
+        count += this.getScore6().getZeroOrOne();
+        count += this.getScore7().getZeroOrOne();
+        count += this.getScore8().getZeroOrOne();
+        count += this.getScore9().getZeroOrOne();
+        count += this.getScore10().getZeroOrOne();
+        count += this.getScore11().getZeroOrOne();
+        count += this.getScore12().getZeroOrOne();
+        count += this.getScore13().getZeroOrOne();
+        count += this.getScore14().getZeroOrOne();
+
+        return count;
     }
 }

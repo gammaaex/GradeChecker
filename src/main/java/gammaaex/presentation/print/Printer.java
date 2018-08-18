@@ -1,7 +1,5 @@
 package gammaaex.presentation.print;
 
-import gammaaex.domain.model.entity.Exam;
-
 /**
  * 標準出力を司るクラス
  * 個別のPrinterクラスを実装する際はこのクラスを継承すること

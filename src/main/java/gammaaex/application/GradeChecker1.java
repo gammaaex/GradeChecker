@@ -1,19 +1,13 @@
 package gammaaex.application;
 
 import gammaaex.domain.model.entity.Exam;
-import gammaaex.domain.repository.AbstractAssignmentsRepository;
-import gammaaex.domain.repository.AbstractExamRepository;
-import gammaaex.domain.repository.AbstractMiniExamRepository;
-import gammaaex.domain.service.AssignmentsService;
-import gammaaex.domain.service.ExamService;
-import gammaaex.domain.service.MiniExamService;
-import gammaaex.domain.service.shared.GradeCalculatingService;
-import gammaaex.domain.service.utility.ArgumentValidatorService;
-import gammaaex.domain.service.utility.ConvertingService;
+import gammaaex.domain.repository.ExamRepositoryInterface;
+import gammaaex.domain.service.ArgumentValidatorService;
+import gammaaex.domain.service.GradeCalculatingService;
 import gammaaex.presentation.print.ExamPrinter;
 import gammaaex.presentation.print.Printer;
 
-import java.util.TreeMap;
+import java.util.List;
 
 /**
  * ステップ1に相当するクラス
@@ -25,33 +19,17 @@ public class GradeChecker1 {
     /**
      * ExamのRepository
      */
-    private final AbstractExamRepository examRepository;
-
-    /**
-     * AssignmentsのRepository
-     */
-    private final AbstractAssignmentsRepository assignmentsRepository;
-
-    /**
-     * MiniExamのRepository
-     */
-    private final AbstractMiniExamRepository miniExamRepository;
+    private final ExamRepositoryInterface examRepository;
 
     /**
      * コンストラクタ
      *
-     * @param examRepository        ExamのRepository
-     * @param assignmentsRepository AssignmentsのRepository
-     * @param miniExamRepository    MiniExamのRepository
+     * @param examRepository ExamのRepository
      */
     public GradeChecker1(
-            AbstractExamRepository examRepository,
-            AbstractAssignmentsRepository assignmentsRepository,
-            AbstractMiniExamRepository miniExamRepository
+            ExamRepositoryInterface examRepository
     ) {
         this.examRepository = examRepository;
-        this.assignmentsRepository = assignmentsRepository;
-        this.miniExamRepository = miniExamRepository;
     }
 
     /**
@@ -65,16 +43,12 @@ public class GradeChecker1 {
             return;
         }
 
-        TreeMap<Integer, Exam> examMap = new ExamService(this.examRepository).createMapFillId(arguments[0]);
+        List<Exam> examList = this.examRepository.findAllByFillId();
+        GradeCalculatingService gradeCalculatingService = new GradeCalculatingService();
         ExamPrinter examPrinter = new ExamPrinter();
-        GradeCalculatingService gradeCalculatingService = new GradeCalculatingService(
-                new ConvertingService(),
-                new AssignmentsService(this.assignmentsRepository, new ConvertingService()),
-                new MiniExamService(this.miniExamRepository)
-        );
 
-        examMap.forEach((index, exam) -> {
-            examPrinter.print(exam, gradeCalculatingService.convertPointToGrade(exam.getExamScore().getScore()));
+        examList.forEach(exam -> {
+            examPrinter.print(exam, gradeCalculatingService.convertPointToGrade(exam.getDetailScore().getNullOrScore()));
         });
     }
 }
