@@ -23,7 +23,7 @@ public class GradeCalculatingService {
      * @param score 成績
      * @return Grade
      */
-    public Grade convertPointToGrade(Double score) {
+    public Grade convertScoreToGrade(Double score) {
         Grade grade = Grade.K;
 
         if (score == null) return grade;
@@ -38,6 +38,24 @@ public class GradeCalculatingService {
             grade = Grade.D;
         } else {
             grade = Grade.E;
+        }
+
+        return grade;
+    }
+
+    /**
+     * 出席日数を考慮したGradeを計算する。
+     *
+     * @param score 成績
+     * @param miniExam 小テスト
+     * @return Grade
+     */
+    public Grade convertScoreToGrade(Double score, MiniExam miniExam) {
+        Grade grade = this.convertScoreToGrade(score);
+        Integer count = miniExam.calculateNumberOfAdmission();
+
+        if(grade == Grade.E && count <= 7) {
+            return Grade.L;
         }
 
         return grade;
@@ -86,7 +104,7 @@ public class GradeCalculatingService {
                     new DetailScore(exam.getDetailScore().getNullOrScore()),
                     new DetailScore(assignments.calculateTotalScore().doubleValue()),
                     new DetailScore(miniExam.calculateAdmissionRate()),
-                    this.convertPointToGrade(
+                    this.convertScoreToGrade(
                             exam.getDetailScore().getNullOrScore() == null ? null : finalScore
                     )
             ));

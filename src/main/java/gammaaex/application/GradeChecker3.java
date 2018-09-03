@@ -19,7 +19,7 @@ import gammaaex.presentation.print.Printer;
 import java.util.List;
 
 /**
- * ステップ2に相当するクラス
+ * ステップ3に相当するクラス
  *
  * @see <a href="https://ksuap.github.io/2018spring/lesson14/assignments/#ステップ2">課題ページを参照</a>
  */

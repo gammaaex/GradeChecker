@@ -48,7 +48,7 @@ public class GradeChecker1 {
         ExamPrinter examPrinter = new ExamPrinter();
 
         examList.forEach(exam -> {
-            examPrinter.print(exam, gradeCalculatingService.convertPointToGrade(exam.getDetailScore().getNullOrScore()));
+            examPrinter.print(exam, gradeCalculatingService.convertScoreToGrade(exam.getDetailScore().getNullOrScore()));
         });
     }
 }
