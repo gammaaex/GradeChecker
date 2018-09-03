@@ -1,8 +1,6 @@
 package gammaaex.application;
 
-import gammaaex.domain.model.aggregate.ScoreSet;
 import gammaaex.domain.model.entity.Assignments;
-import gammaaex.domain.model.entity.CalculatedScore;
 import gammaaex.domain.model.entity.CalculatedScoreList;
 import gammaaex.domain.model.entity.Exam;
 import gammaaex.domain.model.entity.MiniExam;
@@ -19,11 +17,11 @@ import gammaaex.presentation.print.Printer;
 import java.util.List;
 
 /**
- * ステップ3に相当するクラス
+ * ステップ4に相当するクラス
  *
  * @see <a href="https://ksuap.github.io/2018spring/lesson14/assignments/#ステップ2">課題ページを参照</a>
  */
-public class GradeChecker3 {
+public class GradeChecker4 {
 
     /**
      * ExamのRepository
@@ -47,7 +45,7 @@ public class GradeChecker3 {
      * @param assignmentsRepository AssignmentsのRepository
      * @param miniExamRepository    MiniExamのRepository
      */
-    public GradeChecker3(
+    public GradeChecker4(
             ExamRepositoryInterface examRepository,
             AssignmentsRepositoryInterface assignmentsRepository,
             MiniExamRepositoryInterface miniExamRepository
@@ -64,46 +62,43 @@ public class GradeChecker3 {
      */
     public void run(String[] arguments) {
         if (!new ArgumentValidatorService().validateForMany(arguments)) {
-            new Printer().printErrorByArgumentNotFound("java GradeChecker3 <EXAM.CSV> <ASSIGNMENTS.CSV> <MINIEXAM.CSV>");
+            new Printer().printErrorByArgumentNotFound("java GradeChecker4 <EXAM.CSV> <ASSIGNMENTS.CSV> <MINIEXAM.CSV>");
             return;
         }
 
-        ConvertingService convertingService = new ConvertingService();
+        CalculatedScoreList calculatedScoreList = new CalculatedScoreList(
+                new GradeCalculatingService().convertForAttendance(
+                        new ConvertingService().createScoreSetList(
+                                this.examRepository.findAllByFillId(),
+                                this.assignmentsRepository.findAll(),
+                                this.miniExamRepository.findAllByFillId()
+                        )
+                )
+        );
 
-        List<Exam> examList = this.examRepository.findAllByFillId();
-        List<Assignments> assignmentsList = this.assignmentsRepository.findAll();
-        List<MiniExam> miniExamList = this.miniExamRepository.findAllByFillId();
-
-        List<ScoreSet> scoreSetList = convertingService.createScoreSetList(examList, assignmentsList, miniExamList);
-
-        GradeCalculatingService gradeCalculatingService = new GradeCalculatingService();
-        CalculatedScoreList calculatedScoreList = new CalculatedScoreList(gradeCalculatingService.convert(scoreSetList));
         CalculatedScorePrinter calculatedScorePrinter = new CalculatedScorePrinter();
 
         calculatedScorePrinter.printCalculatedScore(calculatedScoreList);
-
         calculatedScorePrinter.printAverage(
                 calculatedScoreList.calculateAverage(),
                 new CalculatedScoreList(calculatedScoreList.extractByCreditGetter()).calculateAverage()
         );
-
         calculatedScorePrinter.printMaximize(
                 calculatedScoreList.calculateMaximize(),
                 new CalculatedScoreList(calculatedScoreList.extractByCreditGetter()).calculateMaximize()
         );
-
         calculatedScorePrinter.printMinimum(
                 calculatedScoreList.calculateMinimum(),
                 new CalculatedScoreList(calculatedScoreList.extractByCreditGetter()).calculateMinimum()
         );
-
-        calculatedScorePrinter.printGradeStats(
+        calculatedScorePrinter.printGradeStatsForAttendance(
                 calculatedScoreList.countByGrade(Grade.A),
                 calculatedScoreList.countByGrade(Grade.B),
                 calculatedScoreList.countByGrade(Grade.C),
                 calculatedScoreList.countByGrade(Grade.D),
                 calculatedScoreList.countByGrade(Grade.E),
-                calculatedScoreList.countByGrade(Grade.K)
+                calculatedScoreList.countByGrade(Grade.K),
+                calculatedScoreList.countByGrade(Grade.L)
         );
     }
 }
