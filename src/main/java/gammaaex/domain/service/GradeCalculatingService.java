@@ -79,7 +79,21 @@ public class GradeCalculatingService {
                 + 25 * totalScore.doubleValue() / 60
                 + 5 * admissionRate;
 
-        finalScore = Math.ceil(finalScore);
+        return Math.ceil(finalScore);
+    }
+
+    /**
+     * 最終成績を計算する。
+     *
+     * @param exam        テスト
+     * @param assignments 課題
+     * @param miniExam    小テスト
+     * @return 最終成績
+     * @see <a href="https://ksuap.github.io/2018spring/lesson14/assignments/#4-a-問題説明">仕様</a>
+     */
+    public Double calculateFinalScoreForAttendance(Exam exam, Assignments assignments, MiniExam miniExam) {
+        Double examScore = exam.getDetailScore().getZeroOrScore();
+        Double finalScore = this.calculateFinalScore(exam,assignments,miniExam);
         Double ceiledExamScore = Math.ceil(examScore);
 
         if (ceiledExamScore >= 80) {
@@ -136,7 +150,7 @@ public class GradeCalculatingService {
             Assignments assignments = scoreSet.getAssignments();
             MiniExam miniExam = scoreSet.getMiniExam();
 
-            Double finalScore = this.calculateFinalScore(exam, assignments, miniExam);
+            Double finalScore = this.calculateFinalScoreForAttendance(exam, assignments, miniExam);
 
             calculatedScoreList.add(new CalculatedScore(
                     exam.getIdentifier(),
