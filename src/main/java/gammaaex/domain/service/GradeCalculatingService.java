@@ -88,7 +88,7 @@ public class GradeCalculatingService {
      * @param scoreSetList {@link ScoreSet}のList
      * @return {@link CalculatedScore}のList
      */
-    public List<CalculatedScore> convertListFromScoreSetToCalculatedScore(List<ScoreSet> scoreSetList) {
+    public List<CalculatedScore> convert(List<ScoreSet> scoreSetList) {
         List<CalculatedScore> calculatedScoreList = new ArrayList<>();
 
         scoreSetList.forEach(scoreSet -> {

@@ -76,7 +76,7 @@ public class GradeChecker2 {
 
         GradeCalculatingService gradeCalculatingService = new GradeCalculatingService();
         List<CalculatedScore> calculatedScoreList =
-                gradeCalculatingService.convertListFromScoreSetToCalculatedScore(scoreSetList);
+                gradeCalculatingService.convert(scoreSetList);
 
         new CalculatedScorePrinter().printCalculatedScore(calculatedScoreList);
     }
