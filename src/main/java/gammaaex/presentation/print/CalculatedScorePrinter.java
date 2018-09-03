@@ -1,6 +1,7 @@
 package gammaaex.presentation.print;
 
 import gammaaex.domain.model.entity.CalculatedScore;
+import gammaaex.domain.model.entity.CalculatedScoreList;
 import gammaaex.domain.model.type.Grade;
 
 import java.util.List;
@@ -22,8 +23,8 @@ public class CalculatedScorePrinter extends Printer {
      *
      * @param calculatedScoreList CalculatedScoreのコレクション
      */
-    public void printCalculatedScore(List<CalculatedScore> calculatedScoreList) {
-        calculatedScoreList.forEach(calculatedScore -> {
+    public void printCalculatedScore(CalculatedScoreList calculatedScoreList) {
+        calculatedScoreList.getCalculatedScoreList().forEach(calculatedScore -> {
             this.printAll(
                     calculatedScore.getIdentifier(),
                     calculatedScore.getFinalScore().getZeroOrScore(),
@@ -119,5 +120,34 @@ public class CalculatedScorePrinter extends Printer {
         System.out.println("可:  " + gradeD);
         System.out.println("不可:  " + gradeE);
         System.out.println("K:  " + gradeK);
+    }
+
+    /**
+     * 成績の統計を出力する。
+     *
+     * @param gradeA {@code Grade.A} の数
+     * @param gradeB {@code Grade.B} の数
+     * @param gradeC {@code Grade.C} の数
+     * @param gradeD {@code Grade.D} の数
+     * @param gradeE {@code Grade.E} の数
+     * @param gradeK {@code Grade.K} の数
+     * @param gradeL {@code Grade.K} の数
+     */
+    public void printGradeStatsForAttendance(
+            Integer gradeA,
+            Integer gradeB,
+            Integer gradeC,
+            Integer gradeD,
+            Integer gradeE,
+            Integer gradeK,
+            Integer gradeL
+    ) {
+        System.out.println("秀:  " + gradeA);
+        System.out.println("優:  " + gradeB);
+        System.out.println("良:  " + gradeC);
+        System.out.println("可:  " + gradeD);
+        System.out.println("不可:  " + gradeE);
+        System.out.println("K:  " + gradeK);
+        System.out.println("※:  " + gradeL);
     }
 }

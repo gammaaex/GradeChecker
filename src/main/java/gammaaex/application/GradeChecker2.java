@@ -2,7 +2,7 @@ package gammaaex.application;
 
 import gammaaex.domain.model.aggregate.ScoreSet;
 import gammaaex.domain.model.entity.Assignments;
-import gammaaex.domain.model.entity.CalculatedScore;
+import gammaaex.domain.model.entity.CalculatedScoreList;
 import gammaaex.domain.model.entity.Exam;
 import gammaaex.domain.model.entity.MiniExam;
 import gammaaex.domain.repository.AssignmentsRepositoryInterface;
@@ -75,9 +75,9 @@ public class GradeChecker2 {
         List<ScoreSet> scoreSetList = convertingService.createScoreSetList(examList, assignmentsList, miniExamList);
 
         GradeCalculatingService gradeCalculatingService = new GradeCalculatingService();
-        List<CalculatedScore> calculatedScoreList =
-                gradeCalculatingService.convert(scoreSetList);
 
-        new CalculatedScorePrinter().printCalculatedScore(calculatedScoreList);
+        new CalculatedScorePrinter().printCalculatedScore(
+                new CalculatedScoreList(gradeCalculatingService.convertForAttendance(scoreSetList))
+        );
     }
 }

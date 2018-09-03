@@ -46,7 +46,7 @@ public class GradeCalculatingService {
     /**
      * 出席日数を考慮したGradeを計算する。
      *
-     * @param score 成績
+     * @param score    成績
      * @param miniExam 小テスト
      * @return Grade
      */
@@ -54,7 +54,7 @@ public class GradeCalculatingService {
         Grade grade = this.convertScoreToGrade(score);
         Integer count = miniExam.calculateNumberOfAdmission();
 
-        if(grade == Grade.E && count <= 7) {
+        if (grade == Grade.E && count <= 7) {
             return Grade.L;
         }
 
@@ -79,7 +79,16 @@ public class GradeCalculatingService {
                 + 25 * totalScore.doubleValue() / 60
                 + 5 * admissionRate;
 
-        return Math.ceil(finalScore);
+        finalScore = Math.ceil(finalScore);
+        Double ceiledExamScore = Math.ceil(examScore);
+
+        if (ceiledExamScore >= 80) {
+            if (ceiledExamScore > finalScore) {
+                finalScore = Math.ceil(examScore);
+            }
+        }
+
+        return finalScore;
     }
 
     /**
@@ -106,6 +115,37 @@ public class GradeCalculatingService {
                     new DetailScore(miniExam.calculateAdmissionRate()),
                     this.convertScoreToGrade(
                             exam.getDetailScore().getNullOrScore() == null ? null : finalScore
+                    )
+            ));
+        });
+
+        return calculatedScoreList;
+    }
+
+    /**
+     * scoreSetのリストから出席日数を考慮した各値を計算し、CalculatedScoreのListに変換する。
+     *
+     * @param scoreSetList {@link ScoreSet}のList
+     * @return {@link CalculatedScore}のList
+     */
+    public List<CalculatedScore> convertForAttendance(List<ScoreSet> scoreSetList) {
+        List<CalculatedScore> calculatedScoreList = new ArrayList<>();
+
+        scoreSetList.forEach(scoreSet -> {
+            Exam exam = scoreSet.getExam();
+            Assignments assignments = scoreSet.getAssignments();
+            MiniExam miniExam = scoreSet.getMiniExam();
+
+            Double finalScore = this.calculateFinalScore(exam, assignments, miniExam);
+
+            calculatedScoreList.add(new CalculatedScore(
+                    exam.getIdentifier(),
+                    new DetailScore(finalScore),
+                    new DetailScore(exam.getDetailScore().getNullOrScore()),
+                    new DetailScore(assignments.calculateTotalScore().doubleValue()),
+                    new DetailScore(miniExam.calculateAdmissionRate()),
+                    this.convertScoreToGrade(
+                            exam.getDetailScore().getNullOrScore() == null ? null : finalScore, miniExam
                     )
             ));
         });

@@ -1,6 +1,7 @@
 package gammaaex;
 
 import gammaaex.application.GradeChecker3;
+import gammaaex.application.GradeChecker4;
 import gammaaex.infrastructure.repository.AssignmentsRepository;
 import gammaaex.infrastructure.repository.ExamRepository;
 import gammaaex.infrastructure.repository.MiniExamRepository;
@@ -26,7 +27,13 @@ public class Main {
 //                new MiniExamRepository(args[2])
 //        ).run(args);
 
-        new GradeChecker3(
+//        new GradeChecker3(
+//                new ExamRepository(args[0]),
+//                new AssignmentsRepository(args[1]),
+//                new MiniExamRepository(args[2])
+//        ).run(args);
+
+        new GradeChecker4(
                 new ExamRepository(args[0]),
                 new AssignmentsRepository(args[1]),
                 new MiniExamRepository(args[2])

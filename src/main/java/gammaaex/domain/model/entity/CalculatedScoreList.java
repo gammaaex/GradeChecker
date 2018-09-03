@@ -22,6 +22,13 @@ public class CalculatedScoreList {
     }
 
     /**
+     * @return get calculatedScoreList.
+     */
+    public List<CalculatedScore> getCalculatedScoreList() {
+        return calculatedScoreList;
+    }
+
+    /**
      * 平均点を計算する。
      *
      * @return 平均点
