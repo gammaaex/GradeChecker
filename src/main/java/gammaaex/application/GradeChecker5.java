@@ -57,7 +57,13 @@ public class GradeChecker5 {
      */
     public void run(String[] arguments) {
         if (!new ArgumentValidatorService().validateForMany(arguments)) {
-            new Printer().printErrorByArgumentNotFound("java GradeChecker4 <EXAM.CSV> <ASSIGNMENTS.CSV> <MINIEXAM.CSV>");
+            new Printer().printErrorByArgumentNotFound("ERROR: 何もファイルが指定されていません．\n" +
+                    "java GradeChecker5 [OPTIONS]\n" +
+                    "OPTIONS\n" +
+                    "    -exam        <EXAM.CSV>\n" +
+                    "    -assignments <ASSIGNMENTS.CSV>\n" +
+                    "    -miniexam    <MINIEXAM.CSV>\n" +
+                    "    -output      <RESULT_FILE>");
             return;
         }
 

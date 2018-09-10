@@ -1,12 +1,16 @@
-package gammaaex;
+package gammaaex.domain.model.value_object;
+
+import gammaaex.domain.model.AbstractValueObject;
+import gammaaex.domain.model.type.Option;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
-public class Arguments {
+public final class Arguments extends AbstractValueObject {
 
     /**
      * 引数のコレクション
@@ -44,5 +48,25 @@ public class Arguments {
         }
 
         return argMap;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+
+        if (object == null) return false;
+
+        if (this.getClass() != object.getClass()) return false;
+
+        Arguments that = (Arguments) object;
+
+        if (!this.argList.equals(that.argList)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.argList);
     }
 }

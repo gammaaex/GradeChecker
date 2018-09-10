@@ -1,4 +1,4 @@
-package gammaaex;
+package gammaaex.domain.model.type;
 
 public enum Option {
 
@@ -15,7 +15,12 @@ public enum Option {
     /**
      * 小テストのオプション
      */
-    MINIEXAM("miniexam");
+    MINIEXAM("miniexam"),
+
+    /**
+     * 出力先のオプション
+     */
+    OUTPUT("output");
 
 
     /**

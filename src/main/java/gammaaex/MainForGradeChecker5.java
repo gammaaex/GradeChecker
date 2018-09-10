@@ -1,6 +1,8 @@
 package gammaaex;
 
 import gammaaex.application.GradeChecker5;
+import gammaaex.domain.model.type.Option;
+import gammaaex.domain.model.value_object.Arguments;
 import gammaaex.infrastructure.repository.AssignmentsRepository;
 import gammaaex.infrastructure.repository.ExamRepository;
 import gammaaex.infrastructure.repository.MiniExamRepository;
