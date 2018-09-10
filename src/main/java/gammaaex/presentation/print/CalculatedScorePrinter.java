@@ -114,12 +114,12 @@ public class CalculatedScorePrinter extends Printer {
             Integer gradeE,
             Integer gradeK
     ) {
-        System.out.println("秀:  " + gradeA);
-        System.out.println("優:  " + gradeB);
-        System.out.println("良:  " + gradeC);
-        System.out.println("可:  " + gradeD);
-        System.out.println("不可:  " + gradeE);
-        System.out.println("K:  " + gradeK);
+        System.out.println(Grade.A.getText() + ":  " + gradeA);
+        System.out.println(Grade.B.getText() + ":  " + gradeB);
+        System.out.println(Grade.C.getText() + ":  " + gradeC);
+        System.out.println(Grade.D.getText() + ":  " + gradeD);
+        System.out.println(Grade.E.getText() + ":  " + gradeE);
+        System.out.println(Grade.K.getText() + ":  " + gradeK);
     }
 
     /**
@@ -142,12 +142,12 @@ public class CalculatedScorePrinter extends Printer {
             Integer gradeK,
             Integer gradeL
     ) {
-        System.out.println("秀:  " + gradeA);
-        System.out.println("優:  " + gradeB);
-        System.out.println("良:  " + gradeC);
-        System.out.println("可:  " + gradeD);
-        System.out.println("不可:  " + gradeE);
-        System.out.println("K:  " + gradeK);
-        System.out.println("※:  " + gradeL);
+        System.out.println(Grade.A.getText() + ":  " + gradeA);
+        System.out.println(Grade.B.getText() + ":  " + gradeB);
+        System.out.println(Grade.C.getText() + ":  " + gradeC);
+        System.out.println(Grade.D.getText() + ":  " + gradeD);
+        System.out.println(Grade.E.getText() + ":  " + gradeE);
+        System.out.println(Grade.K.getText() + ":  " + gradeK);
+        System.out.println(Grade.L.getText() + ":  " + gradeL);
     }
 }
