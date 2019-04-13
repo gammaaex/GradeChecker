@@ -8,8 +8,8 @@ import gammaaex.domain.repository.MiniExamRepositoryInterface;
 import gammaaex.domain.service.ArgumentValidatorService;
 import gammaaex.domain.service.ConvertingService;
 import gammaaex.domain.service.GradeCalculatingService;
-import gammaaex.presentation.print.CalculatedScorePrinter;
-import gammaaex.presentation.print.Printer;
+import gammaaex.presentation.CalculatedScorePrinter;
+import gammaaex.presentation.Printer;
 
 /**
  * ステップ4に相当するクラス

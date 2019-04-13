@@ -4,8 +4,8 @@ import gammaaex.domain.model.entity.Exam;
 import gammaaex.domain.repository.ExamRepositoryInterface;
 import gammaaex.domain.service.ArgumentValidatorService;
 import gammaaex.domain.service.GradeCalculatingService;
-import gammaaex.presentation.print.ExamPrinter;
-import gammaaex.presentation.print.Printer;
+import gammaaex.presentation.ExamPrinter;
+import gammaaex.presentation.Printer;
 
 import java.util.List;
 

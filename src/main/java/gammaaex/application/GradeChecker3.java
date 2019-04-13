@@ -2,7 +2,6 @@ package gammaaex.application;
 
 import gammaaex.domain.model.aggregate.ScoreSet;
 import gammaaex.domain.model.entity.Assignments;
-import gammaaex.domain.model.entity.CalculatedScore;
 import gammaaex.domain.model.entity.CalculatedScoreList;
 import gammaaex.domain.model.entity.Exam;
 import gammaaex.domain.model.entity.MiniExam;
@@ -13,8 +12,8 @@ import gammaaex.domain.repository.MiniExamRepositoryInterface;
 import gammaaex.domain.service.ArgumentValidatorService;
 import gammaaex.domain.service.ConvertingService;
 import gammaaex.domain.service.GradeCalculatingService;
-import gammaaex.presentation.print.CalculatedScorePrinter;
-import gammaaex.presentation.print.Printer;
+import gammaaex.presentation.CalculatedScorePrinter;
+import gammaaex.presentation.Printer;
 
 import java.util.List;
 

@@ -1,10 +1,7 @@
-package gammaaex.presentation.print;
+package gammaaex.presentation;
 
-import gammaaex.domain.model.entity.CalculatedScore;
 import gammaaex.domain.model.entity.CalculatedScoreList;
 import gammaaex.domain.model.type.Grade;
-
-import java.util.List;
 
 /**
  * CalculatedScoreの標準出力を司るクラス

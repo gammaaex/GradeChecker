@@ -1,4 +1,4 @@
-package gammaaex.presentation.print;
+package gammaaex.presentation;
 
 import gammaaex.domain.model.entity.Exam;
 import gammaaex.domain.model.type.Grade;
